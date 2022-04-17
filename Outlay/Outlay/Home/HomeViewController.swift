@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class HomeViewController: UIViewController {
 
@@ -11,7 +12,6 @@ class HomeViewController: UIViewController {
     // MARK: - ExpenceIndicator
     private let expenceIndicator: UIView = {
         $0.backgroundColor = .yellow
-        $0.tintColor = .green
         return $0
     }(UIView())
     // MARK: - Button
@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
         return $0
     }(UIButton())
     @objc func addExpence() {
+        Logger.information(message: "expenses button touched")
     }
 }
 
@@ -48,15 +49,20 @@ extension HomeViewController {
     }
     // MARK: - Button Constraints
     private func setSubmitButtonConstraints() {
-        let margins = view.layoutMarginsGuide
-        NSLayoutConstraint.activate([
-            addExpenceButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -20),
-            addExpenceButton.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-            addExpenceButton.heightAnchor.constraint(equalToConstant: 60),
-            addExpenceButton.widthAnchor.constraint(equalTo: margins.widthAnchor)
-        ])
+        addExpenceButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottomMargin.equalToSuperview().inset(20)
+            $0.height.equalTo(60)
+            $0.width.equalToSuperview().inset(20)
+        }
     }
     // MARK: - Expence Indicator
     private func setExpenceIndicatorConstraints() {
+        expenceIndicator.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.topMargin.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(10)
+            $0.width.equalToSuperview().inset(20)
+            $0.height.equalTo(250)
+        }
     }
 }
