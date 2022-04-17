@@ -4,7 +4,7 @@ class AddExpenceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = Constants.viewBackgroundColor
         title = "New Expence"
     }
 }
