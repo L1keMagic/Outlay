@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
     }(UIButton())
     @objc func addExpence() {
         Logger.information(message: "expenses button touched")
+        present(UINavigationController(rootViewController: NewExpenceViewController()), animated: true)
     }
 }
 
