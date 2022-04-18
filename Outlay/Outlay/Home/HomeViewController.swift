@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(ExpencesListTableViewController(), animated: true)
     }
     // MARK: - Add Expence Button
-    private let addExpenceButton: UIButton = {
+    fileprivate let addExpenceButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 20
         $0.setTitle(NSLocalizedString("new expence", comment: ""), for: .normal)
@@ -39,27 +39,27 @@ class HomeViewController: UIViewController {
 // MARK: - Controller Extention
 extension HomeViewController {
     // MARK: - Configure View
-    private func configure() {
+    fileprivate func configure() {
         configureSubviews()
         configureConstraints()
         configureActions()
     }
     // MARK: - SubViews
-    private func configureSubviews() {
+    fileprivate func configureSubviews() {
         view.addSubview(addExpenceButton)
         view.addSubview(expenceIndicator)
     }
     // MARK: - Configure Constraints
-    private func configureConstraints() {
+    fileprivate func configureConstraints() {
         setSubmitButtonConstraints()
         setExpenceIndicatorConstraints()
     }
-    private func configureActions() {
+    fileprivate func configureActions() {
         addExpenceButton.addTarget(self, action: #selector(addExpence), for: .touchUpInside)
         expenceIndicator.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openExpenceList)))
     }
     // MARK: - Button Constraints
-    private func setSubmitButtonConstraints() {
+    fileprivate func setSubmitButtonConstraints() {
         addExpenceButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
@@ -68,7 +68,7 @@ extension HomeViewController {
         }
     }
     // MARK: - Expence Indicator
-    private func setExpenceIndicatorConstraints() {
+    fileprivate func setExpenceIndicatorConstraints() {
         expenceIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
