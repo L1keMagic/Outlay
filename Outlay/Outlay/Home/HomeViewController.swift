@@ -14,7 +14,12 @@ class HomeViewController: UIViewController {
         $0.backgroundColor = .yellow
         return $0
     }(UIView())
-    // MARK: - Button
+    // MARK: - Add action for expence indicator
+    @objc func openExpenceList(sender: UITapGestureRecognizer) {
+        Logger.information(message: "Expence indicator was touched")
+        navigationController?.pushViewController(ExpencesListTableViewController(), animated: true)
+    }
+    // MARK: - Add Expence Button
     private let addExpenceButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 20
@@ -22,9 +27,9 @@ class HomeViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.setTitleColor(Constants.blueColor, for: .highlighted)
         $0.backgroundColor = Constants.lightBlueColor
-        $0.addTarget(self, action: #selector(addExpence), for: .touchUpInside)
         return $0
     }(UIButton())
+    // MARK: - Add action for expence button
     @objc func addExpence() {
         Logger.information(message: "expenses button touched")
         present(UINavigationController(rootViewController: NewExpenceViewController()), animated: true)
@@ -35,11 +40,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     // MARK: - Configure View
     private func configure() {
-        addSubviews()
+        configureSubviews()
         configureConstraints()
+        configureActions()
     }
     // MARK: - SubViews
-    private func addSubviews() {
+    private func configureSubviews() {
         view.addSubview(addExpenceButton)
         view.addSubview(expenceIndicator)
     }
@@ -47,6 +53,10 @@ extension HomeViewController {
     private func configureConstraints() {
         setSubmitButtonConstraints()
         setExpenceIndicatorConstraints()
+    }
+    private func configureActions() {
+        addExpenceButton.addTarget(self, action: #selector(addExpence), for: .touchUpInside)
+        expenceIndicator.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openExpenceList)))
     }
     // MARK: - Button Constraints
     private func setSubmitButtonConstraints() {
