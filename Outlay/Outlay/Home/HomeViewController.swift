@@ -5,7 +5,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.viewBackgroundColor
+        view.backgroundColor = Constants.blueColor
         title = "Outlay"
         configure()
     }
@@ -20,8 +20,8 @@ class HomeViewController: UIViewController {
         $0.layer.cornerRadius = 20
         $0.setTitle(NSLocalizedString("new expence", comment: ""), for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(UIColor(red: 237/255, green: 243/255, blue: 249/255, alpha: 1.0), for: .highlighted)
-        $0.backgroundColor = UIColor(red: 2/255, green: 177/255, blue: 242/255, alpha: 1.0)
+        $0.setTitleColor(Constants.blueColor, for: .highlighted)
+        $0.backgroundColor = Constants.lightBlueColor
         $0.addTarget(self, action: #selector(addExpence), for: .touchUpInside)
         return $0
     }(UIButton())
@@ -51,7 +51,7 @@ extension HomeViewController {
     private func setSubmitButtonConstraints() {
         addExpenceButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottomMargin.equalToSuperview().inset(20)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(20)
         }
@@ -60,7 +60,7 @@ extension HomeViewController {
     private func setExpenceIndicatorConstraints() {
         expenceIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.topMargin.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(10)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.width.equalToSuperview().inset(20)
             $0.height.equalTo(250)
         }
