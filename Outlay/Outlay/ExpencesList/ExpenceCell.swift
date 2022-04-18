@@ -17,7 +17,7 @@ class ExpenceCell: UITableViewCell {
 
 extension ExpenceCell {
     // MARK: - Configure Cell
-    internal func configure() {
+    fileprivate func configure() {
         addSubviews()
         configureConstraints()
     }
