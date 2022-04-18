@@ -17,6 +17,8 @@
 		23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DDE280C5FF6009FA89A /* SettingsViewController.swift */; };
 		23367DE5280C87F0009FA89A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE4280C87F0009FA89A /* Logger.swift */; };
 		23367DE7280C8899009FA89A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE6280C8899009FA89A /* NavigationController.swift */; };
+		23B131BF280D6EF100E0AED0 /* NewExpenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131BE280D6EF100E0AED0 /* NewExpenceViewController.swift */; };
+		23B131C5280D74E300E0AED0 /* ExpencesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C4280D74E300E0AED0 /* ExpencesListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		23367DDE280C5FF6009FA89A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		23367DE4280C87F0009FA89A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		23367DE6280C8899009FA89A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		23B131BE280D6EF100E0AED0 /* NewExpenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenceViewController.swift; sourceTree = "<group>"; };
+		23B131C4280D74E300E0AED0 /* ExpencesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpencesListTableViewController.swift; sourceTree = "<group>"; };
 		459263C2F59AAEB4199FFEF7 /* Pods-Outlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.release.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.release.xcconfig"; sourceTree = "<group>"; };
 		4907EC030AE0BA5FD8596BC1 /* Pods_Outlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Outlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EDC580D7B500EF0CB5B6424 /* Pods-Outlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.debug.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 		2327AF5E280C262A004CB7A0 /* Outlay */ = {
 			isa = PBXGroup;
 			children = (
+				23B131BD280D6E4C00E0AED0 /* ExpencesList */,
+				23B131BC280D6E2E00E0AED0 /* NewExpence */,
 				23367DE3280C87C5009FA89A /* Logging */,
 				23367DDD280C5FDF009FA89A /* Settings */,
 				23367DD7280C5E07009FA89A /* Extentions */,
@@ -138,6 +144,22 @@
 				23367DE4280C87F0009FA89A /* Logger.swift */,
 			);
 			path = Logging;
+			sourceTree = "<group>";
+		};
+		23B131BC280D6E2E00E0AED0 /* NewExpence */ = {
+			isa = PBXGroup;
+			children = (
+				23B131BE280D6EF100E0AED0 /* NewExpenceViewController.swift */,
+			);
+			path = NewExpence;
+			sourceTree = "<group>";
+		};
+		23B131BD280D6E4C00E0AED0 /* ExpencesList */ = {
+			isa = PBXGroup;
+			children = (
+				23B131C4280D74E300E0AED0 /* ExpencesListTableViewController.swift */,
+			);
+			path = ExpencesList;
 			sourceTree = "<group>";
 		};
 		B6CE5BECB92A06F46E2803AE /* Frameworks */ = {
@@ -281,8 +303,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B131C5280D74E300E0AED0 /* ExpencesListTableViewController.swift in Sources */,
 				2327AF64280C262A004CB7A0 /* HomeViewController.swift in Sources */,
 				23367DE7280C8899009FA89A /* NavigationController.swift in Sources */,
+				23B131BF280D6EF100E0AED0 /* NewExpenceViewController.swift in Sources */,
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
 				2327AF60280C262A004CB7A0 /* AppDelegate.swift in Sources */,
 				23367DE5280C87F0009FA89A /* Logger.swift in Sources */,
