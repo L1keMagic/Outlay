@@ -5,7 +5,7 @@ struct Expence: Codable {
     let title: String
     let price: Float
     let categoryId: Int?
-    let creationDate: Date
+    let creationDate: Date?
 }
 
 typealias Expences = [Expence]
