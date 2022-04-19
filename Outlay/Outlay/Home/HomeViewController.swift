@@ -17,7 +17,9 @@ class HomeViewController: UIViewController {
     // MARK: - Add action for expence indicator
     @objc func openExpenceList(sender: UITapGestureRecognizer) {
         Logger.information(message: "Expence indicator was touched")
-        navigationController?.pushViewController(ExpencesListViewController(), animated: true)
+        let expencesData = ExpenceRepository.shared.getExpences()
+        navigationController?.pushViewController(ExpencesListViewController(expences: expencesData),
+                                                 animated: true)
     }
     // MARK: - Add Expence Button
     fileprivate let addExpenceButton: UIButton = {
