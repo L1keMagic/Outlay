@@ -1,6 +1,6 @@
 import UIKit
 
-class NewExpenceViewController: UIViewController {
+class NewExpenseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
