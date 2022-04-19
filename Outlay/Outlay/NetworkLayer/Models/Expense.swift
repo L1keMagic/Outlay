@@ -1,6 +1,6 @@
 import Foundation
 
-struct Expence: Codable {
+struct Expense: Codable {
     let id: String
     let title: String
     let price: Float
@@ -8,4 +8,4 @@ struct Expence: Codable {
     let creationDate: String
 }
 
-typealias Expences = [Expence]
+typealias Expenses = [Expense]

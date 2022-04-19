@@ -1,10 +1,10 @@
 import UIKit
 
-class ExpencesListViewController: UIViewController {
+class ExpensesListViewController: UIViewController {
     private var tableView = UITableView()
-    private var expences: Expences
-    init(expences: Expences) {
-        self.expences = expences
+    private var expenses: Expenses
+    init(expenses: Expenses) {
+        self.expenses = expenses
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -21,21 +21,21 @@ class ExpencesListViewController: UIViewController {
     }
 }
 // MARK: - Configuring table view
-extension ExpencesListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource {
     fileprivate func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ExpenceCell.self, forCellReuseIdentifier: Constants.expenceCellIdentifier)
+        tableView.register(ExpenseCell.self, forCellReuseIdentifier: Constants.expenseCellIdentifier)
         tableView.backgroundColor = Constants.blueColor
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expences.count
+        return expenses.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.expenceCellIdentifier,
-                                                 for: indexPath) as? ExpenceCell
-        let expence = expences[indexPath.row]
-        cell?.set(expence: expence)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.expenseCellIdentifier,
+                                                 for: indexPath) as? ExpenseCell
+        let expense = expenses[indexPath.row]
+        cell?.set(expense: expense)
         return cell ?? UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

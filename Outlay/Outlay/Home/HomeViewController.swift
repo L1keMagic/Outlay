@@ -9,32 +9,32 @@ class HomeViewController: UIViewController {
         title = "Outlay"
         configure()
     }
-    // MARK: - ExpenceIndicator
-    private let expenceIndicator: UIView = {
+    // MARK: - ExpenseIndicator
+    private let expenseIndicator: UIView = {
         $0.backgroundColor = .yellow
         return $0
     }(UIView())
-    // MARK: - Add action for expence indicator
-    @objc func openExpenceList(sender: UITapGestureRecognizer) {
-        Logger.information(message: "Expence indicator was touched")
-        let expencesData = ExpenceRepository.shared.getExpences()
-        navigationController?.pushViewController(ExpencesListViewController(expences: expencesData),
+    // MARK: - Add action for expense indicator
+    @objc func openExpenseList(sender: UITapGestureRecognizer) {
+        Logger.information(message: "Expense indicator was touched")
+        let expensesData = ExpenseRepository.shared.getExpenses()
+        navigationController?.pushViewController(ExpensesListViewController(expenses: expensesData),
                                                  animated: true)
     }
-    // MARK: - Add Expence Button
-    fileprivate let addExpenceButton: UIButton = {
+    // MARK: - Add Expense Button
+    fileprivate let addExpenseButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 20
-        $0.setTitle(NSLocalizedString("new expence", comment: ""), for: .normal)
+        $0.setTitle(NSLocalizedString("new expense", comment: ""), for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.setTitleColor(Constants.blueColor, for: .highlighted)
         $0.backgroundColor = Constants.lightBlueColor
         return $0
     }(UIButton())
-    // MARK: - Add action for expence button
-    @objc func addExpence() {
+    // MARK: - Add action for expense button
+    @objc func addExpense() {
         Logger.information(message: "expenses button touched")
-        present(UINavigationController(rootViewController: NewExpenceViewController()), animated: true)
+        present(UINavigationController(rootViewController: NewExpenseViewController()), animated: true)
     }
 }
 
@@ -48,30 +48,30 @@ extension HomeViewController {
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
-        view.addSubview(addExpenceButton)
-        view.addSubview(expenceIndicator)
+        view.addSubview(addExpenseButton)
+        view.addSubview(expenseIndicator)
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
         setSubmitButtonConstraints()
-        setExpenceIndicatorConstraints()
+        setExpenseIndicatorConstraints()
     }
     fileprivate func configureActions() {
-        addExpenceButton.addTarget(self, action: #selector(addExpence), for: .touchUpInside)
-        expenceIndicator.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openExpenceList)))
+        addExpenseButton.addTarget(self, action: #selector(addExpense), for: .touchUpInside)
+        expenseIndicator.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openExpenseList)))
     }
     // MARK: - Button Constraints
     fileprivate func setSubmitButtonConstraints() {
-        addExpenceButton.snp.makeConstraints {
+        addExpenseButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(20)
         }
     }
-    // MARK: - Expence Indicator
-    fileprivate func setExpenceIndicatorConstraints() {
-        expenceIndicator.snp.makeConstraints {
+    // MARK: - Expense Indicator
+    fileprivate func setExpenseIndicatorConstraints() {
+        expenseIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.width.equalToSuperview().inset(20)

@@ -1,6 +1,6 @@
 import UIKit
 
-class ExpenceCell: UITableViewCell {
+class ExpenseCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
@@ -10,49 +10,49 @@ class ExpenceCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - Initializing components
-    lazy var expenceTitle: UILabel = {
+    lazy var expenseTitle: UILabel = {
         $0.numberOfLines = 0
         $0.font = UIFont.boldSystemFont(ofSize: 20.0)
         return $0
     }(UILabel())
-    lazy var expencePrice: UILabel = {
+    lazy var expensePrice: UILabel = {
         $0.numberOfLines = 0
         $0.adjustsFontSizeToFitWidth = true
         return $0
     }(UILabel())
-    lazy var expenceDate: UILabel = {
+    lazy var expenseDate: UILabel = {
         $0.numberOfLines = 0
         $0.adjustsFontSizeToFitWidth = true
         return $0
     }(UILabel())
 }
 
-extension ExpenceCell {
+extension ExpenseCell {
     // MARK: - Filling Cell
-    func set(expence: Expence) {
-        expenceTitle.text = expence.title
-        expencePrice.text = "\(expence.price)"
-        expenceDate.text = expence.creationDate
+    func set(expense: Expense) {
+        expenseTitle.text = expense.title
+        expensePrice.text = "\(expense.price)"
+        expenseDate.text = expense.creationDate
     }
     // MARK: - Subviews
     fileprivate func addSubviews() {
-        addSubview(expenceTitle)
-        addSubview(expencePrice)
-        addSubview(expenceDate)
+        addSubview(expenseTitle)
+        addSubview(expensePrice)
+        addSubview(expenseDate)
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
-        expenceTitle.snp.makeConstraints {
+        expenseTitle.snp.makeConstraints {
             $0.left.equalToSuperview().inset(5)
             $0.top.equalToSuperview()
         }
-        expencePrice.snp.makeConstraints {
+        expensePrice.snp.makeConstraints {
             $0.left.equalToSuperview().inset(5)
-            $0.top.equalTo(expenceTitle.snp.bottom)
+            $0.top.equalTo(expenseTitle.snp.bottom)
         }
-        expenceDate.snp.makeConstraints {
+        expenseDate.snp.makeConstraints {
             $0.right.equalToSuperview()
-            $0.top.equalTo(expenceTitle.snp.bottom)
+            $0.top.equalTo(expenseTitle.snp.bottom)
         }
     }
 }
