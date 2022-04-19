@@ -43,38 +43,31 @@ extension HomeViewController {
     // MARK: - Configure View
     fileprivate func configure() {
         configureSubviews()
-        configureConstraints()
         configureActions()
+        configureConstraints()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
         view.addSubview(addExpenseButton)
         view.addSubview(expenseIndicator)
     }
-    // MARK: - Configure Constraints
-    fileprivate func configureConstraints() {
-        setSubmitButtonConstraints()
-        setExpenseIndicatorConstraints()
-    }
+    // MARK: - Configure Actions
     fileprivate func configureActions() {
         addExpenseButton.addTarget(self, action: #selector(addExpense), for: .touchUpInside)
         expenseIndicator.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openExpenseList)))
     }
-    // MARK: - Button Constraints
-    fileprivate func setSubmitButtonConstraints() {
+    // MARK: - Configure Constraints
+    fileprivate func configureConstraints() {
         addExpenseButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(5)
             $0.height.equalTo(60)
-            $0.width.equalToSuperview().inset(20)
+            $0.width.equalToSuperview().inset(10)
         }
-    }
-    // MARK: - Expense Indicator
-    fileprivate func setExpenseIndicatorConstraints() {
         expenseIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            $0.width.equalToSuperview().inset(20)
+            $0.width.equalToSuperview().inset(10)
             $0.height.equalTo(250)
         }
     }
