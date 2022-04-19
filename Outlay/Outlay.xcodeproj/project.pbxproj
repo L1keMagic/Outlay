@@ -17,10 +17,12 @@
 		23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DDE280C5FF6009FA89A /* SettingsViewController.swift */; };
 		23367DE5280C87F0009FA89A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE4280C87F0009FA89A /* Logger.swift */; };
 		23367DE7280C8899009FA89A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE6280C8899009FA89A /* NavigationController.swift */; };
+		239D6147280F39D60049298F /* ExpenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenceRepository.swift */; };
 		23B131BF280D6EF100E0AED0 /* NewExpenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131BE280D6EF100E0AED0 /* NewExpenceViewController.swift */; };
 		23B131C9280D90B300E0AED0 /* Expences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C8280D90B300E0AED0 /* Expences.swift */; };
 		23B131CB280D98A700E0AED0 /* ExpenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CA280D98A700E0AED0 /* ExpenceCell.swift */; };
-		23B131CF280DA04B00E0AED0 /* ExpencesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CE280DA04B00E0AED0 /* ExpencesListTableViewController.swift */; };
+		23B131CF280DA04B00E0AED0 /* ExpencesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CE280DA04B00E0AED0 /* ExpencesListViewController.swift */; };
+		23B131D1280F2AAA00E0AED0 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131D0280F2AAA00E0AED0 /* DateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,10 +37,12 @@
 		23367DDE280C5FF6009FA89A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		23367DE4280C87F0009FA89A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		23367DE6280C8899009FA89A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		239D6146280F39D60049298F /* ExpenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenceRepository.swift; sourceTree = "<group>"; };
 		23B131BE280D6EF100E0AED0 /* NewExpenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenceViewController.swift; sourceTree = "<group>"; };
 		23B131C8280D90B300E0AED0 /* Expences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expences.swift; sourceTree = "<group>"; };
 		23B131CA280D98A700E0AED0 /* ExpenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenceCell.swift; sourceTree = "<group>"; };
-		23B131CE280DA04B00E0AED0 /* ExpencesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpencesListTableViewController.swift; sourceTree = "<group>"; };
+		23B131CE280DA04B00E0AED0 /* ExpencesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpencesListViewController.swift; sourceTree = "<group>"; };
+		23B131D0280F2AAA00E0AED0 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateManager.swift; path = Outlay/ExpencesList/DateManager.swift; sourceTree = SOURCE_ROOT; };
 		459263C2F59AAEB4199FFEF7 /* Pods-Outlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.release.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.release.xcconfig"; sourceTree = "<group>"; };
 		4907EC030AE0BA5FD8596BC1 /* Pods_Outlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Outlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EDC580D7B500EF0CB5B6424 /* Pods-Outlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.debug.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 		23367DD7280C5E07009FA89A /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				23B131D0280F2AAA00E0AED0 /* DateManager.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -163,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				23B131CA280D98A700E0AED0 /* ExpenceCell.swift */,
-				23B131CE280DA04B00E0AED0 /* ExpencesListTableViewController.swift */,
+				23B131CE280DA04B00E0AED0 /* ExpencesListViewController.swift */,
 			);
 			path = ExpencesList;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 		23B131C6280D903700E0AED0 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				23B131D2280F36D800E0AED0 /* Data */,
 				23B131C7280D907F00E0AED0 /* Models */,
 			);
 			path = NetworkLayer;
@@ -182,6 +188,14 @@
 				23B131C8280D90B300E0AED0 /* Expences.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		23B131D2280F36D800E0AED0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				239D6146280F39D60049298F /* ExpenceRepository.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		B6CE5BECB92A06F46E2803AE /* Frameworks */ = {
@@ -326,10 +340,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				23B131C9280D90B300E0AED0 /* Expences.swift in Sources */,
+				23B131D1280F2AAA00E0AED0 /* DateManager.swift in Sources */,
 				2327AF64280C262A004CB7A0 /* HomeViewController.swift in Sources */,
 				23367DE7280C8899009FA89A /* NavigationController.swift in Sources */,
 				23B131BF280D6EF100E0AED0 /* NewExpenceViewController.swift in Sources */,
-				23B131CF280DA04B00E0AED0 /* ExpencesListTableViewController.swift in Sources */,
+				23B131CF280DA04B00E0AED0 /* ExpencesListViewController.swift in Sources */,
+				239D6147280F39D60049298F /* ExpenceRepository.swift in Sources */,
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
 				23B131CB280D98A700E0AED0 /* ExpenceCell.swift in Sources */,
 				2327AF60280C262A004CB7A0 /* AppDelegate.swift in Sources */,
