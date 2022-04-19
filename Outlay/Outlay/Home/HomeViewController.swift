@@ -5,8 +5,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.blueColor
-        title = "Outlay"
+        view.backgroundColor = Constants.backgroundBlueColor
+        title = Constants.outlayTitle
         configure()
     }
     // MARK: - ExpenseIndicator
@@ -25,9 +25,9 @@ class HomeViewController: UIViewController {
     fileprivate let addExpenseButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 20
-        $0.setTitle(NSLocalizedString("new expense", comment: ""), for: .normal)
+        $0.setTitle(NSLocalizedString(Constants.newExpenceTitle, comment: ""), for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(Constants.blueColor, for: .highlighted)
+        $0.setTitleColor(Constants.backgroundBlueColor, for: .highlighted)
         $0.backgroundColor = Constants.lightBlueColor
         return $0
     }(UIButton())
