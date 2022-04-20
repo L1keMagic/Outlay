@@ -36,6 +36,11 @@ class HomeViewController: UIViewController {
         Logger.information(message: "expenses button touched")
         present(UINavigationController(rootViewController: NewExpenseViewController()), animated: true)
     }
+    // MARK: - Add action for settings button
+    @objc func goToSettings() {
+        Logger.information(message: "settigs button touched")
+        self.navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
 }
 
 // MARK: - Controller Extention
@@ -45,6 +50,7 @@ extension HomeViewController {
         configureSubviews()
         configureActions()
         configureConstraints()
+        configureBarItems()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
@@ -71,4 +77,12 @@ extension HomeViewController {
             $0.height.equalTo(250)
         }
     }
+    // MARK: - Congigure Bar Items
+    fileprivate func configureBarItems() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"),
+                                                                 style: .plain,
+                                                                 target: self,
+                                                                 action: #selector(goToSettings))
+    }
+    
 }
