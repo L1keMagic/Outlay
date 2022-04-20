@@ -6,6 +6,7 @@ class NavigationController: UINavigationController {
         self.viewControllers = [HomeViewController()]
         self.navigationBar.prefersLargeTitles = true
         self.navigationBar.barStyle = .default
-        self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Constants.lightBlueColor]
+        self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Constants.darkBlueColor]
+        self.navigationBar.tintColor = Constants.darkBlueColor
     }
 }
