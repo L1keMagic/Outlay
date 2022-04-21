@@ -5,13 +5,13 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.backgroundBlueColor
+        view.backgroundColor = Constants.backgroundColor
         title = Constants.outlayTitle
         configure()
     }
     // MARK: - ExpenseIndicator
     private let expenseIndicator: UIView = {
-        $0.backgroundColor = .yellow
+        $0.backgroundColor = .white
         return $0
     }(UIView())
     // MARK: - Add action for expense indicator
@@ -27,8 +27,9 @@ class HomeViewController: UIViewController {
         $0.layer.cornerRadius = 20
         $0.setTitle(NSLocalizedString(Constants.newExpenceTitle, comment: ""), for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(Constants.backgroundBlueColor, for: .highlighted)
-        $0.backgroundColor = Constants.lightBlueColor
+        $0.setTitleColor(Constants.backgroundColor, for: .highlighted)
+        $0.titleLabel?.font = .systemFont(ofSize: 22)
+        $0.backgroundColor = Constants.darkBlueColor
         return $0
     }(UIButton())
     // MARK: - Add action for expense button

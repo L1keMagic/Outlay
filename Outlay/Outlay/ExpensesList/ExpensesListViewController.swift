@@ -26,7 +26,7 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ExpenseCell.self, forCellReuseIdentifier: Constants.expenseCellIdentifier)
-        tableView.backgroundColor = Constants.backgroundBlueColor
+        tableView.backgroundColor = Constants.backgroundColor
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
