@@ -23,6 +23,7 @@
 		23B131C9280D90B300E0AED0 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C8280D90B300E0AED0 /* Expense.swift */; };
 		23B131CB280D98A700E0AED0 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CA280D98A700E0AED0 /* ExpenseCell.swift */; };
 		23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CE280DA04B00E0AED0 /* ExpensesListViewController.swift */; };
+		5E49EB722811621F00CE8AF4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		23B131CE280DA04B00E0AED0 /* ExpensesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListViewController.swift; sourceTree = "<group>"; };
 		459263C2F59AAEB4199FFEF7 /* Pods-Outlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.release.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.release.xcconfig"; sourceTree = "<group>"; };
 		4907EC030AE0BA5FD8596BC1 /* Pods_Outlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Outlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		9EDC580D7B500EF0CB5B6424 /* Pods-Outlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.debug.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				239D6149280F54650049298F /* DateManager.swift */,
+				5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */,
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
 				23B131CB280D98A700E0AED0 /* ExpenseCell.swift in Sources */,
+				5E49EB722811621F00CE8AF4 /* UIViewExtensions.swift in Sources */,
 				2327AF60280C262A004CB7A0 /* AppDelegate.swift in Sources */,
 				23367DE5280C87F0009FA89A /* Logger.swift in Sources */,
 				239D614A280F54650049298F /* DateManager.swift in Sources */,
