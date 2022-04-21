@@ -15,15 +15,16 @@ class NewExpenseViewController: UIViewController {
     lazy var dateCalendarImage: UIImageView = createDateCalendarImage()
     lazy var dateLabel: UILabel = createDateLabel()
     lazy var dateCalendar: UIView = UIView()
-    // MARK: - Add action for save new expence and back buttons
+    // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
         self.dismiss(animated: true)
     }
+    // MARK: - Add action for back button
     @objc func backButton() {
         self.dismiss(animated: true)
     }
-    // MARK: - Add action for expense indicator
+    // MARK: - Add action for calendar
     @objc func openCalendar(sender: UITapGestureRecognizer) {
         Logger.information(message: "Calendar open touched")
     }
