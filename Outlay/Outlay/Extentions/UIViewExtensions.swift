@@ -1,11 +1,3 @@
-//
-//  UIViewExtensions.swift
-//  Outlay
-//
-//  Created by Владислав Положай on 4/21/22.
-//
-
-import Foundation
 import UIKit
 
 extension UIView {

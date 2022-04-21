@@ -4,6 +4,6 @@ class NewExpenseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.backgroundColor
+        view.backgroundColor = Constants.backgroundAppColor
     }
 }

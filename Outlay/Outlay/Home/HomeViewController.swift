@@ -5,7 +5,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.backgroundColor
+        view.backgroundColor = Constants.backgroundAppColor
         title = Constants.outlayTitle
         configure()
     }
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         $0.layer.cornerRadius = 20
         $0.setTitle(NSLocalizedString(Constants.newExpenceTitle, comment: ""), for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(Constants.backgroundColor, for: .highlighted)
+        $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
         $0.titleLabel?.font = .systemFont(ofSize: 22)
         $0.backgroundColor = Constants.darkBlueColor
         return $0
