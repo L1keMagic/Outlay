@@ -3,7 +3,7 @@ import UIKit
 class NewExpenseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.backgroundBlueColor
+        view.backgroundColor = Constants.backgroundAppColor
         title = "Insert expence"
         configure()
     }
@@ -101,7 +101,7 @@ extension NewExpenseViewController {
                                  placeholder: String,
                                  keyboardType: UIKeyboardType = .default) -> UITextField {
         let textField = UITextField()
-        textField.backgroundColor = Constants.backgroundBlueColor
+        textField.backgroundColor = Constants.backgroundAppColor
         textField.layer.cornerRadius = 5
         textField.textColor = .black
         textField.tag = tag
@@ -115,7 +115,7 @@ extension NewExpenseViewController {
         let label = UILabel()
         let dateManager = DateManager()
         label.text = dateManager.getCurrentDate()
-        label.backgroundColor = Constants.backgroundBlueColor
+        label.backgroundColor = Constants.backgroundAppColor
         return label
     }
     // MARK: - Create Date Calendar View
