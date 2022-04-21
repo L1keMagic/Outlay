@@ -69,7 +69,7 @@ extension HomeViewController {
         }
         expenseIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(5)
             $0.width.equalToSuperview().inset(18)
             $0.height.equalTo(250)
         }
