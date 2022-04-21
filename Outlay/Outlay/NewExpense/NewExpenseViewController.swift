@@ -12,6 +12,14 @@ class NewExpenseViewController: UIViewController {
     lazy var priceTF: UITextField = createTextField(tag: 2, placeholder: "Price")
     lazy var categoryTF: UITextField = createTextField(tag: 3, placeholder: "Category")
     lazy var creationDateTF: UITextField = createTextField(tag: 4, placeholder: "Date")
+    // MARK: - Add action for save new expence and back buttons
+    @objc func saveNewExpence() {
+        Logger.information(message: "save new expence touched")
+        self.dismiss(animated: true)
+    }
+    @objc func backButton() {
+        self.dismiss(animated: true)
+    }
 }
 
 extension NewExpenseViewController {
@@ -30,6 +38,14 @@ extension NewExpenseViewController {
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
+        // MARK: - Save button
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
+                                                                 target: self, action:
+                                                                    #selector(saveNewExpence))
+        // MARK: - Back button
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                                target: self,
+                                                                action: #selector(backButton))
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
