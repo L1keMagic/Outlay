@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     // MARK: - ExpenseIndicator
     private let expenseIndicator: UIView = {
         $0.backgroundColor = .white
+        $0.layer.cornerRadius = 20
+        $0.dropShadow()
         return $0
     }(UIView())
     // MARK: - Add action for expense indicator
@@ -61,14 +63,14 @@ extension HomeViewController {
     fileprivate func configureConstraints() {
         addExpenseButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(5)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(18)
             $0.height.equalTo(60)
-            $0.width.equalToSuperview().inset(10)
+            $0.width.equalToSuperview().inset(18)
         }
         expenseIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            $0.width.equalToSuperview().inset(10)
+            $0.width.equalToSuperview().inset(18)
             $0.height.equalTo(250)
         }
     }
