@@ -11,7 +11,10 @@ class NewExpenseViewController: UIViewController {
     lazy var titleTF: UITextField = createTextField(tag: 1, placeholder: "Title")
     lazy var priceTF: UITextField = createTextField(tag: 2, placeholder: "Price")
     lazy var categoryTF: UITextField = createTextField(tag: 3, placeholder: "Category")
-    lazy var creationDateLabel: UILabel = createDateLabel()
+    // calendar view
+    lazy var dateCalendarImage: UIImageView = createDateCalendarImage()
+    lazy var dateLabel: UILabel = createDateLabel()
+    lazy var dateCalendar: UIView = UIView()
     // MARK: - Add action for save new expence and back buttons
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
@@ -19,6 +22,10 @@ class NewExpenseViewController: UIViewController {
     }
     @objc func backButton() {
         self.dismiss(animated: true)
+    }
+    // MARK: - Add action for expense indicator
+    @objc func openCalendar(sender: UITapGestureRecognizer) {
+        Logger.information(message: "Calendar open touched")
     }
 }
 
@@ -34,7 +41,9 @@ extension NewExpenseViewController {
         view.addSubview(titleTF)
         view.addSubview(priceTF)
         view.addSubview(categoryTF)
-        view.addSubview(creationDateLabel)
+        view.addSubview(dateCalendar)
+        dateCalendar.addSubview(dateLabel)
+        dateCalendar.addSubview(dateCalendarImage)
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
@@ -46,6 +55,8 @@ extension NewExpenseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                                 target: self,
                                                                 action: #selector(backButton))
+        // MARK: - Calendar
+        dateCalendar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openCalendar)))
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
@@ -67,11 +78,21 @@ extension NewExpenseViewController {
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        creationDateLabel.snp.makeConstraints {
+        dateCalendar.snp.makeConstraints {
             $0.top.equalTo(categoryTF.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
+        }
+        dateLabel.snp.makeConstraints {
+            $0.left.equalToSuperview()
+            $0.height.equalTo(35)
+        }
+        dateCalendarImage.snp.makeConstraints {
+            $0.right.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(30)
+            $0.width.equalTo(30)
         }
     }
     // MARK: - Create TextField
@@ -92,6 +113,12 @@ extension NewExpenseViewController {
         label.text = dateManager.getCurrentDate()
         label.backgroundColor = Constants.backgroundBlueColor
         return label
+    }
+    // MARK: - Create Date Calendar View
+    private func createDateCalendarImage() -> UIImageView {
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "calendar")
+        return iv
     }
 }
 
