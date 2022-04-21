@@ -9,8 +9,8 @@ class NewExpenseViewController: UIViewController {
     }
     // MARK: - TextFields
     lazy var titleTF: UITextField = createTextField(tag: 1, placeholder: "Title")
-    lazy var priceTF: UITextField = createTextField(tag: 2, placeholder: "Price")
-    lazy var categoryTF: UITextField = createTextField(tag: 3, placeholder: "Category")
+    lazy var categoryTF: UITextField = createTextField(tag: 2, placeholder: "Category")
+    lazy var priceTF: UITextField = createTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
     lazy var dateCalendarImage: UIImageView = createDateCalendarImage()
     lazy var dateLabel: UILabel = createDateLabel()
@@ -66,20 +66,20 @@ extension NewExpenseViewController {
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        priceTF.snp.makeConstraints {
+        categoryTF.snp.makeConstraints {
             $0.top.equalTo(titleTF.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        categoryTF.snp.makeConstraints {
-            $0.top.equalTo(priceTF.snp.bottom).inset(-10)
+        priceTF.snp.makeConstraints {
+            $0.top.equalTo(categoryTF.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
         dateCalendar.snp.makeConstraints {
-            $0.top.equalTo(categoryTF.snp.bottom).inset(-10)
+            $0.top.equalTo(priceTF.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
@@ -96,7 +96,9 @@ extension NewExpenseViewController {
         }
     }
     // MARK: - Create TextField
-    private func createTextField(tag: Int, placeholder: String) -> UITextField {
+    private func createTextField(tag: Int,
+                                 placeholder: String,
+                                 keyboardType: UIKeyboardType = .default) -> UITextField {
         let textField = UITextField()
         textField.backgroundColor = Constants.backgroundBlueColor
         textField.layer.cornerRadius = 5
@@ -104,6 +106,7 @@ extension NewExpenseViewController {
         textField.tag = tag
         textField.delegate = self
         textField.placeholder = placeholder
+        textField.keyboardType = keyboardType
         return textField
     }
     // MARK: - Create Label
