@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     // MARK: - Add Expense Button
     fileprivate let addExpenseButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.cornerRadius = 20
+        $0.layer.cornerRadius = 30
         $0.setTitle(NSLocalizedString(Constants.newExpenceTitle, comment: ""), for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
