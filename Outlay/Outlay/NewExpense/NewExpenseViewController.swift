@@ -12,8 +12,8 @@ class NewExpenseViewController: UIViewController {
     lazy var categoryTF: UITextField = createTextField(tag: 2, placeholder: "Category")
     lazy var priceTF: UITextField = createTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
-    lazy var dateCalendarImage: UIImageView = createDateCalendarImage()
     lazy var dateLabel: UILabel = createDateLabel()
+    lazy var calendarButton: UIButton = createCalendarButton()
     lazy var dateCalendar: UIView = UIView()
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
@@ -25,8 +25,8 @@ class NewExpenseViewController: UIViewController {
         self.dismiss(animated: true)
     }
     // MARK: - Add action for calendar
-    @objc func openCalendar(sender: UITapGestureRecognizer) {
-        Logger.information(message: "Calendar open touched")
+    @objc func openCalendar() {
+        Logger.information(message: "open calendar button touched")
     }
 }
 
@@ -44,7 +44,7 @@ extension NewExpenseViewController {
         view.addSubview(categoryTF)
         view.addSubview(dateCalendar)
         dateCalendar.addSubview(dateLabel)
-        dateCalendar.addSubview(dateCalendarImage)
+        dateCalendar.addSubview(calendarButton)
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
@@ -56,8 +56,7 @@ extension NewExpenseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                                 target: self,
                                                                 action: #selector(backButton))
-        // MARK: - Calendar
-        dateCalendar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openCalendar)))
+        calendarButton.addTarget(self, action: #selector(openCalendar), for: .touchUpInside)
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
@@ -89,7 +88,7 @@ extension NewExpenseViewController {
             $0.left.equalToSuperview()
             $0.height.equalTo(35)
         }
-        dateCalendarImage.snp.makeConstraints {
+        calendarButton.snp.makeConstraints {
             $0.right.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.height.equalTo(30)
@@ -119,10 +118,10 @@ extension NewExpenseViewController {
         return label
     }
     // MARK: - Create Date Calendar View
-    private func createDateCalendarImage() -> UIImageView {
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "calendar")
-        return iv
+    private func createCalendarButton() -> UIButton {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "calendar"), for: .normal)
+        return button
     }
 }
 
