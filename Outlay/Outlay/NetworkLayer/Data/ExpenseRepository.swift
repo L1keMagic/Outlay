@@ -5,7 +5,7 @@ class ExpenseRepository {
     var expenses: Expenses = []
     func getExpenses() -> Expenses {
         // this condition will be removed when we add 'add' functionality
-        if(expenses.isEmpty) {
+        if expenses.isEmpty {
             let dateManager = DateManager()
             expenses.append(Expense(id: UUID().uuidString,
                                     title: "Хлеб",
