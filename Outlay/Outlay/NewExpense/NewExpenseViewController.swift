@@ -14,7 +14,7 @@ class NewExpenseViewController: UIViewController {
     // calendar view
     lazy var dateLabel: UILabel = createDateLabel()
     lazy var calendarButton: UIButton = createCalendarButton()
-    lazy var dateCalendar: UIView = UIView()
+    lazy var dateCalendarView: UIView = UIView()
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
@@ -42,9 +42,9 @@ extension NewExpenseViewController {
         view.addSubview(titleTF)
         view.addSubview(priceTF)
         view.addSubview(categoryTF)
-        view.addSubview(dateCalendar)
-        dateCalendar.addSubview(dateLabel)
-        dateCalendar.addSubview(calendarButton)
+        view.addSubview(dateCalendarView)
+        dateCalendarView.addSubview(dateLabel)
+        dateCalendarView.addSubview(calendarButton)
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
@@ -78,7 +78,7 @@ extension NewExpenseViewController {
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        dateCalendar.snp.makeConstraints {
+        dateCalendarView.snp.makeConstraints {
             $0.top.equalTo(priceTF.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
