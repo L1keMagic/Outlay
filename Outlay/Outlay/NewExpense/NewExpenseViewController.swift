@@ -18,7 +18,22 @@ class NewExpenseViewController: UIViewController {
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
-        self.dismiss(animated: true)
+        if let title = titleTF.text,
+           !title.isEmpty,
+           let category = categoryTF.text,
+           !category.isEmpty,
+           let price = priceTF.text,
+           !price.isEmpty,
+           let date = dateLabel.text {
+            ExpenseRepository.shared.insertExpense(expense: Expense(id: UUID().uuidString,
+                                                    title: title,
+                                                    price: Double(price)!,
+                                                    categoryId: nil,
+                                                    creationDate: date))
+            self.dismiss(animated: true)
+        } else {
+            Logger.warning(message: "Please fill all the fields")
+        }
     }
     // MARK: - Add action for back button
     @objc func backButton() {
