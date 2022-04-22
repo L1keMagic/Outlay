@@ -3,7 +3,7 @@ import Foundation
 class DateManager {
     func getCurrentDate() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM-dd-yyyy HH:mm"
+        formatter.dateFormat = "d.MM.yyyy"
         return formatter.string(from: Date())
     }
 }
