@@ -22,7 +22,7 @@ class NewExpenseViewModel {
            !creationDate.isEmpty {
                 let date: String
                 let dateManager = DateManager()
-                if creationDate == dateManager.getCurrentDate() {
+                if creationDate == dateManager.getCurrentDateDMMYYYY() {
                     date = dateManager.getCurrentDateUTC()
                 } else {
                         date = creationDate + "'T'23:59:59Z"
