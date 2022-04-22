@@ -128,7 +128,8 @@ extension NewExpenseViewController {
     private func createDateLabel() -> UILabel {
         let label = UILabel()
         let dateManager = DateManager()
-        label.text = dateManager.getCurrentDate()
+        let unformattedDate = dateManager.getCurrentDate()
+        label.text = dateManager.getFormattedDate(unformattedDate)
         label.backgroundColor = Constants.backgroundAppColor
         return label
     }

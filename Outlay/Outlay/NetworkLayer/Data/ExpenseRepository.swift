@@ -25,4 +25,7 @@ class ExpenseRepository {
         }
         return expenses
     }
+    func insertExpense(expense: Expense) {
+        expenses.append(expense)
+    }
 }
