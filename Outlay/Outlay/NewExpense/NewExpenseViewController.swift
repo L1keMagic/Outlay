@@ -18,7 +18,17 @@ class NewExpenseViewController: UIViewController {
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
-        self.dismiss(animated: true)
+        let newExpenseVM = NewExpenseViewModel(title: titleTF.text,
+                                               price: priceTF.text,
+                                               categoryId: categoryTF.text,
+                                               creationDate: dateLabel.text)
+        let result = newExpenseVM.insertData()
+        if result == "Ok" {
+            Logger.information(message: "Data was successfuly inserted")
+            self.dismiss(animated: true)
+        } else {
+            Logger.warning(message: "Please fill all the fields")
+        }
     }
     // MARK: - Add action for back button
     @objc func backButton() {
@@ -113,7 +123,8 @@ extension NewExpenseViewController {
     private func createDateLabel() -> UILabel {
         let label = UILabel()
         let dateManager = DateManager()
-        label.text = dateManager.getCurrentDate()
+        let unformattedDate = dateManager.getCurrentDateUTC()
+        label.text = dateManager.getFormattedDateUTCtoDMMYYYY(unformattedDate)
         label.backgroundColor = Constants.backgroundAppColor
         return label
     }
