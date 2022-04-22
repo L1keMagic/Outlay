@@ -18,18 +18,13 @@ class NewExpenseViewController: UIViewController {
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
-        if let title = titleTF.text,
-           !title.isEmpty,
-           let categoryId = categoryTF.text,
-           !categoryId.isEmpty,
-           let price = priceTF.text,
-           !price.isEmpty,
-           let date = dateLabel.text {
-            ExpenseRepository.shared.insertExpense(expense: Expense(id: UUID().uuidString,
-                                                    title: title,
-                                                    price: Double(price) ?? 0,
-                                                    categoryId: Int(categoryId),
-                                                    creationDate: date))
+        let newExpenseVM = NewExpenseViewModel(title: titleTF.text,
+                                               price: priceTF.text,
+                                               categoryId: categoryTF.text,
+                                               creationDate: dateLabel.text)
+        let result = newExpenseVM.insertData()
+        if result == "Ok" {
+            Logger.information(message: "Data was successfuly inserted")
             self.dismiss(animated: true)
         } else {
             Logger.warning(message: "Please fill all the fields")
@@ -128,7 +123,7 @@ extension NewExpenseViewController {
     private func createDateLabel() -> UILabel {
         let label = UILabel()
         let dateManager = DateManager()
-        let unformattedDate = dateManager.getCurrentDate()
+        let unformattedDate = dateManager.getCurrentDateUTC()
         label.text = dateManager.getFormattedDate(unformattedDate)
         label.backgroundColor = Constants.backgroundAppColor
         return label
