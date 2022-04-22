@@ -20,15 +20,15 @@ class NewExpenseViewController: UIViewController {
         Logger.information(message: "save new expence touched")
         if let title = titleTF.text,
            !title.isEmpty,
-           let category = categoryTF.text,
-           !category.isEmpty,
+           let categoryId = categoryTF.text,
+           !categoryId.isEmpty,
            let price = priceTF.text,
            !price.isEmpty,
            let date = dateLabel.text {
             ExpenseRepository.shared.insertExpense(expense: Expense(id: UUID().uuidString,
                                                     title: title,
-                                                    price: Double(price)!,
-                                                    categoryId: nil,
+                                                    price: Double(price) ?? 0,
+                                                    categoryId: Int(categoryId),
                                                     creationDate: date))
             self.dismiss(animated: true)
         } else {
