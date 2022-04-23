@@ -22,10 +22,12 @@ class NewExpenseViewModel {
            !creationDate.isEmpty {
                 let date: String
                 let dateManager = DateManager()
-                if creationDate == dateManager.getCurrentDateDMMYYYY() {
-                    date = dateManager.getCurrentDateUTC()
+                if creationDate == dateManager.getCurrentDate(dateFormat: Constants.dateFormatDMY) {
+                date = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
                 } else {
-                        date = creationDate + "'T'23:59:59Z"
+                    date = dateManager.convertDateFormat(date: creationDate,
+                                                         inputFormat: Constants.dateFormatDMY,
+                                                         outputFormat: Constants.dateFormatYMD) + " 23:59:59"
                         }
             ExpenseRepository.shared.insertExpense(expense: Expense(id: UUID().uuidString,
                                                                     title: title,

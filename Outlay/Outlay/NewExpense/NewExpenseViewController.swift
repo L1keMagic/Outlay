@@ -24,8 +24,6 @@ class NewExpenseViewController: UIViewController {
                                                price: priceTF.text,
                                                categoryId: categoryTF.text,
                                                creationDate: dateLabel.text)
-        print(dateLabel.text)
-        print(categoryTF.text)
         let result = newExpenseVM.insertData()
         if result == "Ok" {
             Logger.information(message: "Data was successfuly inserted")
@@ -44,8 +42,11 @@ class NewExpenseViewController: UIViewController {
     }
     @objc func dateChange(datePicker: UIDatePicker) {
         let dateManager = DateManager()
-        let rawDatePickerDate = dateManager.getDateUTC(datePicker.date)
-        dateLabel.text = dateManager.getFormattedDateUTCtoDMMYYYY(rawDatePickerDate)
+        let rawDatePickerDate = dateManager.convertDateFormat(date: datePicker.date,
+                                                              outputFormat: Constants.dateFormatYMDHMS)
+        dateLabel.text = dateManager.convertDateFormat(date: rawDatePickerDate,
+                                                       inputFormat: Constants.dateFormatYMDHMS,
+                                                       outputFormat: Constants.dateFormatDMY)
         dateLabel.backgroundColor = Constants.backgroundAppColor
     }
 }
@@ -143,8 +144,10 @@ extension NewExpenseViewController {
     private func createDateLabel() -> UILabel {
         let label = UILabel()
         let dateManager = DateManager()
-        let unformattedDate = dateManager.getCurrentDateUTC()
-        label.text = dateManager.getFormattedDateUTCtoDMMYYYY(unformattedDate)
+        let unformattedDate = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
+        label.text = dateManager.convertDateFormat(date: unformattedDate,
+                                                   inputFormat: Constants.dateFormatYMDHMS,
+                                                   outputFormat: Constants.dateFormatDMY)
         label.backgroundColor = Constants.backgroundAppColor
         return label
     }
