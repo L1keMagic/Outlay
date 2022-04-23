@@ -20,15 +20,15 @@ class NewExpenseViewModel {
            !categoryId.isEmpty,
            let creationDate = creationDate,
            !creationDate.isEmpty {
-                let date: String
-                let dateManager = DateManager()
-                if creationDate == dateManager.getCurrentDate(dateFormat: Constants.dateFormatDMY) {
+            let date: String
+            let dateManager = DateManager()
+            if creationDate == dateManager.getCurrentDate(dateFormat: Constants.dateFormatDMY) {
                 date = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
-                } else {
-                    date = dateManager.convertDateFormat(date: creationDate,
-                                                         inputFormat: Constants.dateFormatDMY,
-                                                         outputFormat: Constants.dateFormatYMD) + " 23:59:59"
-                        }
+            } else {
+                date = dateManager.convertDateFormat(date: creationDate,
+                                                     inputFormat: Constants.dateFormatDMY,
+                                                     outputFormat: Constants.dateFormatYMD) + " 23:59:59"
+            }
             ExpenseRepository.shared.insertExpense(expense: Expense(id: UUID().uuidString,
                                                                     title: title,
                                                                     price: Double(price)!,
