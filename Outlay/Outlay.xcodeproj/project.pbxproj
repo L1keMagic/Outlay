@@ -19,6 +19,7 @@
 		23367DE7280C8899009FA89A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE6280C8899009FA89A /* NavigationController.swift */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
+		23A8AB1928147ABE00FA4FD7 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8AB1828147ABE00FA4FD7 /* AuthViewController.swift */; };
 		23ADE4E72813401700353582 /* NewExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE4E62813401700353582 /* NewExpenseViewModel.swift */; };
 		23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131BE280D6EF100E0AED0 /* NewExpenseViewController.swift */; };
 		23B131C9280D90B300E0AED0 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C8280D90B300E0AED0 /* Expense.swift */; };
@@ -41,6 +42,7 @@
 		23367DE6280C8899009FA89A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		23A8AB1828147ABE00FA4FD7 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		23ADE4E62813401700353582 /* NewExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewModel.swift; sourceTree = "<group>"; };
 		23B131BE280D6EF100E0AED0 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		23B131C8280D90B300E0AED0 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		2327AF5E280C262A004CB7A0 /* Outlay */ = {
 			isa = PBXGroup;
 			children = (
+				23A8AB1728147A5600FA4FD7 /* Auth */,
 				239D6148280F545A0049298F /* Extentions */,
 				23B131C6280D903700E0AED0 /* NetworkLayer */,
 				23B131BD280D6E4C00E0AED0 /* ExpensesList */,
@@ -159,6 +162,14 @@
 				5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		23A8AB1728147A5600FA4FD7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				23A8AB1828147ABE00FA4FD7 /* AuthViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		23B131BC280D6E2E00E0AED0 /* NewExpense */ = {
@@ -349,6 +360,7 @@
 				2327AF64280C262A004CB7A0 /* HomeViewController.swift in Sources */,
 				23367DE7280C8899009FA89A /* NavigationController.swift in Sources */,
 				23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */,
+				23A8AB1928147ABE00FA4FD7 /* AuthViewController.swift in Sources */,
 				23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */,
 				239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */,
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
