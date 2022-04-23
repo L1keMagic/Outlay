@@ -38,10 +38,13 @@ class AuthViewController: UIViewController {
     }(UIButton())
     lazy var stackView: UIStackView = {
         $0.axis = .vertical
-        $0.distribution = .fillEqually
+        $0.distribution = .fillProportionally
         $0.spacing = 20
         return $0
     }(UIStackView())
+    lazy var nameField: UITextField = createTextField(tag: 1, placeholder: "Enter name")
+    lazy var emailField: UITextField = createTextField(tag: 1, placeholder: "Enter email")
+    lazy var passwordField: UITextField = createTextField(tag: 1, placeholder: "Enter password")
     // MARK: - Add action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "continue button touched")
@@ -68,6 +71,9 @@ extension AuthViewController {
         view.addSubview(signButton)
         view.addSubview(forgotPasswordButton)
         view.addSubview(stackView)
+        [nameField, emailField, passwordField].forEach {
+            stackView.addArrangedSubview($0)
+        }
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
@@ -87,8 +93,8 @@ extension AuthViewController {
         }
         stackView.snp.makeConstraints {
             $0.top.equalTo(titleLablel.snp.bottom)
-            $0.left.equalToSuperview()
-            $0.right.equalToSuperview()
+            $0.width.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalTo(signButton.snp.top)
         }
         signButton.snp.makeConstraints {
@@ -99,5 +105,22 @@ extension AuthViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(signButton.snp.bottom)
         }
+    }
+}
+
+extension AuthViewController {
+    // MARK: - Create TextField
+    private func createTextField(tag: Int,
+                                 placeholder: String,
+                                 keyboardType: UIKeyboardType = .default) -> UITextField {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 5
+        textField.textColor = .black
+        textField.tag = tag
+//        textField.delegate = self
+        textField.placeholder = placeholder
+        textField.keyboardType = keyboardType
+        return textField
     }
 }
