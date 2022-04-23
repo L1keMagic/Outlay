@@ -36,6 +36,12 @@ class AuthViewController: UIViewController {
         $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
         return $0
     }(UIButton())
+    lazy var stackView: UIStackView = {
+        $0.axis = .vertical
+        $0.distribution = .fillEqually
+        $0.spacing = 20
+        return $0
+    }(UIStackView())
     // MARK: - Add action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "continue button touched")
@@ -61,6 +67,7 @@ extension AuthViewController {
         view.addSubview(continueButton)
         view.addSubview(signButton)
         view.addSubview(forgotPasswordButton)
+        view.addSubview(stackView)
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
@@ -78,9 +85,15 @@ extension AuthViewController {
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(18)
         }
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(titleLablel.snp.bottom)
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.bottom.equalTo(signButton.snp.top)
+        }
         signButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLablel.snp.bottom)
+            $0.centerY.equalToSuperview()
         }
         forgotPasswordButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
