@@ -25,7 +25,7 @@ class NewExpenseViewController: UIViewController {
                                                categoryId: categoryTF.text,
                                                creationDate: dateLabel.text)
         let result = newExpenseVM.insertData()
-        if result == "Ok" {
+        if result == Response.ok {
             Logger.information(message: "Data was successfuly inserted")
             self.dismiss(animated: true)
         } else {

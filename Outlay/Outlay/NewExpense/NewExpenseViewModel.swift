@@ -11,7 +11,7 @@ class NewExpenseViewModel {
     private let price: String?
     private let categoryId: String?
     private let creationDate: String?
-    func insertData() -> String {
+    func insertData() -> Response {
         if let title = title,
            !title.isEmpty,
            let price = price,
@@ -34,8 +34,8 @@ class NewExpenseViewModel {
                                                                     price: Double(price)!,
                                                                     categoryId: Int(categoryId),
                                                                     creationDate: date))
-            return "Ok"
+            return Response.ok
         }
-        return "Bad"
+        return Response.badRequest
     }
 }
