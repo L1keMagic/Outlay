@@ -15,6 +15,8 @@ class NewExpenseViewController: UIViewController {
     lazy var dateLabel: UILabel = createDateLabel()
     lazy var calendarButton: UIButton = createCalendarButton()
     lazy var dateCalendarView: UIView = UIView()
+    // MARK: - DatePicker
+    let datePicker = UIDatePicker()
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
@@ -22,6 +24,8 @@ class NewExpenseViewController: UIViewController {
                                                price: priceTF.text,
                                                categoryId: categoryTF.text,
                                                creationDate: dateLabel.text)
+        print(dateLabel.text)
+        print(categoryTF.text)
         let result = newExpenseVM.insertData()
         if result == "Ok" {
             Logger.information(message: "Data was successfuly inserted")
@@ -38,6 +42,12 @@ class NewExpenseViewController: UIViewController {
     @objc func openCalendar() {
         Logger.information(message: "open calendar button touched")
     }
+    @objc func dateChange(datePicker: UIDatePicker) {
+        let dateManager = DateManager()
+        let rawDatePickerDate = dateManager.getDateUTC(datePicker.date)
+        dateLabel.text = dateManager.getFormattedDateUTCtoDMMYYYY(rawDatePickerDate)
+        dateLabel.backgroundColor = Constants.backgroundAppColor
+    }
 }
 
 extension NewExpenseViewController {
@@ -46,6 +56,7 @@ extension NewExpenseViewController {
         configureSubviews()
         configureActions()
         configureConstraints()
+        createDatePicker()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
@@ -53,7 +64,7 @@ extension NewExpenseViewController {
         view.addSubview(priceTF)
         view.addSubview(categoryTF)
         view.addSubview(dateCalendarView)
-        dateCalendarView.addSubview(dateLabel)
+        dateCalendarView.addSubview(datePicker)
         dateCalendarView.addSubview(calendarButton)
     }
     // MARK: - Configure Actions
@@ -94,15 +105,23 @@ extension NewExpenseViewController {
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        dateLabel.snp.makeConstraints {
-            $0.left.equalToSuperview()
-            $0.height.equalTo(35)
-        }
+//        dateLabel.snp.makeConstraints {
+//            $0.left.equalToSuperview()
+//            $0.height.equalTo(35)
+//        }
         calendarButton.snp.makeConstraints {
             $0.right.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.height.equalTo(30)
             $0.width.equalTo(30)
+        }
+        datePicker.snp.makeConstraints {
+//            $0.top.equalTo(dateTF.snp.bottom).inset(-10)
+//            $0.centerX.equalToSuperview()
+//            $0.height.equalTo(35)
+//            $0.width.equalToSuperview().inset(10)
+            $0.left.equalToSuperview()
+            $0.height.equalTo(35)
         }
     }
     // MARK: - Create TextField
@@ -117,6 +136,7 @@ extension NewExpenseViewController {
         textField.delegate = self
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
+
         return textField
     }
     // MARK: - Create Label
@@ -133,6 +153,21 @@ extension NewExpenseViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "calendar"), for: .normal)
         return button
+    }
+    // MARK: - Create Date Picker
+    private func createDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+//        datePicker.frame.size = CGSize(width: 0, height: 300)
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .compact
+        } else {
+            // Fallback on earlier versions
+        }
+//        let dateManager = DateManager()
+//        let unformattedDate = dateManager.getCurrentDateUTC()
+//        dateLabel.text = dateManager.getFormattedDateUTCtoDMMYYYY(unformattedDate)
+      return
     }
 }
 

@@ -6,6 +6,11 @@ class DateManager {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return formatter.string(from: Date())
     }
+    func getDateUTC(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter.string(from: date)
+    }
     func getCurrentDateDMMYYYY() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "d.MM.yyyy"
