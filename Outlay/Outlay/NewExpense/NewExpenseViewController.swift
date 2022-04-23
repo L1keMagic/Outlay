@@ -13,7 +13,7 @@ class NewExpenseViewController: UIViewController {
     lazy var priceTF: UITextField = createTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
     lazy var dateLabel: UILabel = createDateLabel()
-    lazy var calendarButton: UIButton = createCalendarButton()
+    lazy var calendarImage: UIImageView = createCalendarImage()
     lazy var dateCalendarView: UIView = UIView()
     // MARK: - DatePicker
     let datePicker = UIDatePicker()
@@ -35,10 +35,6 @@ class NewExpenseViewController: UIViewController {
     // MARK: - Add action for back button
     @objc func backButton() {
         self.dismiss(animated: true)
-    }
-    // MARK: - Add action for calendar
-    @objc func openCalendar() {
-        Logger.information(message: "open calendar button touched")
     }
     @objc func dateChange(datePicker: UIDatePicker) {
         let dateManager = DateManager()
@@ -66,7 +62,7 @@ extension NewExpenseViewController {
         view.addSubview(categoryTF)
         view.addSubview(dateCalendarView)
         dateCalendarView.addSubview(datePicker)
-        dateCalendarView.addSubview(calendarButton)
+        dateCalendarView.addSubview(calendarImage)
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
@@ -74,11 +70,12 @@ extension NewExpenseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
                                                                  target: self, action:
                                                                     #selector(saveNewExpence))
+        self.navigationItem.rightBarButtonItem?.tintColor = Constants.darkBlueColor
         // MARK: - Back button
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                                 target: self,
                                                                 action: #selector(backButton))
-        calendarButton.addTarget(self, action: #selector(openCalendar), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem?.tintColor = Constants.darkBlueColor
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
@@ -106,22 +103,14 @@ extension NewExpenseViewController {
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-//        dateLabel.snp.makeConstraints {
-//            $0.left.equalToSuperview()
-//            $0.height.equalTo(35)
-//        }
-        calendarButton.snp.makeConstraints {
-            $0.right.equalToSuperview()
+        calendarImage.snp.makeConstraints {
+            $0.left.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.height.equalTo(30)
             $0.width.equalTo(30)
         }
         datePicker.snp.makeConstraints {
-//            $0.top.equalTo(dateTF.snp.bottom).inset(-10)
-//            $0.centerX.equalToSuperview()
-//            $0.height.equalTo(35)
-//            $0.width.equalToSuperview().inset(10)
-            $0.left.equalToSuperview()
+            $0.left.equalTo(calendarImage.snp.right).inset(-10)
             $0.height.equalTo(35)
         }
     }
@@ -137,7 +126,6 @@ extension NewExpenseViewController {
         textField.delegate = self
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
-
         return textField
     }
     // MARK: - Create Label
@@ -152,25 +140,22 @@ extension NewExpenseViewController {
         return label
     }
     // MARK: - Create Date Calendar View
-    private func createCalendarButton() -> UIButton {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "calendar"), for: .normal)
-        return button
+    private func createCalendarImage() -> UIImageView {
+        let image = UIImage(systemName: "calendar")
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = Constants.darkBlueColor
+        return imageView
     }
     // MARK: - Create Date Picker
     private func createDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-//        datePicker.frame.size = CGSize(width: 0, height: 300)
         if #available(iOS 13.4, *) {
             datePicker.preferredDatePickerStyle = .compact
         } else {
             // Fallback on earlier versions
         }
-//        let dateManager = DateManager()
-//        let unformattedDate = dateManager.getCurrentDateUTC()
-//        dateLabel.text = dateManager.getFormattedDateUTCtoDMMYYYY(unformattedDate)
-      return
+        return
     }
 }
 
