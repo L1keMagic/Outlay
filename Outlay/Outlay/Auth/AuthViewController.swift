@@ -24,7 +24,7 @@ class AuthViewController: UIViewController {
         $0.backgroundColor = Constants.darkBlueColor
         return $0
     }(UIButton())
-    lazy var signButton: UIButton = {
+    lazy var switchLogInTypeButton: UIButton = {
         $0.setTitle(NSLocalizedString(Constants.signIn, comment: ""), for: .normal)
         $0.setTitleColor(Constants.darkBlueColor, for: .normal)
         $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
@@ -49,10 +49,10 @@ class AuthViewController: UIViewController {
     @objc func openHomeVC() {
         Logger.information(message: "continue button touched")
     }
-    @objc func sign() {
+    @objc func switchLogInType() {
         Logger.information(message: "Sign button touched")
     }
-    @objc func openForgotPassword() {
+    @objc func openForgotPasswordVC() {
         Logger.information(message: "Forgot password button touched")
         navigationController?.pushViewController(ResetPasswordViewController(),
                                                  animated: true)
@@ -70,7 +70,7 @@ extension AuthViewController {
     fileprivate func configureSubviews() {
         view.addSubview(titleLablel)
         view.addSubview(continueButton)
-        view.addSubview(signButton)
+        view.addSubview(switchLogInTypeButton)
         view.addSubview(forgotPasswordButton)
         view.addSubview(stackView)
         [nameField, emailField, passwordField].forEach {
@@ -80,8 +80,8 @@ extension AuthViewController {
     // MARK: - Configure Actions
     fileprivate func configureActions() {
         continueButton.addTarget(self, action: #selector(openHomeVC), for: .touchUpInside)
-        forgotPasswordButton.addTarget(self, action: #selector(openForgotPassword), for: .touchUpInside)
-        signButton.addTarget(self, action: #selector(sign), for: .touchUpInside)
+        forgotPasswordButton.addTarget(self, action: #selector(openForgotPasswordVC), for: .touchUpInside)
+        switchLogInTypeButton.addTarget(self, action: #selector(switchLogInType), for: .touchUpInside)
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
@@ -99,15 +99,15 @@ extension AuthViewController {
             $0.top.equalTo(titleLablel.snp.bottom)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(signButton.snp.top)
+            $0.bottom.equalTo(switchLogInTypeButton.snp.top)
         }
-        signButton.snp.makeConstraints {
+        switchLogInTypeButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
         forgotPasswordButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(signButton.snp.bottom)
+            $0.top.equalTo(switchLogInTypeButton.snp.bottom)
         }
     }
 }
