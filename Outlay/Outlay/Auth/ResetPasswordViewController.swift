@@ -8,7 +8,7 @@ class ResetPasswordViewController: UIViewController {
         configure()
     }
     // MARK: - Initializing components
-    lazy var titleLablel: UILabel = {
+    lazy var titleLabel: UILabel = {
         $0.text = Constants.resetPassword.uppercased()
         $0.textColor = Constants.darkBlueColor
         $0.font = UIFont.boldSystemFont(ofSize: 24.0)
@@ -39,7 +39,7 @@ extension ResetPasswordViewController {
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
-        view.addSubview(titleLablel)
+        view.addSubview(titleLabel)
         view.addSubview(resetPasswordButton)
         view.addSubview(emailField)
     }
@@ -49,7 +49,7 @@ extension ResetPasswordViewController {
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
-        titleLablel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(110)
         }
@@ -60,7 +60,7 @@ extension ResetPasswordViewController {
             $0.width.equalToSuperview().inset(18)
         }
         emailField.snp.makeConstraints {
-            $0.top.equalTo(titleLablel.snp.bottom).inset(-55)
+            $0.top.equalTo(titleLabel.snp.bottom).inset(-55)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
         }

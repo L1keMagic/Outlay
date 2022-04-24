@@ -9,7 +9,7 @@ class AuthViewController: UIViewController {
         configure()
     }
     // MARK: - Initializing components
-    lazy var titleLablel: UILabel = {
+    lazy var titleLabel: UILabel = {
         $0.text = Constants.signUP.uppercased()
         $0.textColor = Constants.darkBlueColor
         $0.font = UIFont.boldSystemFont(ofSize: 24.0)
@@ -68,7 +68,7 @@ extension AuthViewController {
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
-        view.addSubview(titleLablel)
+        view.addSubview(titleLabel)
         view.addSubview(continueButton)
         view.addSubview(switchLogInTypeButton)
         view.addSubview(forgotPasswordButton)
@@ -85,7 +85,7 @@ extension AuthViewController {
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
-        titleLablel.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(50)
         }
@@ -96,7 +96,7 @@ extension AuthViewController {
             $0.width.equalToSuperview().inset(18)
         }
         stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLablel.snp.bottom)
+            $0.top.equalTo(titleLabel.snp.bottom)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(switchLogInTypeButton.snp.top)
