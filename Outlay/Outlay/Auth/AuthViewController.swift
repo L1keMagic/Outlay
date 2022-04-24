@@ -8,9 +8,30 @@ class AuthViewController: UIViewController {
         view.backgroundColor = Constants.backgroundAppColor
         configure()
     }
+    var signup: Bool = true {
+        willSet {
+            if newValue {
+                titleLabel.text = "Sign Up"
+                switchLogInTypeButton.setTitle(NSLocalizedString(Constants.signIn, comment: ""), for: .normal)
+                emailField.text = ""
+                passwordField.text = ""
+                confirmPasswordField.text = ""
+                confirmPasswordLabel.isHidden = false
+                confirmPasswordField.isHidden = false
+            } else {
+                titleLabel.text = "Sign In"
+                switchLogInTypeButton.setTitle(NSLocalizedString(Constants.signUp, comment: ""), for: .normal)
+                emailField.text = ""
+                passwordField.text = ""
+                confirmPasswordField.text = ""
+                confirmPasswordLabel.isHidden = true
+                confirmPasswordField.isHidden = true
+            }
+        }
+    }
     // MARK: - Initializing components
     lazy var titleLabel: UILabel = {
-        $0.text = Constants.signUP.uppercased()
+        $0.text = Constants.signUp.uppercased()
         $0.textColor = Constants.darkBlueColor
         $0.font = UIFont.boldSystemFont(ofSize: 24.0)
         return $0
@@ -39,18 +60,22 @@ class AuthViewController: UIViewController {
     lazy var stackView: UIStackView = {
         $0.axis = .vertical
         $0.distribution = .fillProportionally
-        $0.spacing = 20
+        $0.contentMode = .top
         return $0
     }(UIStackView())
-    lazy var nameField: UITextField = createTextField(tag: 1, placeholder: "Enter name")
-    lazy var emailField: UITextField = createTextField(tag: 2, placeholder: "Enter email")
-    lazy var passwordField: UITextField = createTextField(tag: 3, placeholder: "Enter password")
+    lazy var emailLabel: UILabel = createLabel(text: "Email")
+    lazy var emailField: UITextField = createTextField(tag: 2, placeholder: "Email")
+    lazy var passwordLabel: UILabel = createLabel(text: "Password")
+    lazy var passwordField: UITextField = createTextField(tag: 3, placeholder: "Password")
+    lazy var confirmPasswordLabel: UILabel = createLabel(text: "Confirm password")
+    lazy var confirmPasswordField: UITextField = createTextField(tag: 4, placeholder: "Confirm password")
     // MARK: - Add action for continue button
     @objc func openHomeVC() {
-        Logger.information(message: "continue button touched")
+        Logger.information(message: "Continue button touched")
     }
     @objc func switchLogInType() {
         Logger.information(message: "Sign button touched")
+        signup = !signup
     }
     @objc func openForgotPasswordVC() {
         Logger.information(message: "Forgot password button touched")
@@ -73,7 +98,12 @@ extension AuthViewController {
         view.addSubview(switchLogInTypeButton)
         view.addSubview(forgotPasswordButton)
         view.addSubview(stackView)
-        [nameField, emailField, passwordField].forEach {
+        [emailLabel,
+         emailField,
+         passwordLabel,
+         passwordField,
+         confirmPasswordLabel,
+         confirmPasswordField].forEach {
             stackView.addArrangedSubview($0)
         }
     }
@@ -96,10 +126,10 @@ extension AuthViewController {
             $0.width.equalToSuperview().inset(18)
         }
         stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.top.equalTo(titleLabel.snp.bottom).inset(-20)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(switchLogInTypeButton.snp.top)
+            $0.height.equalTo(200)
         }
         switchLogInTypeButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -112,19 +142,36 @@ extension AuthViewController {
     }
 }
 
-extension AuthViewController {
+extension AuthViewController: UITextFieldDelegate {
     // MARK: - Create TextField
     private func createTextField(tag: Int,
                                  placeholder: String,
                                  keyboardType: UIKeyboardType = .default) -> UITextField {
         let textField = UITextField()
-        textField.backgroundColor = .white
         textField.layer.cornerRadius = 5
         textField.textColor = .black
         textField.tag = tag
-//        textField.delegate = self
+        textField.delegate = self
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
         return textField
+    }
+    // MARK: - Create Label
+    private func createLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        return label
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.moveToNextTFResponder(textField)
+        return true
+    }
+    func moveToNextTFResponder(_ textField: UITextField) {
+        let nextTextFieldTag = textField.tag + 1
+        if let nextTextField = textField.superview?.viewWithTag(nextTextFieldTag) as? UITextField {
+            nextTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
     }
 }

@@ -9,7 +9,7 @@ class ResetPasswordViewController: UIViewController {
     }
     // MARK: - Initializing components
     lazy var titleLabel: UILabel = {
-        $0.text = Constants.resetPassword.uppercased()
+        $0.text = Constants.resetPassword
         $0.textColor = Constants.darkBlueColor
         $0.font = UIFont.boldSystemFont(ofSize: 24.0)
         return $0
@@ -23,7 +23,8 @@ class ResetPasswordViewController: UIViewController {
         $0.backgroundColor = Constants.darkBlueColor
         return $0
     }(UIButton())
-    lazy var emailField: UITextField = createTextField(tag: 1, placeholder: "Enter email")
+    lazy var emailField: UITextField = createTextField(tag: 1, placeholder: "Email")
+    lazy var emailLabel: UILabel = createLabel(text: "Email")
     // MARK: - Add action for reset password button
     @objc func resetPassword() {
         Logger.information(message: "reset password button touched")
@@ -41,6 +42,7 @@ extension ResetPasswordViewController {
     fileprivate func configureSubviews() {
         view.addSubview(titleLabel)
         view.addSubview(resetPasswordButton)
+        view.addSubview(emailLabel)
         view.addSubview(emailField)
     }
     // MARK: - Configure Actions
@@ -51,7 +53,7 @@ extension ResetPasswordViewController {
     fileprivate func configureConstraints() {
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(110)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(50)
         }
         resetPasswordButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -59,27 +61,49 @@ extension ResetPasswordViewController {
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(18)
         }
-        emailField.snp.makeConstraints {
+        emailLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).inset(-55)
+            $0.width.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+        }
+        emailField.snp.makeConstraints {
+            $0.top.equalTo(emailLabel.snp.bottom).inset(-10)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
         }
     }
 }
 
-extension ResetPasswordViewController {
+extension ResetPasswordViewController: UITextFieldDelegate {
     // MARK: - Create TextField
     private func createTextField(tag: Int,
                                  placeholder: String,
                                  keyboardType: UIKeyboardType = .default) -> UITextField {
         let textField = UITextField()
-        textField.backgroundColor = .white
         textField.layer.cornerRadius = 5
         textField.textColor = .black
         textField.tag = tag
-//        textField.delegate = self
+        textField.delegate = self
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
         return textField
+    }
+    // MARK: - Create Label
+    private func createLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        return label
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.moveToNextTFResponder(textField)
+        return true
+    }
+    func moveToNextTFResponder(_ textField: UITextField) {
+        let nextTextFieldTag = textField.tag + 1
+        if let nextTextField = textField.superview?.viewWithTag(nextTextFieldTag) as? UITextField {
+            nextTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
     }
 }
