@@ -117,7 +117,7 @@ extension AuthViewController {
     fileprivate func configureConstraints() {
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(50)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(20)
         }
         continueButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -126,14 +126,14 @@ extension AuthViewController {
             $0.width.equalToSuperview().inset(18)
         }
         stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).inset(-20)
+            $0.top.equalTo(titleLabel.snp.bottom).inset(-10)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(200)
         }
         switchLogInTypeButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(stackView.snp.bottom).inset(-15)
         }
         forgotPasswordButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()

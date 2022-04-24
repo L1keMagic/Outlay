@@ -53,7 +53,7 @@ extension ResetPasswordViewController {
     fileprivate func configureConstraints() {
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(50)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(20)
         }
         resetPasswordButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -62,7 +62,7 @@ extension ResetPasswordViewController {
             $0.width.equalToSuperview().inset(18)
         }
         emailLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).inset(-55)
+            $0.top.equalTo(titleLabel.snp.bottom).inset(-15)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
         }
