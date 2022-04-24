@@ -12,4 +12,5 @@ class Constants {
     static let signUP = "Sign UP"
     static let signIn = "Sign In"
     static let forgotPassword = "Forgot Password"
+    static let resetPassword = "Reset password"
 }

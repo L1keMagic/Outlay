@@ -43,8 +43,8 @@ class AuthViewController: UIViewController {
         return $0
     }(UIStackView())
     lazy var nameField: UITextField = createTextField(tag: 1, placeholder: "Enter name")
-    lazy var emailField: UITextField = createTextField(tag: 1, placeholder: "Enter email")
-    lazy var passwordField: UITextField = createTextField(tag: 1, placeholder: "Enter password")
+    lazy var emailField: UITextField = createTextField(tag: 2, placeholder: "Enter email")
+    lazy var passwordField: UITextField = createTextField(tag: 3, placeholder: "Enter password")
     // MARK: - Add action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "continue button touched")
@@ -54,6 +54,8 @@ class AuthViewController: UIViewController {
     }
     @objc func openForgotPassword() {
         Logger.information(message: "Forgot password button touched")
+        navigationController?.pushViewController(ResetPasswordViewController(),
+                                                 animated: true)
     }
 }
 
@@ -78,6 +80,8 @@ extension AuthViewController {
     // MARK: - Configure Actions
     fileprivate func configureActions() {
         continueButton.addTarget(self, action: #selector(openHomeVC), for: .touchUpInside)
+        forgotPasswordButton.addTarget(self, action: #selector(openForgotPassword), for: .touchUpInside)
+        signButton.addTarget(self, action: #selector(sign), for: .touchUpInside)
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
