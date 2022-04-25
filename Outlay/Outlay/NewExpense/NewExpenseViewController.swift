@@ -36,7 +36,7 @@ class NewExpenseViewController: UIViewController {
     @objc func backButton() {
         self.dismiss(animated: true)
     }
-    @objc func didExpenceDateCnahged(datePicker: UIDatePicker) {
+    @objc func didExpenseDateCnahged(datePicker: UIDatePicker) {
         let dateManager = DateManager()
         let rawDatePickerDate = dateManager.convertDateFormat(date: datePicker.date,
                                                               outputFormat: Constants.dateFormatYMDHMS)
@@ -150,7 +150,7 @@ extension NewExpenseViewController {
     private func createDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.addTarget(self,
-                             action: #selector(didExpenceDateCnahged(datePicker:)),
+                             action: #selector(didExpenseDateCnahged(datePicker:)),
                              for: UIControl.Event.valueChanged)
         return
     }
