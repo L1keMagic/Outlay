@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		079399503FF18EEE4794B04B /* Pods_Outlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4907EC030AE0BA5FD8596BC1 /* Pods_Outlay.framework */; };
+		230178672816B12100FFD863 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230178662816B12100FFD863 /* AuthViewController.swift */; };
+		230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230178682816B15100FFD863 /* ResetPasswordViewController.swift */; };
 		2327AF60280C262A004CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327AF5F280C262A004CB7A0 /* AppDelegate.swift */; };
 		2327AF62280C262A004CB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327AF61280C262A004CB7A0 /* SceneDelegate.swift */; };
 		2327AF64280C262A004CB7A0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327AF63280C262A004CB7A0 /* HomeViewController.swift */; };
@@ -19,8 +21,7 @@
 		23367DE7280C8899009FA89A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE6280C8899009FA89A /* NavigationController.swift */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
-		23A8AB1928147ABE00FA4FD7 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8AB1828147ABE00FA4FD7 /* AuthViewController.swift */; };
-		23A8AB1B281540EB00FA4FD7 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8AB1A281540EB00FA4FD7 /* ResetPasswordViewController.swift */; };
+		23A8AB162814625400FA4FD7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8AB152814625400FA4FD7 /* Response.swift */; };
 		23ADE4E72813401700353582 /* NewExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE4E62813401700353582 /* NewExpenseViewModel.swift */; };
 		23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131BE280D6EF100E0AED0 /* NewExpenseViewController.swift */; };
 		23B131C9280D90B300E0AED0 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C8280D90B300E0AED0 /* Expense.swift */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		230178662816B12100FFD863 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		230178682816B15100FFD863 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		2327AF5C280C262A004CB7A0 /* Outlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Outlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2327AF5F280C262A004CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2327AF61280C262A004CB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,8 +46,7 @@
 		23367DE6280C8899009FA89A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
-		23A8AB1828147ABE00FA4FD7 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		23A8AB1A281540EB00FA4FD7 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		23A8AB152814625400FA4FD7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		23ADE4E62813401700353582 /* NewExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewModel.swift; sourceTree = "<group>"; };
 		23B131BE280D6EF100E0AED0 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		23B131C8280D90B300E0AED0 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -77,6 +79,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		230178652816B11000FFD863 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				230178662816B12100FFD863 /* AuthViewController.swift */,
+				230178682816B15100FFD863 /* ResetPasswordViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		2327AF53280C262A004CB7A0 = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +109,7 @@
 		2327AF5E280C262A004CB7A0 /* Outlay */ = {
 			isa = PBXGroup;
 			children = (
-				23A8AB1728147A5600FA4FD7 /* Auth */,
+				230178652816B11000FFD863 /* Auth */,
 				239D6148280F545A0049298F /* Extentions */,
 				23B131C6280D903700E0AED0 /* NetworkLayer */,
 				23B131BD280D6E4C00E0AED0 /* ExpensesList */,
@@ -166,13 +177,12 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
-		23A8AB1728147A5600FA4FD7 /* Auth */ = {
+		23ADE4EA281461FF00353582 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				23A8AB1828147ABE00FA4FD7 /* AuthViewController.swift */,
-				23A8AB1A281540EB00FA4FD7 /* ResetPasswordViewController.swift */,
+				23A8AB152814625400FA4FD7 /* Response.swift */,
 			);
-			path = Auth;
+			path = Response;
 			sourceTree = "<group>";
 		};
 		23B131BC280D6E2E00E0AED0 /* NewExpense */ = {
@@ -196,6 +206,7 @@
 		23B131C6280D903700E0AED0 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				23ADE4EA281461FF00353582 /* Response */,
 				23B131D2280F36D800E0AED0 /* Data */,
 				23B131C7280D907F00E0AED0 /* Models */,
 			);
@@ -361,14 +372,15 @@
 			files = (
 				23B131C9280D90B300E0AED0 /* Expense.swift in Sources */,
 				2327AF64280C262A004CB7A0 /* HomeViewController.swift in Sources */,
-				23A8AB1B281540EB00FA4FD7 /* ResetPasswordViewController.swift in Sources */,
 				23367DE7280C8899009FA89A /* NavigationController.swift in Sources */,
 				23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */,
-				23A8AB1928147ABE00FA4FD7 /* AuthViewController.swift in Sources */,
 				23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */,
 				239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */,
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
 				23ADE4E72813401700353582 /* NewExpenseViewModel.swift in Sources */,
+				23A8AB162814625400FA4FD7 /* Response.swift in Sources */,
+				230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */,
+				230178672816B12100FFD863 /* AuthViewController.swift in Sources */,
 				23B131CB280D98A700E0AED0 /* ExpenseCell.swift in Sources */,
 				5E49EB722811621F00CE8AF4 /* UIViewExtensions.swift in Sources */,
 				2327AF60280C262A004CB7A0 /* AppDelegate.swift in Sources */,
