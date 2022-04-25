@@ -11,4 +11,9 @@ class Constants {
     static let dateFormatYMDHMS = "yyyy-MM-dd HH:mm:ss"
     static let dateFormatDMY = "d.MM.yyyy"
     static let dateFormatYMD = "yyyy-MM-dd"
+    static let continueButton = "Continue"
+    static let signUp = "Sign Up"
+    static let signIn = "Sign In"
+    static let forgotPassword = "Forgot Password"
+    static let resetPassword = "Reset password"
 }
