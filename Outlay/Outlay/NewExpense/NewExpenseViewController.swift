@@ -13,8 +13,10 @@ class NewExpenseViewController: UIViewController {
     lazy var priceTF: UITextField = createTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
     lazy var dateLabel: UILabel = createDateLabel()
-    lazy var calendarButton: UIButton = createCalendarButton()
+    lazy var calendarImage: UIImageView = createCalendarImage()
     lazy var dateCalendarView: UIView = UIView()
+    // MARK: - DatePicker
+    let datePicker = UIDatePicker()
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
@@ -23,7 +25,7 @@ class NewExpenseViewController: UIViewController {
                                                categoryId: categoryTF.text,
                                                creationDate: dateLabel.text)
         let result = newExpenseVM.insertData()
-        if result == "Ok" {
+        if result == Response.ok {
             Logger.information(message: "Data was successfuly inserted")
             self.dismiss(animated: true)
         } else {
@@ -34,9 +36,14 @@ class NewExpenseViewController: UIViewController {
     @objc func backButton() {
         self.dismiss(animated: true)
     }
-    // MARK: - Add action for calendar
-    @objc func openCalendar() {
-        Logger.information(message: "open calendar button touched")
+    @objc func didExpenseDateCnahged(datePicker: UIDatePicker) {
+        let dateManager = DateManager()
+        let rawDatePickerDate = dateManager.convertDateFormat(date: datePicker.date,
+                                                              outputFormat: Constants.dateFormatYMDHMS)
+        dateLabel.text = dateManager.convertDateFormat(date: rawDatePickerDate,
+                                                       inputFormat: Constants.dateFormatYMDHMS,
+                                                       outputFormat: Constants.dateFormatDMY)
+        dateLabel.backgroundColor = Constants.backgroundAppColor
     }
 }
 
@@ -46,6 +53,7 @@ extension NewExpenseViewController {
         configureSubviews()
         configureActions()
         configureConstraints()
+        createDatePicker()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
@@ -53,8 +61,8 @@ extension NewExpenseViewController {
         view.addSubview(priceTF)
         view.addSubview(categoryTF)
         view.addSubview(dateCalendarView)
-        dateCalendarView.addSubview(dateLabel)
-        dateCalendarView.addSubview(calendarButton)
+        dateCalendarView.addSubview(datePicker)
+        dateCalendarView.addSubview(calendarImage)
     }
     // MARK: - Configure Actions
     fileprivate func configureActions() {
@@ -62,11 +70,12 @@ extension NewExpenseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
                                                                  target: self, action:
                                                                     #selector(saveNewExpence))
+        self.navigationItem.rightBarButtonItem?.tintColor = Constants.darkBlueColor
         // MARK: - Back button
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                                 target: self,
                                                                 action: #selector(backButton))
-        calendarButton.addTarget(self, action: #selector(openCalendar), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem?.tintColor = Constants.darkBlueColor
     }
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
@@ -94,15 +103,15 @@ extension NewExpenseViewController {
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        dateLabel.snp.makeConstraints {
+        calendarImage.snp.makeConstraints {
             $0.left.equalToSuperview()
-            $0.height.equalTo(35)
-        }
-        calendarButton.snp.makeConstraints {
-            $0.right.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.height.equalTo(30)
             $0.width.equalTo(30)
+        }
+        datePicker.snp.makeConstraints {
+            $0.left.equalTo(calendarImage.snp.right).inset(-10)
+            $0.height.equalTo(35)
         }
     }
     // MARK: - Create TextField
@@ -123,16 +132,27 @@ extension NewExpenseViewController {
     private func createDateLabel() -> UILabel {
         let label = UILabel()
         let dateManager = DateManager()
-        let unformattedDate = dateManager.getCurrentDateUTC()
-        label.text = dateManager.getFormattedDateUTCtoDMMYYYY(unformattedDate)
+        let unformattedDate = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
+        label.text = dateManager.convertDateFormat(date: unformattedDate,
+                                                   inputFormat: Constants.dateFormatYMDHMS,
+                                                   outputFormat: Constants.dateFormatDMY)
         label.backgroundColor = Constants.backgroundAppColor
         return label
     }
     // MARK: - Create Date Calendar View
-    private func createCalendarButton() -> UIButton {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "calendar"), for: .normal)
-        return button
+    private func createCalendarImage() -> UIImageView {
+        let image = UIImage(systemName: "calendar")
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = Constants.darkBlueColor
+        return imageView
+    }
+    // MARK: - Create Date Picker
+    private func createDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self,
+                             action: #selector(didExpenseDateCnahged(datePicker:)),
+                             for: UIControl.Event.valueChanged)
+        return
     }
 }
 

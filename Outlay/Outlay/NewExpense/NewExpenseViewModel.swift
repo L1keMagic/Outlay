@@ -11,7 +11,7 @@ class NewExpenseViewModel {
     private let price: String?
     private let categoryId: String?
     private let creationDate: String?
-    func insertData() -> String {
+    func insertData() -> Response {
         if let title = title,
            !title.isEmpty,
            let price = price,
@@ -20,20 +20,22 @@ class NewExpenseViewModel {
            !categoryId.isEmpty,
            let creationDate = creationDate,
            !creationDate.isEmpty {
-                let date: String
-                let dateManager = DateManager()
-                if creationDate == dateManager.getCurrentDateDMMYYYY() {
-                    date = dateManager.getCurrentDateUTC()
-                } else {
-                        date = creationDate + "'T'23:59:59Z"
-                        }
+            let date: String
+            let dateManager = DateManager()
+            if creationDate == dateManager.getCurrentDate(dateFormat: Constants.dateFormatDMY) {
+                date = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
+            } else {
+                date = dateManager.convertDateFormat(date: creationDate,
+                                                     inputFormat: Constants.dateFormatDMY,
+                                                     outputFormat: Constants.dateFormatYMD) + " 23:59:59"
+            }
             ExpenseRepository.shared.insertExpense(expense: Expense(id: UUID().uuidString,
                                                                     title: title,
                                                                     price: Double(price)!,
                                                                     categoryId: Int(categoryId),
                                                                     creationDate: date))
-            return "Ok"
+            return Response.ok
         }
-        return "Bad"
+        return Response.badRequest
     }
 }
