@@ -8,7 +8,7 @@ class AuthViewController: UIViewController {
         view.backgroundColor = Constants.backgroundAppColor
         configure()
     }
-    var signup: Bool = true {
+    var logInMode: Bool = true {
         willSet {
             if newValue {
                 titleLabel.text = "Sign Up"
@@ -75,7 +75,7 @@ class AuthViewController: UIViewController {
     }
     @objc func switchLogInType() {
         Logger.information(message: "Sign button touched")
-        signup = !signup
+        logInMode = !logInMode
     }
     @objc func openForgotPasswordVC() {
         Logger.information(message: "Forgot password button touched")
