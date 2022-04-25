@@ -1,21 +1,21 @@
 import Foundation
 
 class DateManager {
-    func getCurrentDateUTC() -> String {
+    func getCurrentDate(dateFormat: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = dateFormat
         return formatter.string(from: Date())
     }
-    func getCurrentDateDMMYYYY() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d.MM.yyyy"
-        return formatter.string(from: Date())
-    }
-    func getFormattedDateUTCtoDMMYYYY(_ dateToFormat: String) -> String {
+    func convertDateFormat(date: String, inputFormat: String, outputFormat: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from: dateToFormat)
-        dateFormatter.dateFormat = "d.MM.yyyy"
-        return dateFormatter.string(from: date!)
+        dateFormatter.dateFormat = inputFormat
+        let result = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = outputFormat
+        return dateFormatter.string(from: result!)
+    }
+    func convertDateFormat(date: Date, outputFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = outputFormat
+        return dateFormatter.string(from: date)
     }
 }
