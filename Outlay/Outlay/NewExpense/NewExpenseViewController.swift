@@ -36,7 +36,7 @@ class NewExpenseViewController: UIViewController {
     @objc func backButton() {
         self.dismiss(animated: true)
     }
-    @objc func dateChange(datePicker: UIDatePicker) {
+    @objc func didExpenceDateCnahged(datePicker: UIDatePicker) {
         let dateManager = DateManager()
         let rawDatePickerDate = dateManager.convertDateFormat(date: datePicker.date,
                                                               outputFormat: Constants.dateFormatYMDHMS)
@@ -149,12 +149,9 @@ extension NewExpenseViewController {
     // MARK: - Create Date Picker
     private func createDatePicker() {
         datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .compact
-        } else {
-            // Fallback on earlier versions
-        }
+        datePicker.addTarget(self,
+                             action: #selector(didExpenceDateCnahged(datePicker:)),
+                             for: UIControl.Event.valueChanged)
         return
     }
 }
