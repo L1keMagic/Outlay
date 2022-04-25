@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 
 class AuthViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundAppColor
@@ -11,7 +10,7 @@ class AuthViewController: UIViewController {
     var logInMode: Bool = true {
         willSet {
             if newValue {
-                titleLabel.text = "Sign Up"
+                titleLabel.text = Constants.signUp
                 switchLogInTypeButton.setTitle(NSLocalizedString(Constants.signIn, comment: ""), for: .normal)
                 emailField.text = ""
                 passwordField.text = ""
@@ -19,7 +18,7 @@ class AuthViewController: UIViewController {
                 confirmPasswordLabel.isHidden = false
                 confirmPasswordField.isHidden = false
             } else {
-                titleLabel.text = "Sign In"
+                titleLabel.text = Constants.signIn
                 switchLogInTypeButton.setTitle(NSLocalizedString(Constants.signUp, comment: ""), for: .normal)
                 emailField.text = ""
                 passwordField.text = ""
@@ -30,46 +29,23 @@ class AuthViewController: UIViewController {
         }
     }
     // MARK: - Initializing components
-    lazy var titleLabel: UILabel = {
-        $0.text = Constants.signUp.uppercased()
-        $0.textColor = Constants.darkBlueColor
-        $0.font = UIFont.boldSystemFont(ofSize: 24.0)
-        return $0
-    }(UILabel())
-    lazy var continueButton: UIButton = {
-        $0.layer.cornerRadius = 30
-        $0.setTitle(NSLocalizedString(Constants.continueButton, comment: ""), for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
-        $0.titleLabel?.font = .systemFont(ofSize: 22)
-        $0.backgroundColor = Constants.darkBlueColor
-        return $0
-    }(UIButton())
-    lazy var switchLogInTypeButton: UIButton = {
-        $0.setTitle(NSLocalizedString(Constants.signIn, comment: ""), for: .normal)
-        $0.setTitleColor(Constants.darkBlueColor, for: .normal)
-        $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
-        return $0
-    }(UIButton())
-    lazy var forgotPasswordButton: UIButton = {
-        $0.setTitle(NSLocalizedString(Constants.forgotPassword, comment: ""), for: .normal)
-        $0.setTitleColor(Constants.darkBlueColor, for: .normal)
-        $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
-        return $0
-    }(UIButton())
+    lazy var titleLabel: UILabel = createDefaultTitleLabel(text: Constants.signUp)
+    lazy var emailLabel: UILabel = createDefaultSmallLabel(text: Constants.email)
+    lazy var passwordLabel: UILabel = createDefaultSmallLabel(text: Constants.password)
+    lazy var confirmPasswordLabel: UILabel = createDefaultSmallLabel(text: Constants.confirmPassword)
+    lazy var emailField: UITextField = createDefaultTextField(tag: 1, placeholder: Constants.email)
+    lazy var passwordField: UITextField = createDefaultTextField(tag: 2, placeholder: Constants.password)
+    lazy var confirmPasswordField: UITextField = createDefaultTextField(tag: 3, placeholder: Constants.confirmPassword)
+    lazy var switchLogInTypeButton: UIButton = createDefaultSmallButton(text: Constants.signIn)
+    lazy var forgotPasswordButton: UIButton = createDefaultSmallButton(text: Constants.forgotPassword)
+    lazy var continueButton: UIButton = createDefaultContinueButton(text: Constants.continueButton)
     lazy var stackView: UIStackView = {
         $0.axis = .vertical
         $0.distribution = .fillProportionally
         $0.contentMode = .top
         return $0
     }(UIStackView())
-    lazy var emailLabel: UILabel = createLabel(text: "Email")
-    lazy var emailField: UITextField = createTextField(tag: 2, placeholder: "Email")
-    lazy var passwordLabel: UILabel = createLabel(text: "Password")
-    lazy var passwordField: UITextField = createTextField(tag: 3, placeholder: "Password")
-    lazy var confirmPasswordLabel: UILabel = createLabel(text: "Confirm password")
-    lazy var confirmPasswordField: UITextField = createTextField(tag: 4, placeholder: "Confirm password")
-    // MARK: - Add action for continue button
+    // MARK: - Action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "Continue button touched")
     }
@@ -85,9 +61,10 @@ class AuthViewController: UIViewController {
 }
 
 extension AuthViewController {
-    // MARK: - Configure View
+    // MARK: - Views
     fileprivate func configure() {
         configureSubviews()
+        configureDelegates()
         configureActions()
         configureConstraints()
     }
@@ -107,13 +84,19 @@ extension AuthViewController {
             stackView.addArrangedSubview($0)
         }
     }
-    // MARK: - Configure Actions
+    // MARK: - Delegates
+    fileprivate func configureDelegates() {
+        emailField.delegate = self
+        passwordField.delegate = self
+        confirmPasswordField.delegate = self
+    }
+    // MARK: - Actions
     fileprivate func configureActions() {
         continueButton.addTarget(self, action: #selector(openHomeVC), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(openForgotPasswordVC), for: .touchUpInside)
         switchLogInTypeButton.addTarget(self, action: #selector(switchLogInType), for: .touchUpInside)
     }
-    // MARK: - Configure Constraints
+    // MARK: - Constraints
     fileprivate func configureConstraints() {
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -143,25 +126,6 @@ extension AuthViewController {
 }
 
 extension AuthViewController: UITextFieldDelegate {
-    // MARK: - Create TextField
-    private func createTextField(tag: Int,
-                                 placeholder: String,
-                                 keyboardType: UIKeyboardType = .default) -> UITextField {
-        let textField = UITextField()
-        textField.layer.cornerRadius = 5
-        textField.textColor = .black
-        textField.tag = tag
-        textField.delegate = self
-        textField.placeholder = placeholder
-        textField.keyboardType = keyboardType
-        return textField
-    }
-    // MARK: - Create Label
-    private func createLabel(text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        return label
-    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.moveToNextTFResponder(textField)
         return true
