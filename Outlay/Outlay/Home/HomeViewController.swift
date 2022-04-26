@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundAppColor
@@ -16,7 +15,7 @@ class HomeViewController: UIViewController {
         $0.dropShadow()
         return $0
     }(UIView())
-    // MARK: - Add action for expense indicator
+    // MARK: - Action for expense indicator
     @objc func openExpenseList(sender: UITapGestureRecognizer) {
         Logger.information(message: "Expense indicator was touched")
         let expensesData = ExpenseRepository.shared.getExpenses()
@@ -24,16 +23,7 @@ class HomeViewController: UIViewController {
                                                  animated: true)
     }
     // MARK: - Add Expense Button
-    fileprivate let addExpenseButton: UIButton = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.cornerRadius = 30
-        $0.setTitle(NSLocalizedString(Constants.newExpenceTitle, comment: ""), for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
-        $0.titleLabel?.font = .systemFont(ofSize: 22)
-        $0.backgroundColor = Constants.darkBlueColor
-        return $0
-    }(UIButton())
+    fileprivate let addExpenseButton: UIButton = createDefaultContinueButton(text: Constants.newExpenceTitle)
     // MARK: - Add action for expense button
     @objc func addExpense() {
         Logger.information(message: "expenses button touched")
@@ -59,7 +49,7 @@ extension HomeViewController {
         view.addSubview(addExpenseButton)
         view.addSubview(expenseIndicator)
     }
-    // MARK: - Configure Actions
+    // MARK: - Actions
     fileprivate func configureActions() {
         addExpenseButton.addTarget(self, action: #selector(addExpense), for: .touchUpInside)
         expenseIndicator.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openExpenseList)))
@@ -68,7 +58,7 @@ extension HomeViewController {
                                                                  target: self,
                                                                  action: #selector(openSettings))
     }
-    // MARK: - Configure Constraints
+    // MARK: - Constraints
     fileprivate func configureConstraints() {
         addExpenseButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()

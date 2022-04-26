@@ -8,9 +8,9 @@ class NewExpenseViewController: UIViewController {
         configure()
     }
     // MARK: - TextFields
-    lazy var titleTF: UITextField = createTextField(tag: 1, placeholder: "Title")
-    lazy var categoryTF: UITextField = createTextField(tag: 2, placeholder: "Category")
-    lazy var priceTF: UITextField = createTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
+    lazy var titleField: UITextField = createDefaultTextField(tag: 1, placeholder: "Title")
+    lazy var categoryField: UITextField = createDefaultTextField(tag: 2, placeholder: "Category")
+    lazy var priceField: UITextField = createDefaultTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
     lazy var dateLabel: UILabel = createDateLabel()
     lazy var calendarImage: UIImageView = createCalendarImage()
@@ -20,9 +20,9 @@ class NewExpenseViewController: UIViewController {
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
-        let newExpenseVM = NewExpenseViewModel(title: titleTF.text,
-                                               price: priceTF.text,
-                                               categoryId: categoryTF.text,
+        let newExpenseVM = NewExpenseViewModel(title: titleField.text,
+                                               price: priceField.text,
+                                               categoryId: categoryField.text,
                                                creationDate: dateLabel.text)
         let result = newExpenseVM.insertData()
         if result == Response.ok {
@@ -32,7 +32,7 @@ class NewExpenseViewController: UIViewController {
             Logger.warning(message: "Please fill all the fields")
         }
     }
-    // MARK: - Add action for back button
+    // MARK: - Actions
     @objc func backButton() {
         self.dismiss(animated: true)
     }
@@ -48,23 +48,30 @@ class NewExpenseViewController: UIViewController {
 }
 
 extension NewExpenseViewController {
-    // MARK: - Configure View
+    // MARK: - Views
     fileprivate func configure() {
         configureSubviews()
+        configureDelegates()
         configureActions()
         configureConstraints()
         createDatePicker()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
-        view.addSubview(titleTF)
-        view.addSubview(priceTF)
-        view.addSubview(categoryTF)
+        view.addSubview(titleField)
+        view.addSubview(priceField)
+        view.addSubview(categoryField)
         view.addSubview(dateCalendarView)
         dateCalendarView.addSubview(datePicker)
         dateCalendarView.addSubview(calendarImage)
     }
-    // MARK: - Configure Actions
+    // MARK: - Delegates
+    fileprivate func configureDelegates() {
+        titleField.delegate = self
+        categoryField.delegate = self
+        priceField.delegate = self
+    }
+    // MARK: - Actions
     fileprivate func configureActions() {
         // MARK: - Save button
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
@@ -77,28 +84,28 @@ extension NewExpenseViewController {
                                                                 action: #selector(backButton))
         self.navigationItem.leftBarButtonItem?.tintColor = Constants.darkBlueColor
     }
-    // MARK: - Configure Constraints
+    // MARK: - Constraints
     fileprivate func configureConstraints() {
-        titleTF.snp.makeConstraints {
+        titleField.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        categoryTF.snp.makeConstraints {
-            $0.top.equalTo(titleTF.snp.bottom).inset(-10)
+        categoryField.snp.makeConstraints {
+            $0.top.equalTo(titleField.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
-        priceTF.snp.makeConstraints {
-            $0.top.equalTo(categoryTF.snp.bottom).inset(-10)
+        priceField.snp.makeConstraints {
+            $0.top.equalTo(categoryField.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
         }
         dateCalendarView.snp.makeConstraints {
-            $0.top.equalTo(priceTF.snp.bottom).inset(-10)
+            $0.top.equalTo(priceField.snp.bottom).inset(-10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
             $0.width.equalToSuperview().inset(10)
@@ -114,21 +121,7 @@ extension NewExpenseViewController {
             $0.height.equalTo(35)
         }
     }
-    // MARK: - Create TextField
-    private func createTextField(tag: Int,
-                                 placeholder: String,
-                                 keyboardType: UIKeyboardType = .default) -> UITextField {
-        let textField = UITextField()
-        textField.backgroundColor = Constants.backgroundAppColor
-        textField.layer.cornerRadius = 5
-        textField.textColor = .black
-        textField.tag = tag
-        textField.delegate = self
-        textField.placeholder = placeholder
-        textField.keyboardType = keyboardType
-        return textField
-    }
-    // MARK: - Create Label
+    // MARK: - Date Label
     private func createDateLabel() -> UILabel {
         let label = UILabel()
         let dateManager = DateManager()
@@ -139,14 +132,14 @@ extension NewExpenseViewController {
         label.backgroundColor = Constants.backgroundAppColor
         return label
     }
-    // MARK: - Create Date Calendar View
+    // MARK: - Date Calendar View
     private func createCalendarImage() -> UIImageView {
         let image = UIImage(systemName: "calendar")
         let imageView = UIImageView(image: image)
         imageView.tintColor = Constants.darkBlueColor
         return imageView
     }
-    // MARK: - Create Date Picker
+    // MARK: - Date Picker
     private func createDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.addTarget(self,

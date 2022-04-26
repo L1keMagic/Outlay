@@ -10,6 +10,7 @@
 		079399503FF18EEE4794B04B /* Pods_Outlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4907EC030AE0BA5FD8596BC1 /* Pods_Outlay.framework */; };
 		230178672816B12100FFD863 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230178662816B12100FFD863 /* AuthViewController.swift */; };
 		230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230178682816B15100FFD863 /* ResetPasswordViewController.swift */; };
+		2301786E2817164F00FFD863 /* UIAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2301786D2817164F00FFD863 /* UIAppearance.swift */; };
 		2327AF60280C262A004CB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327AF5F280C262A004CB7A0 /* AppDelegate.swift */; };
 		2327AF62280C262A004CB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327AF61280C262A004CB7A0 /* SceneDelegate.swift */; };
 		2327AF64280C262A004CB7A0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327AF63280C262A004CB7A0 /* HomeViewController.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		230178662816B12100FFD863 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		230178682816B15100FFD863 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		2301786D2817164F00FFD863 /* UIAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAppearance.swift; sourceTree = "<group>"; };
 		2327AF5C280C262A004CB7A0 /* Outlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Outlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2327AF5F280C262A004CB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2327AF61280C262A004CB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				2327AF61280C262A004CB7A0 /* SceneDelegate.swift */,
 				2327AF68280C262B004CB7A0 /* Assets.xcassets */,
 				2327AF6A280C262B004CB7A0 /* LaunchScreen.storyboard */,
+				2301786D2817164F00FFD863 /* UIAppearance.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				23A8AB162814625400FA4FD7 /* Response.swift in Sources */,
 				230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */,
 				230178672816B12100FFD863 /* AuthViewController.swift in Sources */,
+				2301786E2817164F00FFD863 /* UIAppearance.swift in Sources */,
 				23B131CB280D98A700E0AED0 /* ExpenseCell.swift in Sources */,
 				5E49EB722811621F00CE8AF4 /* UIViewExtensions.swift in Sources */,
 				2327AF60280C262A004CB7A0 /* AppDelegate.swift in Sources */,

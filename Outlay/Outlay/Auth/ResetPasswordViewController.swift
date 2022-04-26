@@ -1,40 +1,27 @@
 import UIKit
 
 class ResetPasswordViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundAppColor
         configure()
     }
     // MARK: - Initializing components
-    lazy var titleLabel: UILabel = {
-        $0.text = Constants.resetPassword
-        $0.textColor = Constants.darkBlueColor
-        $0.font = UIFont.boldSystemFont(ofSize: 24.0)
-        return $0
-    }(UILabel())
-    lazy var resetPasswordButton: UIButton = {
-        $0.layer.cornerRadius = 30
-        $0.setTitle(NSLocalizedString(Constants.resetPassword, comment: ""), for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
-        $0.titleLabel?.font = .systemFont(ofSize: 22)
-        $0.backgroundColor = Constants.darkBlueColor
-        return $0
-    }(UIButton())
-    lazy var emailField: UITextField = createTextField(tag: 1, placeholder: "Email")
-    lazy var emailLabel: UILabel = createLabel(text: "Email")
-    // MARK: - Add action for reset password button
+    lazy var titleLabel: UILabel = createDefaultTitleLabel(text: Constants.resetPassword)
+    lazy var resetPasswordButton: UIButton = createDefaultContinueButton(text: Constants.resetPassword)
+    lazy var emailLabel: UILabel = createDefaultSmallLabel(text: Constants.email)
+    lazy var emailField: UITextField = createDefaultTextField(tag: 1, placeholder: Constants.email)
+    // MARK: - Action for reset password button
     @objc func resetPassword() {
-        Logger.information(message: "reset password button touched")
+        Logger.information(message: "Reset password button touched")
     }
 }
 
 extension ResetPasswordViewController {
-    // MARK: - Configure View
+    // MARK: - Views
     fileprivate func configure() {
         configureSubviews()
+        configureDelegates()
         configureActions()
         configureConstraints()
     }
@@ -45,11 +32,15 @@ extension ResetPasswordViewController {
         view.addSubview(emailLabel)
         view.addSubview(emailField)
     }
-    // MARK: - Configure Actions
+    // MARK: - Delegates
+    fileprivate func configureDelegates() {
+        emailField.delegate = self
+    }
+    // MARK: - Actions
     fileprivate func configureActions() {
         resetPasswordButton.addTarget(self, action: #selector(resetPassword), for: .touchUpInside)
     }
-    // MARK: - Configure Constraints
+    // MARK: - Constraints
     fileprivate func configureConstraints() {
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -75,25 +66,6 @@ extension ResetPasswordViewController {
 }
 
 extension ResetPasswordViewController: UITextFieldDelegate {
-    // MARK: - Create TextField
-    private func createTextField(tag: Int,
-                                 placeholder: String,
-                                 keyboardType: UIKeyboardType = .default) -> UITextField {
-        let textField = UITextField()
-        textField.layer.cornerRadius = 5
-        textField.textColor = .black
-        textField.tag = tag
-        textField.delegate = self
-        textField.placeholder = placeholder
-        textField.keyboardType = keyboardType
-        return textField
-    }
-    // MARK: - Create Label
-    private func createLabel(text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        return label
-    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.moveToNextTFResponder(textField)
         return true
