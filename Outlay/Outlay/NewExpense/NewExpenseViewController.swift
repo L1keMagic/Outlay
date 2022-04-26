@@ -12,7 +12,7 @@ class NewExpenseViewController: UIViewController {
     lazy var categoryField: UITextField = createDefaultTextField(tag: 2, placeholder: "Category")
     lazy var priceField: UITextField = createDefaultTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
-    lazy var dateLabel: UILabel = createDateLabel()
+    lazy var expenseDateLabel: UILabel = createDateLabel()
     lazy var calendarImage: UIImageView = createCalendarImage()
     lazy var dateCalendarView: UIView = UIView()
     // MARK: - DatePicker
@@ -23,7 +23,7 @@ class NewExpenseViewController: UIViewController {
         let newExpenseVM = NewExpenseViewModel(title: titleField.text,
                                                price: priceField.text,
                                                categoryId: categoryField.text,
-                                               creationDate: dateLabel.text)
+                                               expenseDate: expenseDateLabel.text)
         let result = newExpenseVM.insertData()
         if result == Response.ok {
             Logger.information(message: "Data was successfuly inserted")
@@ -38,12 +38,9 @@ class NewExpenseViewController: UIViewController {
     }
     @objc func didExpenseDateCnahged(datePicker: UIDatePicker) {
         let dateManager = DateManager()
-        let rawDatePickerDate = dateManager.convertDateFormat(date: datePicker.date,
-                                                              outputFormat: Constants.dateFormatYMDHMS)
-        dateLabel.text = dateManager.convertDateFormat(date: rawDatePickerDate,
-                                                       inputFormat: Constants.dateFormatYMDHMS,
-                                                       outputFormat: Constants.dateFormatDMY)
-        dateLabel.backgroundColor = Constants.backgroundAppColor
+        expenseDateLabel.text = dateManager.convertDateFormat(date: datePicker.date,
+                                                              outputFormat: Constants.dateFormatDMY)
+        expenseDateLabel.backgroundColor = Constants.backgroundAppColor
     }
 }
 
@@ -125,10 +122,7 @@ extension NewExpenseViewController {
     private func createDateLabel() -> UILabel {
         let label = UILabel()
         let dateManager = DateManager()
-        let unformattedDate = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
-        label.text = dateManager.convertDateFormat(date: unformattedDate,
-                                                   inputFormat: Constants.dateFormatYMDHMS,
-                                                   outputFormat: Constants.dateFormatDMY)
+        label.text = dateManager.getCurrentDate(dateFormat: Constants.dateFormatDMY)
         label.backgroundColor = Constants.backgroundAppColor
         return label
     }

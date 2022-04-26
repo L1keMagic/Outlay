@@ -1,16 +1,16 @@
 import Foundation
 
 class NewExpenseViewModel {
-    init(title: String?, price: String?, categoryId: String?, creationDate: String?) {
+    init(title: String?, price: String?, categoryId: String?, expenseDate: String?) {
         self.title = title
         self.price = price
         self.categoryId = categoryId
-        self.creationDate = creationDate
+        self.expenseDate = expenseDate
     }
     private let title: String?
     private let price: String?
     private let categoryId: String?
-    private let creationDate: String?
+    private let expenseDate: String?
     func insertData() -> Response {
         if let title = title,
            !title.isEmpty,
@@ -18,22 +18,16 @@ class NewExpenseViewModel {
            !price.isEmpty,
            let categoryId = categoryId,
            !categoryId.isEmpty,
-           let creationDate = creationDate,
-           !creationDate.isEmpty {
-            let date: String
+           let expenseDate = expenseDate,
+           !expenseDate.isEmpty {
             let dateManager = DateManager()
-            if creationDate == dateManager.getCurrentDate(dateFormat: Constants.dateFormatDMY) {
-                date = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
-            } else {
-                date = dateManager.convertDateFormat(date: creationDate,
-                                                     inputFormat: Constants.dateFormatDMY,
-                                                     outputFormat: Constants.dateFormatYMD) + " 23:59:59"
-            }
+            let expenseSavingDate: String = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
             ExpenseRepository.shared.insertExpense(expense: Expense(id: UUID().uuidString,
                                                                     title: title,
                                                                     price: Double(price)!,
-                                                                    categoryId: Int(categoryId),
-                                                                    creationDate: date))
+                                                                    categoryId: categoryId,
+                                                                    expenseDate: expenseDate,
+                                                                    expenseSavingDate: expenseSavingDate))
             return Response.ok
         }
         return Response.badRequest
