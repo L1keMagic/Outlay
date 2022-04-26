@@ -32,10 +32,7 @@ extension ExpenseCell {
     func set(expense: Expense) {
         expenseTitle.text = expense.title
         expensePrice.text = "\(expense.price)"
-        let dateManager = DateManager()
-        expenseDate.text = dateManager.convertDateFormat(date: expense.creationDate,
-                                                         inputFormat: Constants.dateFormatYMDHMS,
-                                                         outputFormat: Constants.dateFormatDMY)
+        expenseDate.text = expense.expenseDate
     }
     // MARK: - Subviews
     fileprivate func addSubviews() {
