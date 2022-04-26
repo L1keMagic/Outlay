@@ -20,6 +20,7 @@
 		23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DDE280C5FF6009FA89A /* SettingsViewController.swift */; };
 		23367DE5280C87F0009FA89A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE4280C87F0009FA89A /* Logger.swift */; };
 		23367DE7280C8899009FA89A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE6280C8899009FA89A /* NavigationController.swift */; };
+		23418C4E28184AAD00A197BB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C4D28184AAD00A197BB /* Category.swift */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
 		23A8AB162814625400FA4FD7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8AB152814625400FA4FD7 /* Response.swift */; };
@@ -46,6 +47,7 @@
 		23367DDE280C5FF6009FA89A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		23367DE4280C87F0009FA89A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		23367DE6280C8899009FA89A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		23418C4D28184AAD00A197BB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		23A8AB152814625400FA4FD7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				23B131C8280D90B300E0AED0 /* Expense.swift */,
+				23418C4D28184AAD00A197BB /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				23A8AB162814625400FA4FD7 /* Response.swift in Sources */,
 				230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */,
 				230178672816B12100FFD863 /* AuthViewController.swift in Sources */,
+				23418C4E28184AAD00A197BB /* Category.swift in Sources */,
 				2301786E2817164F00FFD863 /* UIAppearance.swift in Sources */,
 				23B131CB280D98A700E0AED0 /* ExpenseCell.swift in Sources */,
 				5E49EB722811621F00CE8AF4 /* UIViewExtensions.swift in Sources */,
