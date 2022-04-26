@@ -7,3 +7,5 @@ struct Category: Codable {
     let isFavourite: Bool
     let color: String
 }
+
+typealias Categories = [Category]
