@@ -2,7 +2,7 @@ import Foundation
 
 class CategoryRepository {
     static let shared = CategoryRepository()
-    var categories: Categories = []
+    var categories: Categories = load("CategoriesData.json")
     func getCategories() -> Categories {
         return categories
     }
