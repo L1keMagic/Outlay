@@ -1,7 +1,7 @@
 import Foundation
 
 struct Expense: Codable {
-    let id: String
+    let expenseId: String
     let title: String
     let price: Double
     let categoryId: String

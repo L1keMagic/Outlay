@@ -1,6 +1,6 @@
 [
     {
-        "id": "A9314D58-13ED-44B2-9E26-508CFB44657A",
+        "categoryId": "A9314D58-13ED-44B2-9E26-508CFB44657A",
         "title": "Food",
         "categorySavingDate": "2022-04-27T10:26:09+0200",
         "isFavourite": false,
@@ -8,7 +8,7 @@
         "isDeleted": false
     },
     {
-        "id": "B9314D58-13ED-44B2-9E26-508CFB44657B",
+        "categoryId": "B9314D58-13ED-44B2-9E26-508CFB44657B",
         "title": "Clothes",
         "categorySavingDate": "2022-03-27T10:26:09+0200",
         "isFavourite": false,
@@ -16,7 +16,7 @@
         "isDeleted": false
     },
     {
-        "id": "C9314D58-13ED-44B2-9E26-508CFB44657C",
+        "categoryId": "C9314D58-13ED-44B2-9E26-508CFB44657C",
         "title": "Electronics",
         "categorySavingDate": "2022-04-25T10:26:09+0200",
         "isFavourite": false,

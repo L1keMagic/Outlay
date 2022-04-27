@@ -1,6 +1,6 @@
 [
     {
-        "id": "C9314D58-13ED-44B2-9E26-508CFB44657E",
+        "expenseId": "C9314D58-13ED-44B2-9E26-508CFB44657E",
         "title": "Pizza",
         "price": 150.0,
         "categoryId": "A9314D58-13ED-44B2-9E26-508CFB44657A",
@@ -9,7 +9,7 @@
         "isDeleted": false
     },
     {
-        "id": "B4E4A6D7-0556-4CC3-AF45-E44934D03EFC",
+        "expenseId": "B4E4A6D7-0556-4CC3-AF45-E44934D03EFC",
         "title": "Pasta",
         "price": 250.0,
         "categoryId": "A9314D58-13ED-44B2-9E26-508CFB44657A",
@@ -18,7 +18,7 @@
         "isDeleted": false
     },
     {
-        "id": "H4414D58-13ED-44B2-9E26-508CFB44657B",
+        "expenseId": "H4414D58-13ED-44B2-9E26-508CFB44657B",
         "title": "Jeans",
         "price": 7000.0,
         "categoryId": "B9314D58-13ED-44B2-9E26-508CFB44657A",
@@ -27,7 +27,7 @@
         "isDeleted": false
     },
     {
-        "id": "C077AD3B-8AC9-4949-909C-97BE59D73A34",
+        "expenseId": "C077AD3B-8AC9-4949-909C-97BE59D73A34",
         "title": "TV Set",
         "price": 40000.0,
         "categoryId": "C9314D58-13ED-44B2-9E26-508CFB44657C",
