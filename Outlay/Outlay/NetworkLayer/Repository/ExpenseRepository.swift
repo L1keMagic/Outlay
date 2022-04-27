@@ -2,7 +2,7 @@ import Foundation
 
 class ExpenseRepository {
     static let shared = ExpenseRepository()
-    var expenses: Expenses = []
+    var expenses: Expenses = load("ExpensesData.json")
     func getExpenses() -> Expenses {
         return expenses
     }
