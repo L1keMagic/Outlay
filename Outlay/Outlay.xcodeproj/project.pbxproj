@@ -22,6 +22,8 @@
 		23367DE7280C8899009FA89A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23367DE6280C8899009FA89A /* NavigationController.swift */; };
 		23418C4E28184AAD00A197BB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C4D28184AAD00A197BB /* Category.swift */; };
 		23418C5028184D6300A197BB /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C4F28184D6300A197BB /* CategoryRepository.swift */; };
+		23418C592819333B00A197BB /* ExpensesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 23418C582819333B00A197BB /* ExpensesData.json */; };
+		23418C5B2819335C00A197BB /* CategoriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 23418C5A2819335C00A197BB /* CategoriesData.json */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
 		23A8AB162814625400FA4FD7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8AB152814625400FA4FD7 /* Response.swift */; };
@@ -50,6 +52,8 @@
 		23367DE6280C8899009FA89A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		23418C4D28184AAD00A197BB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		23418C4F28184D6300A197BB /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
+		23418C582819333B00A197BB /* ExpensesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExpensesData.json; sourceTree = "<group>"; };
+		23418C5A2819335C00A197BB /* CategoriesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoriesData.json; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		23A8AB152814625400FA4FD7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -175,6 +179,15 @@
 			path = Logging;
 			sourceTree = "<group>";
 		};
+		23418C5C281933BA00A197BB /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				239D6146280F39D60049298F /* ExpenseRepository.swift */,
+				23418C4F28184D6300A197BB /* CategoryRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		239D6148280F545A0049298F /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +226,7 @@
 		23B131C6280D903700E0AED0 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				23418C5C281933BA00A197BB /* Repository */,
 				23ADE4EA281461FF00353582 /* Response */,
 				23B131D2280F36D800E0AED0 /* Data */,
 				23B131C7280D907F00E0AED0 /* Models */,
@@ -232,8 +246,8 @@
 		23B131D2280F36D800E0AED0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				239D6146280F39D60049298F /* ExpenseRepository.swift */,
-				23418C4F28184D6300A197BB /* CategoryRepository.swift */,
+				23418C582819333B00A197BB /* ExpensesData.json */,
+				23418C5A2819335C00A197BB /* CategoriesData.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -307,8 +321,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23418C592819333B00A197BB /* ExpensesData.json in Resources */,
 				2327AF6C280C262B004CB7A0 /* LaunchScreen.storyboard in Resources */,
 				2327AF69280C262B004CB7A0 /* Assets.xcassets in Resources */,
+				23418C5B2819335C00A197BB /* CategoriesData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
