@@ -1,6 +1,6 @@
 import UIKit
 
-func createDefaultTitleLabel(text: String) -> UILabel {
+public func createDefaultTitleLabel(text: String) -> UILabel {
     let label = UILabel()
     label.text = text
     label.textColor = Constants.darkBlueColor
@@ -8,14 +8,15 @@ func createDefaultTitleLabel(text: String) -> UILabel {
     return label
 }
 
-func createDefaultSmallLabel(text: String) -> UILabel {
+public func createDefaultSmallLabel(text: String) -> UILabel {
     let label = UILabel()
     label.text = text
     return label
 }
 
-func createDefaultTextField(tag: Int, placeholder: String,
-                            keyboardType: UIKeyboardType = .default) -> UITextField {
+public func createDefaultTextField(tag: Int,
+                                   placeholder: String,
+                                   keyboardType: UIKeyboardType = .default) -> UITextField {
     let textField = UITextField()
     textField.layer.cornerRadius = 5
     textField.textColor = .black

@@ -20,17 +20,14 @@ class NewExpenseViewController: UIViewController {
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
-        let newExpenseVM = NewExpenseViewModel(title: titleField.text,
-                                               price: priceField.text,
-                                               categoryId: categoryField.text,
-                                               expenseDate: expenseDateLabel.text)
-        let result = newExpenseVM.insertData()
-        if result == Response.ok {
-            Logger.information(message: "Data was successfuly inserted")
-            self.dismiss(animated: true)
-        } else {
-            Logger.warning(message: "Please fill all the fields")
-        }
+        // do try catch Logger.warning(message: "Please fill all the fields")
+        let newExpenseVM = NewExpenseViewModel()
+        _ = newExpenseVM.insertData(model: NewExpenseModel(title: titleField.text,
+                                                       price: priceField.text,
+                                                       categoryId: categoryField.text,
+                                                       expenseDate: expenseDateLabel.text))
+        self.dismiss(animated: true)
+        Logger.information(message: "Data was successfuly inserted")
     }
     // MARK: - Actions
     @objc func backButton() {

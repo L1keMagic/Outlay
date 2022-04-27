@@ -1,24 +1,14 @@
 import Foundation
 
 class NewExpenseViewModel {
-    init(title: String?, price: String?, categoryId: String?, expenseDate: String?) {
-        self.title = title
-        self.price = price
-        self.categoryId = categoryId
-        self.expenseDate = expenseDate
-    }
-    private let title: String?
-    private let price: String?
-    private let categoryId: String?
-    private let expenseDate: String?
-    func insertData() -> Response {
-        if let title = title,
+    func insertData(model: NewExpenseModel) -> String {
+        if let title = model.title,
+           let price = model.price,
+           let categoryId = model.categoryId,
+           let expenseDate = model.expenseDate,
            !title.isEmpty,
-           let price = price,
            !price.isEmpty,
-           let categoryId = categoryId,
            !categoryId.isEmpty,
-           let expenseDate = expenseDate,
            !expenseDate.isEmpty {
             let dateManager = DateManager()
             let expenseSavingDate: String = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
@@ -29,8 +19,8 @@ class NewExpenseViewModel {
                                                                     expenseDate: expenseDate,
                                                                     expenseSavingDate: expenseSavingDate,
                                                                     isDeleted: false))
-            return Response.ok
+            return "Good"
         }
-        return Response.badRequest
+        return "Bad"
     }
 }
