@@ -24,6 +24,7 @@
 		23418C5028184D6300A197BB /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C4F28184D6300A197BB /* CategoryRepository.swift */; };
 		23418C592819333B00A197BB /* ExpensesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 23418C582819333B00A197BB /* ExpensesData.json */; };
 		23418C5B2819335C00A197BB /* CategoriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 23418C5A2819335C00A197BB /* CategoriesData.json */; };
+		23418C5E28193BC300A197BB /* JsonConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C5D28193BC300A197BB /* JsonConverter.swift */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
 		23A8AB162814625400FA4FD7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8AB152814625400FA4FD7 /* Response.swift */; };
@@ -54,6 +55,7 @@
 		23418C4F28184D6300A197BB /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		23418C582819333B00A197BB /* ExpensesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExpensesData.json; sourceTree = "<group>"; };
 		23418C5A2819335C00A197BB /* CategoriesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoriesData.json; sourceTree = "<group>"; };
+		23418C5D28193BC300A197BB /* JsonConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConverter.swift; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		23A8AB152814625400FA4FD7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				2327AF68280C262B004CB7A0 /* Assets.xcassets */,
 				2327AF6A280C262B004CB7A0 /* LaunchScreen.storyboard */,
 				2301786D2817164F00FFD863 /* UIAppearance.swift */,
+				23418C5D28193BC300A197BB /* JsonConverter.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				239D614A280F54650049298F /* DateManager.swift in Sources */,
 				23418C5028184D6300A197BB /* CategoryRepository.swift in Sources */,
 				2327AF62280C262A004CB7A0 /* SceneDelegate.swift in Sources */,
+				23418C5E28193BC300A197BB /* JsonConverter.swift in Sources */,
 				23367DDC280C5E85009FA89A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
