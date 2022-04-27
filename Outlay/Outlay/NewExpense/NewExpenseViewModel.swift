@@ -27,7 +27,7 @@ class NewExpenseViewModel {
                                                                     price: Double(price)!,
                                                                     categoryId: categoryId,
                                                                     expenseDate: expenseDate,
-                                                                    expenseSavingDate: expenseSavingDate))
+                                                                    expenseSavingDate: expenseSavingDate, isDeleted: false))
             return Response.ok
         }
         return Response.badRequest

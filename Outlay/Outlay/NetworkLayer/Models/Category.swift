@@ -6,6 +6,7 @@ struct Category: Codable {
     let categorySavingDate: String
     let isFavourite: Bool
     let color: String
+    let isDeleted: Bool
 }
 
 typealias Categories = [Category]
