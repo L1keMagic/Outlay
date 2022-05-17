@@ -29,13 +29,13 @@ class NewExpenseViewController: UIViewController {
             self.dismiss(animated: true)
             Logger.information(message: "Data was successfuly inserted")
         } catch ExpenseError.validationError {
-            let alert = UIAlertController(title: "Error", message:
-                                            "Please fill all the fields correctly",
+            let alert = UIAlertController(title: Constants.error, message:
+                                            Constants.invalidFieldsInserted,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: Constants.cancel, style: .cancel))
             self.present(alert, animated: true)
         } catch {
-            Logger.error(message: "Unknown error")
+            Logger.error(message: Constants.unknownError)
         }
     }
     // MARK: - Actions
