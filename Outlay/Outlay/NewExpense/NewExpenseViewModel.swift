@@ -1,13 +1,14 @@
 import Foundation
 
 class NewExpenseViewModel {
-    func insertData(model: NewExpenseModel) -> String {
+    func insertData(model: NewExpenseModel) throws {
         if let title = model.title,
            let price = model.price,
            let categoryId = model.categoryId,
            let expenseDate = model.expenseDate,
            !title.isEmpty,
            !price.isEmpty,
+           (Double(price) != nil),
            !categoryId.isEmpty,
            !expenseDate.isEmpty {
             let dateManager = DateManager()
@@ -19,8 +20,8 @@ class NewExpenseViewModel {
                                                                     expenseDate: expenseDate,
                                                                     expenseSavingDate: expenseSavingDate,
                                                                     isDeleted: false))
-            return "Good"
+        } else {
+            throw ExpenseError.validationError
         }
-        return "Bad"
     }
 }

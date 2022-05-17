@@ -20,14 +20,23 @@ class NewExpenseViewController: UIViewController {
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
-        // do try catch Logger.warning(message: "Please fill all the fields")
         let newExpenseVM = NewExpenseViewModel()
-        _ = newExpenseVM.insertData(model: NewExpenseModel(title: titleField.text,
-                                                       price: priceField.text,
-                                                       categoryId: categoryField.text,
-                                                       expenseDate: expenseDateLabel.text))
-        self.dismiss(animated: true)
-        Logger.information(message: "Data was successfuly inserted")
+        do {
+            try newExpenseVM.insertData(model: NewExpenseModel(title: titleField.text,
+                                                               price: priceField.text,
+                                                               categoryId: categoryField.text,
+                                                               expenseDate: expenseDateLabel.text))
+            self.dismiss(animated: true)
+            Logger.information(message: "Data was successfuly inserted")
+        } catch ExpenseError.validationError {
+            let alert = UIAlertController(title: "Error", message:
+                                            "Please fill all the fields correctly",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true)
+        } catch {
+            Logger.error(message: "Unknown error")
+        }
     }
     // MARK: - Actions
     @objc func backButton() {
