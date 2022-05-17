@@ -19,4 +19,8 @@ class Constants {
     static let password = "Password"
     static let confirmPassword = "Confirm password"
     static let settings = "Settings"
+    static let error = "Error"
+    static let cancel = "Cancel"
+    static let invalidFieldsInserted = "Please fill all the fields correctly"
+    static let unknownError = "Unknown error"
 }
