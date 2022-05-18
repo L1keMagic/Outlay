@@ -5,7 +5,7 @@ struct Category: Codable {
     let title: String
     let categorySavingDate: String
     let isFavourite: Bool
-    let color: String
+    let image: String?
     let isDeleted: Bool
 }
 
