@@ -4,7 +4,7 @@
         "title": "Food",
         "categorySavingDate": "2022-04-27T10:26:09+0200",
         "isFavourite": false,
-        "color": "#8b00ff",
+        "image": "",
         "isDeleted": false
     },
     {
@@ -12,7 +12,7 @@
         "title": "Clothes",
         "categorySavingDate": "2022-03-27T10:26:09+0200",
         "isFavourite": false,
-        "color": "#8b00ff",
+        "image": null,
         "isDeleted": false
     },
     {
@@ -20,7 +20,7 @@
         "title": "Electronics",
         "categorySavingDate": "2022-04-25T10:26:09+0200",
         "isFavourite": false,
-        "color": "#8b00ff",
+        "image": "",
         "isDeleted": false
     }
 ]
