@@ -2,9 +2,9 @@ import UIKit
 
 class ExpensesListViewController: UIViewController {
     private var tableView = UITableView()
-    private var expenses: Expenses
-    init(expenses: Expenses) {
-        self.expenses = expenses
+    private var expensesDto: ExpensesDto
+    init(expensesDto: ExpensesDto) {
+        self.expensesDto = expensesDto
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -25,17 +25,17 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
     fileprivate func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ExpenseCell.self, forCellReuseIdentifier: Constants.expenseCellIdentifier)
+        tableView.register(ExpenseCell.self, forCellReuseIdentifier: Constants.expenseDtoCellIdentifier)
         tableView.backgroundColor = Constants.backgroundAppColor
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenses.count
+        return expensesDto.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.expenseCellIdentifier,
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.expenseDtoCellIdentifier,
                                                  for: indexPath) as? ExpenseCell
-        let expense = expenses[indexPath.row]
-        cell?.set(expense: expense)
+        let expenseDto = expensesDto[indexPath.row]
+        cell?.set(expenseDto: expenseDto)
         return cell ?? UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

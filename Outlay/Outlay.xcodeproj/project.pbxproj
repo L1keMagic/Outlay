@@ -29,6 +29,8 @@
 		23418C622819C0F500A197BB /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C612819C0F500A197BB /* ErrorHandling.swift */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
+		23A2123328359B2F00EB5AA8 /* ExpenseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A2123228359B2F00EB5AA8 /* ExpenseDto.swift */; };
+		23A212352835A2D000EB5AA8 /* ExpensesDtoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A212342835A2D000EB5AA8 /* ExpensesDtoHelper.swift */; };
 		23ADE4E72813401700353582 /* NewExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE4E62813401700353582 /* NewExpenseViewModel.swift */; };
 		23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131BE280D6EF100E0AED0 /* NewExpenseViewController.swift */; };
 		23B131C9280D90B300E0AED0 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C8280D90B300E0AED0 /* Expense.swift */; };
@@ -61,6 +63,8 @@
 		23418C612819C0F500A197BB /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		23A2123228359B2F00EB5AA8 /* ExpenseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDto.swift; sourceTree = "<group>"; };
+		23A212342835A2D000EB5AA8 /* ExpensesDtoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesDtoHelper.swift; sourceTree = "<group>"; };
 		23ADE4E62813401700353582 /* NewExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewModel.swift; sourceTree = "<group>"; };
 		23B131BE280D6EF100E0AED0 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		23B131C8280D90B300E0AED0 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				2301786D2817164F00FFD863 /* UIAppearance.swift */,
 				23418C5D28193BC300A197BB /* ModelData.swift */,
 				23418C612819C0F500A197BB /* ErrorHandling.swift */,
+				23A212342835A2D000EB5AA8 /* ExpensesDtoHelper.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			children = (
 				23B131C8280D90B300E0AED0 /* Expense.swift */,
 				23418C4D28184AAD00A197BB /* Category.swift */,
+				23A2123228359B2F00EB5AA8 /* ExpenseDto.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
 				23ADE4E72813401700353582 /* NewExpenseViewModel.swift in Sources */,
 				230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */,
+				23A2123328359B2F00EB5AA8 /* ExpenseDto.swift in Sources */,
 				230178672816B12100FFD863 /* AuthViewController.swift in Sources */,
 				23418C4E28184AAD00A197BB /* Category.swift in Sources */,
 				2301786E2817164F00FFD863 /* UIAppearance.swift in Sources */,
@@ -415,6 +422,7 @@
 				2327AF62280C262A004CB7A0 /* SceneDelegate.swift in Sources */,
 				23418C622819C0F500A197BB /* ErrorHandling.swift in Sources */,
 				23418C5E28193BC300A197BB /* ModelData.swift in Sources */,
+				23A212352835A2D000EB5AA8 /* ExpensesDtoHelper.swift in Sources */,
 				23367DDC280C5E85009FA89A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

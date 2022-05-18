@@ -18,8 +18,13 @@ class HomeViewController: UIViewController {
     // MARK: - Action for expense indicator
     @objc func openExpenseList(sender: UITapGestureRecognizer) {
         Logger.information(message: "Expense indicator was touched")
-        let expensesData = ExpenseRepository.shared.getExpenses()
-        navigationController?.pushViewController(ExpensesListViewController(expenses: expensesData),
+//        let expensesData = ExpenseRepository.shared.getExpenses()
+        var expensesData: [ExpenseDto] = []
+        expensesData.append(ExpenseDto(expenseId: "1", title: "some",
+                                       price: 1, categoryTitle: "аав",
+                                       categoryImage: "", expenseDate: "19.04.2022",
+                                       expenseSavingDate: "2022-04-27T10:26:25+0200", isDeleted: false))
+        navigationController?.pushViewController(ExpensesListViewController(expensesDto: expensesData),
                                                  animated: true)
     }
     // MARK: - Add Expense Button
