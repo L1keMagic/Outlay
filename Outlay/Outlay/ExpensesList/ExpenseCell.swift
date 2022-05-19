@@ -32,7 +32,9 @@ extension ExpenseCell {
     func set(expense: ExpenseDto) {
         expenseTitle.text = expense.title
         expensePrice.text = "\(expense.price)"
-        expenseDate.text = expense.expenseDate
+        expenseDate.text = expense.expenseDate // needs to be removed
+        // category title
+        // category image
     }
     // MARK: - Subviews
     fileprivate func addSubviews() {
