@@ -13,7 +13,7 @@ class NewExpenseViewModel {
            !expenseDate.isEmpty {
             let dateManager = DateManager()
             let expenseSavingDate: String = dateManager.getCurrentDate(dateFormat: Constants.dateFormatYMDHMS)
-            ExpenseRepository.shared.insertExpense(expense: Expense(expenseId: UUID().uuidString,
+            ExpenseRepository.shared.insertExpense(expense: ExpenseRaw(expenseId: UUID().uuidString,
                                                                     title: title,
                                                                     price: Double(price)!,
                                                                     categoryId: categoryId,

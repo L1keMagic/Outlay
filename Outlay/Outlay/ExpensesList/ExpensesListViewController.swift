@@ -2,8 +2,8 @@ import UIKit
 
 class ExpensesListViewController: UIViewController {
     private var tableView = UITableView()
-    private var expenses: ExpensesDto
-    init(expenses: ExpensesDto) {
+    private var expenses: Expenses
+    init(expenses: Expenses) {
         self.expenses = expenses
         super.init(nibName: nil, bundle: nil)
     }

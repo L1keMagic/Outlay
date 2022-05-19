@@ -29,7 +29,7 @@ class ExpenseCell: UITableViewCell {
 
 extension ExpenseCell {
     // MARK: - Filling Cell
-    func set(expense: ExpenseDto) {
+    func set(expense: Expense) {
         expenseTitle.text = expense.title
         expensePrice.text = "\(expense.price)"
         expenseDate.text = expense.expenseDate // needs to be removed
