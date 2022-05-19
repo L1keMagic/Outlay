@@ -8,7 +8,6 @@ struct ExpenseDto: Codable {
     let categoryImage: String
     let expenseDate: String
     let expenseSavingDate: String
-    let isDeleted: Bool
 }
 
 typealias ExpensesDto = [ExpenseDto]
