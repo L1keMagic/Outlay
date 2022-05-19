@@ -35,7 +35,7 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.expenseCellIdentifier,
                                                  for: indexPath) as? ExpenseCell
         let expense = expenses[indexPath.row]
-        cell?.set(expenseDto: expense)
+        cell?.set(expense: expense)
         return cell ?? UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

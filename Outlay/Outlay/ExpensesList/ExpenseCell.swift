@@ -29,10 +29,10 @@ class ExpenseCell: UITableViewCell {
 
 extension ExpenseCell {
     // MARK: - Filling Cell
-    func set(expenseDto: ExpenseDto) {
-        expenseTitle.text = expenseDto.title
-        expensePrice.text = "\(expenseDto.price)"
-        expenseDate.text = expenseDto.expenseDate
+    func set(expense: ExpenseDto) {
+        expenseTitle.text = expense.title
+        expensePrice.text = "\(expense.price)"
+        expenseDate.text = expense.expenseDate
     }
     // MARK: - Subviews
     fileprivate func addSubviews() {
