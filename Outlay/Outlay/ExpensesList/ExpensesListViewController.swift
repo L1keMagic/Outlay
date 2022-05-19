@@ -2,9 +2,9 @@ import UIKit
 
 class ExpensesListViewController: UIViewController {
     private var tableView = UITableView()
-    private var expensesDto: ExpensesDto
-    init(expensesDto: ExpensesDto) {
-        self.expensesDto = expensesDto
+    private var espenses: ExpensesDto
+    init(expenses: ExpensesDto) {
+        self.espenses = expenses
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -29,12 +29,12 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         tableView.backgroundColor = Constants.backgroundAppColor
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expensesDto.count
+        return espenses.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.expenseDtoCellIdentifier,
                                                  for: indexPath) as? ExpenseCell
-        let expenseDto = expensesDto[indexPath.row]
+        let expenseDto = espenses[indexPath.row]
         cell?.set(expenseDto: expenseDto)
         return cell ?? UITableViewCell()
     }
