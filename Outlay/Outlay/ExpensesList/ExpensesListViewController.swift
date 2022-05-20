@@ -27,6 +27,7 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         tableView.dataSource = self
         tableView.register(ExpenseCell.self, forCellReuseIdentifier: Constants.expenseCellIdentifier)
         tableView.backgroundColor = Constants.backgroundAppColor
+//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
@@ -42,6 +43,6 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor.white
     }
 }
