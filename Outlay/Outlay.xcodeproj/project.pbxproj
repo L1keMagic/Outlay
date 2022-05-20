@@ -27,6 +27,7 @@
 		23418C5E28193BC300A197BB /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C5D28193BC300A197BB /* ModelData.swift */; };
 		23418C602819BAB000A197BB /* NewExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C5F2819BAB000A197BB /* NewExpenseModel.swift */; };
 		23418C622819C0F500A197BB /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C612819C0F500A197BB /* ErrorHandling.swift */; };
+		236A29DF2837A9ED003967DA /* LoaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236A29DE2837A9ED003967DA /* LoaderHelper.swift */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
 		23A2123328359B2F00EB5AA8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A2123228359B2F00EB5AA8 /* Expense.swift */; };
@@ -60,6 +61,7 @@
 		23418C5D28193BC300A197BB /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		23418C5F2819BAB000A197BB /* NewExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseModel.swift; sourceTree = "<group>"; };
 		23418C612819C0F500A197BB /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		236A29DE2837A9ED003967DA /* LoaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderHelper.swift; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		23A2123228359B2F00EB5AA8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				2301786D2817164F00FFD863 /* UIAppearance.swift */,
 				23418C5D28193BC300A197BB /* ModelData.swift */,
 				23418C612819C0F500A197BB /* ErrorHandling.swift */,
+				236A29DE2837A9ED003967DA /* LoaderHelper.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				2327AF64280C262A004CB7A0 /* HomeViewController.swift in Sources */,
 				23367DE7280C8899009FA89A /* NavigationController.swift in Sources */,
 				23418C602819BAB000A197BB /* NewExpenseModel.swift in Sources */,
+				236A29DF2837A9ED003967DA /* LoaderHelper.swift in Sources */,
 				23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */,
 				23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */,
 				239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */,
