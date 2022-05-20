@@ -13,4 +13,9 @@ class ExpenseRepository {
         // additionally send request to write data
         expenses.append(convertExpenseToDto(expense: expense))
     }
+    func getExpensesByDate(expenseDate: String) -> Expenses {
+        return (expenses.filter { $0.expenseDate == expenseDate }).sorted {
+            $0.expenseSavingDate < $1.expenseSavingDate
+        }
+    }
 }
