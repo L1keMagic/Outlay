@@ -5,9 +5,10 @@ struct Expense: Codable {
     let title: String
     let price: Double
     let categoryId: String
+    let categoryTitle: String
+    let categoryImage: String
     let expenseDate: String
-    let expenseSavingDate: String // date when user clicks "save" button
-    let isDeleted: Bool
+    let expenseSavingDate: String
 }
 
 typealias Expenses = [Expense]

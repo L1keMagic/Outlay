@@ -2,11 +2,15 @@ import Foundation
 
 class ExpenseRepository {
     static let shared = ExpenseRepository()
-    var expenses: Expenses = load("ExpensesData.json")
+    private var expenses: Expenses = loadExpenses()
     func getExpenses() -> Expenses {
         return expenses
     }
-    func insertExpense(expense: Expense) {
-        expenses.append(expense)
+    func getExpensesByCategorId(categoryId: String) -> Expenses {
+        return expenses.filter { $0.categoryId == categoryId }
+    }
+    func insertExpense(expense: ExpenseRaw) {
+        // additionally send request to write data
+        expenses.append(convertExpenseToDto(expense: expense))
     }
 }
