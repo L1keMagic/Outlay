@@ -3,6 +3,7 @@ import Foundation
 class ExpenseRepository {
     static let shared = ExpenseRepository()
     private var expenses: Expenses = loadExpenses()
+    private var groupedExpenses = [Expenses]()
     func getExpenses() -> Expenses {
         return expenses
     }
@@ -17,5 +18,20 @@ class ExpenseRepository {
         return (expenses.filter { $0.expenseDate == expenseDate }).sorted {
             $0.expenseSavingDate < $1.expenseSavingDate
         }
+    }
+    func getGroupedExpenses() -> [Expenses] {
+        print("attempt to group expenses")
+        let groupedByDate = Dictionary(grouping: expenses) { (expense) -> String in
+            return expense.expenseDate
+//            return convertDateFormat(expense.expenseDate, Constants.dateFormatDMY)
+        }
+        let keys = groupedByDate.keys.sorted(by: >)
+        keys.forEach({
+            groupedExpenses.append(groupedByDate[$0]!)
+        })
+        return groupedExpenses
+    }
+    func clearGroupedExpenses() {
+        groupedExpenses = [Expenses]()
     }
 }
