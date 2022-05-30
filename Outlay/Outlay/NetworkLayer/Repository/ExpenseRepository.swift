@@ -20,10 +20,11 @@ class ExpenseRepository {
         }
     }
     func getGroupedExpenses() -> [Expenses] {
+        let dateManager = DateManager()
         print("attempt to group expenses")
-        let groupedByDate = Dictionary(grouping: expenses) { (expense) -> String in
-            return expense.expenseDate
-//            return convertDateFormat(expense.expenseDate, Constants.dateFormatDMY)
+        let groupedByDate = Dictionary(grouping: expenses) { (expense) -> Date in
+            return dateManager.convertDateFormat(date: expense.expenseDate, outputFormat: Constants.dateFormatDMY)
+
         }
         let keys = groupedByDate.keys.sorted(by: >)
         keys.forEach({
