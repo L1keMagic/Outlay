@@ -23,4 +23,5 @@ class Constants {
     static let cancel = "Cancel"
     static let invalidFieldsInserted = "Please fill all the fields correctly"
     static let unknownError = "Unknown error"
+    static let defaultDate = "Unknown date"
 }

@@ -21,18 +21,18 @@ class ExpenseRepository {
     }
     func getGroupedExpenses() -> [Expenses] {
         let dateManager = DateManager()
-        print("attempt to group expenses")
-        let groupedByDate = Dictionary(grouping: expenses) { (expense) -> Date in
+        Logger.information(message: "Attempt to group expenses")
+        let groupedExpensesByCertainDate = Dictionary(grouping: expenses) { (expense) -> Date in
             return dateManager.convertDateFormat(date: expense.expenseDate, outputFormat: Constants.dateFormatDMY)
 
         }
-        let keys = groupedByDate.keys.sorted(by: >)
-        keys.forEach({
-            groupedExpenses.append(groupedByDate[$0]!)
+        let keyDates = groupedExpensesByCertainDate.keys.sorted(by: >)
+        keyDates.forEach({
+            groupedExpenses.append(groupedExpensesByCertainDate[$0]!)
         })
         return groupedExpenses
     }
     func clearGroupedExpenses() {
-        groupedExpenses = [Expenses]()
+        groupedExpenses.removeAll()
     }
 }

@@ -55,7 +55,7 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         let date = expenses[section].first?.expenseDate
-        label.text = "\(date!)"
+        label.text = "\(date ?? Constants.defaultDate)"
         label.backgroundColor = .white
 //        DOES NOT WORK HERE, NEEDS FIX
 //        label.snp.makeConstraints {
