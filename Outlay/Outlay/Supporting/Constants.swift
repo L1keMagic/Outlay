@@ -28,4 +28,8 @@ class Constants {
     static let defaultRightInset = 18
     static let defaultTopInset = 18
     static let defaultBottomInset = 18
+    static let tableViewCellLeftInset = 10
+    static let tableViewCellRightInset = 10
+    static let tableViewCellTopInset = 5
+    static let tableViewCellBottomInset = 5
 }

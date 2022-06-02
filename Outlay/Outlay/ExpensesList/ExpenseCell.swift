@@ -46,17 +46,17 @@ extension ExpenseCell {
     // MARK: - Configure Constraints
     fileprivate func configureConstraints() {
         expenseTitle.snp.makeConstraints {
-            $0.left.equalToSuperview().inset(Constants.defaultLeftInset)
-            $0.top.equalToSuperview().inset(Constants.defaultTopInset/3)
+            $0.left.equalToSuperview().inset(Constants.tableViewCellLeftInset)
+            $0.top.equalToSuperview().inset(Constants.tableViewCellTopInset)
         }
         categoryTitle.snp.makeConstraints {
-            $0.left.equalToSuperview().inset(Constants.defaultLeftInset)
+            $0.left.equalToSuperview().inset(Constants.tableViewCellLeftInset)
             $0.top.equalTo(expenseTitle.snp.bottom)
-            $0.bottom.equalToSuperview().inset(Constants.defaultBottomInset/3)
+            $0.bottom.equalToSuperview().inset(Constants.tableViewCellBottomInset)
         }
         expensePrice.snp.makeConstraints {
-            $0.right.equalToSuperview().inset(Constants.defaultRightInset)
-            $0.top.equalToSuperview().inset(Constants.defaultTopInset/3)
+            $0.right.equalToSuperview().inset(Constants.tableViewCellRightInset)
+            $0.top.equalToSuperview().inset(Constants.tableViewCellTopInset)
         }
     }
 }
