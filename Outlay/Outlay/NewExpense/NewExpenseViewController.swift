@@ -46,6 +46,7 @@ class NewExpenseViewController: UIViewController {
         let dateManager = DateManager()
         expenseDateLabel.text = dateManager.convertDateFormat(date: datePicker.date,
                                                               outputFormat: Constants.dateFormatDMY)
+        presentedViewController?.dismiss(animated: true, completion: nil)
     }
 }
 
