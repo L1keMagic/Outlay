@@ -57,12 +57,6 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         let date = expenses[section].first?.expenseDate
         label.text = "\(date ?? Constants.defaultDate)"
         label.backgroundColor = .white
-//        DOES NOT WORK HERE, NEEDS FIX
-//        label.snp.makeConstraints {
-//            $0.left.equalToSuperview().inset(5)
-//            $0.top.equalToSuperview().inset(5)
-//            $0.bottom.equalToSuperview().inset(5)
-//        }
         return label
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
