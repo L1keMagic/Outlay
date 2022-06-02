@@ -62,14 +62,14 @@ extension HomeViewController {
     fileprivate func configureConstraints() {
         addExpenseButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(18)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(Constants.defaultLeftInset)
             $0.height.equalTo(60)
-            $0.width.equalToSuperview().inset(18)
+            $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
         }
         expenseIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(5)
-            $0.width.equalToSuperview().inset(18)
+            $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
             $0.height.equalTo(250)
         }
     }

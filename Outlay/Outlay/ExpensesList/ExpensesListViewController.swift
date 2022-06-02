@@ -1,7 +1,7 @@
 import UIKit
 
 class ExpensesListViewController: UIViewController {
-    private var tableView = UITableView()
+    private var tableView = UITableView(frame: .zero, style: .insetGrouped)
     private var expenses: [Expenses]
     init(expenses: [Expenses]) {
         self.expenses = expenses
@@ -12,6 +12,7 @@ class ExpensesListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Expenses"
         view.addSubview(tableView)
         configureTableView()
     }
@@ -31,7 +32,7 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         tableView.dataSource = self
         tableView.register(ExpenseCell.self, forCellReuseIdentifier: Constants.expenseCellIdentifier)
         tableView.backgroundColor = Constants.backgroundAppColor
-//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses[section].count
@@ -47,17 +48,17 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.white
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return expenses.count
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
+        let dateHeader = UILabel()
         let date = expenses[section].first?.expenseDate
-        label.text = "\(date ?? Constants.defaultDate)"
-        label.backgroundColor = .white
-        return label
+        dateHeader.text = "\(date ?? Constants.defaultDate)"
+        dateHeader.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        let dateHeaderView: UIView =  createDefaultHeaderInSectionView(header: dateHeader)
+        return dateHeaderView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40

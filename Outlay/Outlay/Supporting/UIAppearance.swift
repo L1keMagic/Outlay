@@ -44,3 +44,13 @@ func createDefaultSmallButton(text: String) -> UIButton {
     button.setTitleColor(Constants.backgroundAppColor, for: .highlighted)
     return button
 }
+func createDefaultHeaderInSectionView(header: UILabel) -> UIView {
+    let defaultDateLabelView = UIView()
+    defaultDateLabelView.addSubview(header)
+    header.snp.makeConstraints {
+        $0.left.equalToSuperview()
+        $0.top.equalToSuperview().inset(Constants.defaultTopInset/3)
+        $0.bottom.equalToSuperview().inset(Constants.defaultBottomInset/3)
+    }
+    return defaultDateLabelView
+}
