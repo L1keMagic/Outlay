@@ -18,8 +18,8 @@ class HomeViewController: UIViewController {
     // MARK: - Action for expense indicator
     @objc func openExpenseList(sender: UITapGestureRecognizer) {
         Logger.information(message: "Expense indicator was touched")
-        let expensesData = ExpenseRepository.shared.getExpenses()
-        navigationController?.pushViewController(ExpensesListViewController(expenses: expensesData),
+        let groupedExpenses = ExpenseRepository.shared.getGroupedExpenses()
+        navigationController?.pushViewController(ExpensesListViewController(expenses: groupedExpenses),
                                                  animated: true)
     }
     // MARK: - Add Expense Button
@@ -62,14 +62,14 @@ extension HomeViewController {
     fileprivate func configureConstraints() {
         addExpenseButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(18)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(Constants.defaultLeftInset)
             $0.height.equalTo(60)
-            $0.width.equalToSuperview().inset(18)
+            $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
         }
         expenseIndicator.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(5)
-            $0.width.equalToSuperview().inset(18)
+            $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
             $0.height.equalTo(250)
         }
     }

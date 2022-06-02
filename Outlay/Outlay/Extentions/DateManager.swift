@@ -11,4 +11,9 @@ class DateManager {
         dateFormatter.dateFormat = outputFormat
         return dateFormatter.string(from: date)
     }
+    func convertDateFormat(date: String, outputFormat: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = outputFormat
+        return dateFormatter.date(from: date)!
+    }
 }

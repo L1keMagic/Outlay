@@ -23,4 +23,13 @@ class Constants {
     static let cancel = "Cancel"
     static let invalidFieldsInserted = "Please fill all the fields correctly"
     static let unknownError = "Unknown error"
+    static let unknownDate = "Unknown date"
+    static let defaultLeftInset = 18
+    static let defaultRightInset = 18
+    static let defaultTopInset = 18
+    static let defaultBottomInset = 18
+    static let tableViewCellLeftInset = 10
+    static let tableViewCellRightInset = 10
+    static let tableViewCellTopInset = 5
+    static let tableViewCellBottomInset = 5
 }
