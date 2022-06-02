@@ -55,7 +55,7 @@ extension ExpensesListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let dateHeader = UILabel()
         let date = expenses[section].first?.expenseDate
-        dateHeader.text = "\(date ?? Constants.defaultDate)"
+        dateHeader.text = "\(date ?? Constants.unknownDate)"
         dateHeader.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         let dateHeaderView: UIView =  createDefaultHeaderInSectionView(header: dateHeader)
         return dateHeaderView
