@@ -28,6 +28,7 @@
 		23418C602819BAB000A197BB /* NewExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C5F2819BAB000A197BB /* NewExpenseModel.swift */; };
 		23418C622819C0F500A197BB /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C612819C0F500A197BB /* ErrorHandling.swift */; };
 		236A29DF2837A9ED003967DA /* LoaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236A29DE2837A9ED003967DA /* LoaderHelper.swift */; };
+		23868CD5284C0AF000703FB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23868CD4284C0AF000703FB1 /* GoogleService-Info.plist */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
 		23A2123328359B2F00EB5AA8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A2123228359B2F00EB5AA8 /* Expense.swift */; };
@@ -62,6 +63,7 @@
 		23418C5F2819BAB000A197BB /* NewExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseModel.swift; sourceTree = "<group>"; };
 		23418C612819C0F500A197BB /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		236A29DE2837A9ED003967DA /* LoaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderHelper.swift; sourceTree = "<group>"; };
+		23868CD4284C0AF000703FB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		23A2123228359B2F00EB5AA8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				23367DD3280C3014009FA89A /* Home */,
 				23367DD2280C2FF3009FA89A /* Navigation */,
 				2327AF6D280C262B004CB7A0 /* Info.plist */,
+				23868CD4284C0AF000703FB1 /* GoogleService-Info.plist */,
 			);
 			path = Outlay;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			files = (
 				23418C592819333B00A197BB /* ExpensesData.json in Resources */,
 				2327AF6C280C262B004CB7A0 /* LaunchScreen.storyboard in Resources */,
+				23868CD5284C0AF000703FB1 /* GoogleService-Info.plist in Resources */,
 				2327AF69280C262B004CB7A0 /* Assets.xcassets in Resources */,
 				23418C5B2819335C00A197BB /* CategoriesData.json in Resources */,
 			);
