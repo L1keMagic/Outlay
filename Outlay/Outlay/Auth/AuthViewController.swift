@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import FirebaseAuth
 
 class AuthViewController: UIViewController {
     override func viewDidLoad() {
@@ -48,6 +49,36 @@ class AuthViewController: UIViewController {
     // MARK: - Action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "Continue button touched")
+        if !logInMode {
+            print("Sign In")
+            guard let email = emailField.text, !email.isEmpty,
+                  let password = passwordField.text, !password.isEmpty else {
+                      Logger.error(message: "Missing data")
+                      return
+                  }
+            FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+                guard error == nil else {
+                    print("Failed")
+                    return
+                }
+                Logger.information(message: "You signed in")
+            }
+        } else {
+            print("Sing Up")
+            guard let email = emailField.text, !email.isEmpty,
+                  let password = passwordField.text, !password.isEmpty,
+                  let passwordConfirm = confirmPasswordField.text, !passwordConfirm.isEmpty,
+                  password == passwordConfirm  else {
+                      Logger.error(message: "Missing data")
+                      return
+                  }
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
+                guard error == nil else {
+                    print("Failed")
+                    return
+                }
+            }
+        }
     }
     @objc func switchLogInType() {
         Logger.information(message: "Sign button touched")
