@@ -8,7 +8,7 @@ class AuthViewController: UIViewController {
         view.backgroundColor = Constants.backgroundAppColor
         configure()
     }
-    var logInToggler: Bool = true {
+    var signup: Bool = true {
         willSet {
             if newValue {
                 titleLabel.text = Constants.signUp
@@ -38,7 +38,7 @@ class AuthViewController: UIViewController {
     // MARK: - Action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "Continue button touched")
-        if logInToggler {
+        if signup {
             // Sign Up
             guard let email = emailField.text, !email.isEmpty,
                   let password = passwordField.text, !password.isEmpty,
@@ -76,7 +76,7 @@ class AuthViewController: UIViewController {
     }
     @objc func switchLogInType() {
         Logger.information(message: "Sign button touched")
-        logInToggler = !logInToggler
+        signup = !signup
     }
     @objc func openForgotPasswordVC() {
         Logger.information(message: "Forgot password button touched")
