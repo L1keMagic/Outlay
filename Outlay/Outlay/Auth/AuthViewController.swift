@@ -8,7 +8,7 @@ class AuthViewController: UIViewController {
         view.backgroundColor = Constants.backgroundAppColor
         configure()
     }
-    var logInMode: Bool = true {
+    var logInToggler: Bool = true {
         willSet {
             if newValue {
                 titleLabel.text = Constants.signUp
@@ -16,7 +16,6 @@ class AuthViewController: UIViewController {
                 emailField.text = ""
                 passwordField.text = ""
                 confirmPasswordField.text = ""
-                confirmPasswordLabel.isHidden = false
                 confirmPasswordField.isHidden = false
             } else {
                 titleLabel.text = Constants.signIn
@@ -24,65 +23,60 @@ class AuthViewController: UIViewController {
                 emailField.text = ""
                 passwordField.text = ""
                 confirmPasswordField.text = ""
-                confirmPasswordLabel.isHidden = true
                 confirmPasswordField.isHidden = true
             }
         }
     }
     // MARK: - Initializing components
     lazy var titleLabel: UILabel = createDefaultTitleLabel(text: Constants.signUp)
-    lazy var emailLabel: UILabel = createDefaultSmallLabel(text: Constants.email)
-    lazy var passwordLabel: UILabel = createDefaultSmallLabel(text: Constants.password)
-    lazy var confirmPasswordLabel: UILabel = createDefaultSmallLabel(text: Constants.confirmPassword)
-    lazy var emailField: UITextField = createDefaultTextField(tag: 1, placeholder: Constants.email)
-    lazy var passwordField: UITextField = createDefaultTextField(tag: 2, placeholder: Constants.password)
-    lazy var confirmPasswordField: UITextField = createDefaultTextField(tag: 3, placeholder: Constants.confirmPassword)
+    lazy var emailField: UITextField = createAuthTextField(tag: 1, placeholder: Constants.email)
+    lazy var passwordField: UITextField = createAuthTextField(tag: 2, placeholder: Constants.password)
+    lazy var confirmPasswordField: UITextField = createAuthTextField(tag: 3, placeholder: Constants.confirmPassword)
     lazy var switchLogInTypeButton: UIButton = createDefaultSmallButton(text: Constants.signIn)
     lazy var forgotPasswordButton: UIButton = createDefaultSmallButton(text: Constants.forgotPassword)
     lazy var continueButton: UIButton = createDefaultContinueButton(text: Constants.continueButton)
-    lazy var stackView: UIStackView = {
-        $0.axis = .vertical
-        $0.distribution = .fillProportionally
-        $0.contentMode = .top
-        return $0
-    }(UIStackView())
     // MARK: - Action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "Continue button touched")
-        if !logInMode {
-            print("Sign In")
-            guard let email = emailField.text, !email.isEmpty,
-                  let password = passwordField.text, !password.isEmpty else {
-                      Logger.error(message: "Missing data")
-                      return
-                  }
-            FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-                guard error == nil else {
-                    print("Failed")
-                    return
-                }
-                Logger.information(message: "You signed in")
-            }
-        } else {
-            print("Sing Up")
+        if logInToggler {
+            // Sign Up
             guard let email = emailField.text, !email.isEmpty,
                   let password = passwordField.text, !password.isEmpty,
                   let passwordConfirm = confirmPasswordField.text, !passwordConfirm.isEmpty,
                   password == passwordConfirm  else {
-                      Logger.error(message: "Missing data")
+                      Alerts.shared.showInformAlert(on: self, title:
+                                                        Constants.error,
+                                                    message: Constants.invalidFieldsInserted)
                       return
                   }
             FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
                 guard error == nil else {
-                    print("Failed")
+                    Logger.error(message: "Error in Firebase side. Couldn't sign up")
                     return
                 }
+                Logger.information(message: "You signup in successfully")
+            }
+        } else {
+            // Sign In
+            guard let email = emailField.text, !email.isEmpty,
+                  let password = passwordField.text, !password.isEmpty else {
+                      Alerts.shared.showInformAlert(on: self,
+                                                    title: Constants.error,
+                                                    message: Constants.invalidFieldsInserted)
+                      return
+                  }
+            FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+                guard error == nil else {
+                    Logger.error(message: "Error in Firebase side. Couldn't sign in")
+                    return
+                }
+                Logger.information(message: "You signed in successfully")
             }
         }
     }
     @objc func switchLogInType() {
         Logger.information(message: "Sign button touched")
-        logInMode = !logInMode
+        logInToggler = !logInToggler
     }
     @objc func openForgotPasswordVC() {
         Logger.information(message: "Forgot password button touched")
@@ -105,14 +99,10 @@ extension AuthViewController {
         view.addSubview(continueButton)
         view.addSubview(switchLogInTypeButton)
         view.addSubview(forgotPasswordButton)
-        view.addSubview(stackView)
-        [emailLabel,
-         emailField,
-         passwordLabel,
+        [emailField,
          passwordField,
-         confirmPasswordLabel,
          confirmPasswordField].forEach {
-            stackView.addArrangedSubview($0)
+            view.addSubview($0)
         }
     }
     // MARK: - Delegates
@@ -139,15 +129,27 @@ extension AuthViewController {
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(18)
         }
-        stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).inset(-10)
+        emailField.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).inset(-40)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.height.equalTo(40)
+        }
+        passwordField.snp.makeConstraints {
+            $0.top.equalTo(emailField.snp.bottom).inset(-20)
+            $0.width.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(40)
+        }
+        confirmPasswordField.snp.makeConstraints {
+            $0.top.equalTo(passwordField.snp.bottom).inset(-20)
+            $0.width.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(40)
         }
         switchLogInTypeButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(stackView.snp.bottom).inset(-15)
+            $0.centerY.equalTo(confirmPasswordField.snp.bottom).inset(-35)
         }
         forgotPasswordButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()

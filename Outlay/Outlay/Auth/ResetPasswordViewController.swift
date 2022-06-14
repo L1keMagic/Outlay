@@ -9,11 +9,14 @@ class ResetPasswordViewController: UIViewController {
     // MARK: - Initializing components
     lazy var titleLabel: UILabel = createDefaultTitleLabel(text: Constants.resetPassword)
     lazy var resetPasswordButton: UIButton = createDefaultContinueButton(text: Constants.resetPassword)
-    lazy var emailLabel: UILabel = createDefaultSmallLabel(text: Constants.email)
-    lazy var emailField: UITextField = createDefaultTextField(tag: 1, placeholder: Constants.email)
+    lazy var emailField: UITextField = createAuthTextField(tag: 1, placeholder: Constants.email)
     // MARK: - Action for reset password button
     @objc func resetPassword() {
         Logger.information(message: "Reset password button touched")
+        guard let email = emailField.text, !email.isEmpty else {
+            Alerts.shared.showInformAlert(on: self, title: Constants.error, message: Constants.invalidFieldsInserted)
+            return
+        }
     }
 }
 
@@ -29,7 +32,6 @@ extension ResetPasswordViewController {
     fileprivate func configureSubviews() {
         view.addSubview(titleLabel)
         view.addSubview(resetPasswordButton)
-        view.addSubview(emailLabel)
         view.addSubview(emailField)
     }
     // MARK: - Delegates
@@ -52,14 +54,10 @@ extension ResetPasswordViewController {
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(18)
         }
-        emailLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).inset(-15)
-            $0.width.equalToSuperview().inset(10)
-            $0.centerX.equalToSuperview()
-        }
         emailField.snp.makeConstraints {
-            $0.top.equalTo(emailLabel.snp.bottom).inset(-10)
+            $0.top.equalTo(titleLabel.snp.bottom).inset(-40)
             $0.width.equalToSuperview().inset(10)
+            $0.height.equalTo(40)
             $0.centerX.equalToSuperview()
         }
     }

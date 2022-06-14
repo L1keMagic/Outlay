@@ -26,6 +26,20 @@ public func createDefaultTextField(tag: Int,
     return textField
 }
 
+public func createAuthTextField(tag: Int, placeholder: String) -> UITextField {
+    let textField = UITextField()
+    textField.layer.cornerRadius = 5
+    textField.textColor = .black
+    textField.tag = tag
+    textField.placeholder = placeholder
+    textField.backgroundColor = .white
+    textField.autocorrectionType = .no
+    textField.autocapitalizationType = .none
+    textField.layer.borderColor = Constants.darkBlueColor.cgColor
+    textField.layer.borderWidth = 2
+    return textField
+}
+
 func createDefaultContinueButton(text: String) -> UIButton {
     let button = UIButton()
     button.layer.cornerRadius = 30
