@@ -37,6 +37,7 @@
 		23B131C9280D90B300E0AED0 /* ExpenseRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C8280D90B300E0AED0 /* ExpenseRaw.swift */; };
 		23B131CB280D98A700E0AED0 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CA280D98A700E0AED0 /* ExpenseCell.swift */; };
 		23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CE280DA04B00E0AED0 /* ExpensesListViewController.swift */; };
+		23FC7936285921F700B49828 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FC7935285921F700B49828 /* Alerts.swift */; };
 		5E49EB722811621F00CE8AF4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		23B131C8280D90B300E0AED0 /* ExpenseRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRaw.swift; sourceTree = "<group>"; };
 		23B131CA280D98A700E0AED0 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		23B131CE280DA04B00E0AED0 /* ExpensesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListViewController.swift; sourceTree = "<group>"; };
+		23FC7935285921F700B49828 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		459263C2F59AAEB4199FFEF7 /* Pods-Outlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.release.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.release.xcconfig"; sourceTree = "<group>"; };
 		4907EC030AE0BA5FD8596BC1 /* Pods_Outlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Outlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				23418C5D28193BC300A197BB /* ModelData.swift */,
 				23418C612819C0F500A197BB /* ErrorHandling.swift */,
 				236A29DE2837A9ED003967DA /* LoaderHelper.swift */,
+				23FC7935285921F700B49828 /* Alerts.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */,
 				23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */,
 				239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */,
+				23FC7936285921F700B49828 /* Alerts.swift in Sources */,
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
 				23ADE4E72813401700353582 /* NewExpenseViewModel.swift in Sources */,
 				230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */,
