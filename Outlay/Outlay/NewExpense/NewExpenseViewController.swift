@@ -1,6 +1,14 @@
 import UIKit
 
 class NewExpenseViewController: UIViewController {
+    private var categories = Categories()
+    init(categories: Categories) {
+        self.categories = categories
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundAppColor
@@ -17,6 +25,8 @@ class NewExpenseViewController: UIViewController {
     lazy var dateCalendarView: UIView = UIView()
     // MARK: - DatePicker
     let datePicker = UIDatePicker()
+    // MARK: - CategoryPicker
+    let categoryPicker = UIPickerView()
     // MARK: - Add action for save new expence button
     @objc func saveNewExpence() {
         Logger.information(message: "save new expence touched")
@@ -24,7 +34,7 @@ class NewExpenseViewController: UIViewController {
         do {
             try newExpenseVM.insertData(model: NewExpenseModel(title: titleField.text,
                                                                price: priceField.text,
-                                                               categoryId: categoryField.text,
+                                                               categoryId: categoryId.text,
                                                                expenseDate: expenseDateLabel.text))
             self.dismiss(animated: true)
             Logger.information(message: "Data was successfuly inserted")
@@ -58,6 +68,7 @@ extension NewExpenseViewController {
         configureActions()
         configureConstraints()
         createDatePicker()
+        createCategoryPicker()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
@@ -147,6 +158,11 @@ extension NewExpenseViewController {
                              for: UIControl.Event.valueChanged)
         return
     }
+    private func createCategoryPicker() {
+        categoryPicker.dataSource = self
+        categoryPicker.delegate = self
+        self.categoryField.inputView = categoryPicker
+    }
 }
 
 extension NewExpenseViewController: UITextFieldDelegate {
@@ -161,5 +177,21 @@ extension NewExpenseViewController: UITextFieldDelegate {
         } else {
             textField.resignFirstResponder()
         }
+    }
+}
+extension NewExpenseViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row].title
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryField.text = categories[row].title
+        categoryId.text = categories[row].categoryId
+        categoryField.resignFirstResponder()
     }
 }
