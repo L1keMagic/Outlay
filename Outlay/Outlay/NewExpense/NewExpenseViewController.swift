@@ -17,7 +17,7 @@ class NewExpenseViewController: UIViewController {
     }
     // MARK: - TextFields
     lazy var titleField: UITextField = createDefaultTextField(tag: 1, placeholder: "Title")
-    lazy var categoryField: UITextField = createUneditableTextField(tag: 2, placeholder: "Category") 
+    lazy var categoryField: UITextField = createUneditableTextField(tag: 2, placeholder: "Category")
     lazy var categoryId = UILabel()
     lazy var priceField: UITextField = createDefaultTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
@@ -59,6 +59,9 @@ class NewExpenseViewController: UIViewController {
                                                               outputFormat: Constants.dateFormatDMY)
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
+    @objc func dismissCategoryPicker() {
+        self.view.endEditing(true)
+    }
 }
 
 extension NewExpenseViewController {
@@ -70,6 +73,7 @@ extension NewExpenseViewController {
         configureConstraints()
         createDatePicker()
         createCategoryPicker()
+        createCategoryPickerToolbar()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
@@ -159,10 +163,25 @@ extension NewExpenseViewController {
                              for: UIControl.Event.valueChanged)
         return
     }
+    // MARK: - Category Picker
     private func createCategoryPicker() {
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
         self.categoryField.inputView = categoryPicker
+        categoryPicker.backgroundColor = .white
+    }
+    private func createCategoryPickerToolbar() {
+        let categoryPickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 35))
+        categoryPickerToolBar.barTintColor = Constants.darkBlueColor
+        categoryPickerToolBar.tintColor = .white
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                         target: self,
+                                         action: #selector(self.dismissCategoryPicker))
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace,
+                                     target: self,
+                                     action: nil)
+        categoryPickerToolBar.setItems([spacer, spacer, doneButton], animated: true)
+        self.categoryField.inputAccessoryView = categoryPickerToolBar
     }
 }
 
@@ -193,6 +212,5 @@ extension NewExpenseViewController: UIPickerViewDataSource, UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         categoryField.text = categories[row].title
         categoryId.text = categories[row].categoryId
-        categoryField.resignFirstResponder()
     }
 }

@@ -28,7 +28,8 @@ class HomeViewController: UIViewController {
     @objc func addExpense() {
         Logger.information(message: "expenses button touched")
         let categories = CategoryRepository.shared.getCategories()
-        present(UINavigationController(rootViewController: NewExpenseViewController(categories: categories)), animated: true)
+        present(UINavigationController(rootViewController: NewExpenseViewController(categories: categories)),
+                animated: true)
     }
     // MARK: - Add action for settings button
     @objc func openSettings() {
