@@ -17,7 +17,8 @@ class NewExpenseViewController: UIViewController {
     }
     // MARK: - TextFields
     lazy var titleField: UITextField = createDefaultTextField(tag: 1, placeholder: "Title")
-    lazy var categoryField: UITextField = createDefaultTextField(tag: 2, placeholder: "Category")
+    lazy var categoryField: UITextField = createUneditableTextField(tag: 2, placeholder: "Category") 
+    lazy var categoryId = UILabel()
     lazy var priceField: UITextField = createDefaultTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
     lazy var expenseDateLabel: UILabel = createDateLabel()

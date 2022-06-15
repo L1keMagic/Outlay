@@ -1,5 +1,11 @@
 import UIKit
 
+public class UneditableTextField: UITextField {
+    public override func caretRect(for position: UITextPosition) -> CGRect {
+        return CGRect.zero
+    }
+}
+
 public func createDefaultTitleLabel(text: String) -> UILabel {
     let label = UILabel()
     label.text = text
@@ -25,7 +31,17 @@ public func createDefaultTextField(tag: Int,
     textField.keyboardType = keyboardType
     return textField
 }
-
+public func createUneditableTextField(tag: Int,
+                                      placeholder: String,
+                                      keyboardType: UIKeyboardType = .default) -> UneditableTextField {
+       let textField = UneditableTextField()
+       textField.layer.cornerRadius = 5
+       textField.textColor = .black
+       textField.tag = tag
+       textField.placeholder = placeholder
+       textField.keyboardType = keyboardType
+       return textField
+}
 func createDefaultContinueButton(text: String) -> UIButton {
     let button = UIButton()
     button.layer.cornerRadius = 30
