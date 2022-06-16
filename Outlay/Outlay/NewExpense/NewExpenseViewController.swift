@@ -168,12 +168,12 @@ extension NewExpenseViewController {
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
         self.categoryField.inputView = categoryPicker
-        categoryPicker.backgroundColor = .white
+        categoryPicker.backgroundColor = Constants.backgroundAppColor
     }
     private func createCategoryPickerToolbar() {
         let categoryPickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 35))
-        categoryPickerToolBar.barTintColor = Constants.darkBlueColor
-        categoryPickerToolBar.tintColor = .white
+        categoryPickerToolBar.barTintColor = .white
+        categoryPickerToolBar.tintColor = Constants.darkBlueColor
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
                                          target: self,
                                          action: #selector(self.dismissCategoryPicker))
