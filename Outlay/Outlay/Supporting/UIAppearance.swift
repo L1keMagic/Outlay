@@ -22,25 +22,15 @@ public func createDefaultSmallLabel(text: String) -> UILabel {
 
 public func createDefaultTextField(tag: Int,
                                    placeholder: String,
-                                   keyboardType: UIKeyboardType = .default) -> UITextField {
-    let textField = UITextField()
+                                   keyboardType: UIKeyboardType = .default,
+                                   textFieldType: UITextField = UITextField()) -> UITextField {
+    let textField = textFieldType
     textField.layer.cornerRadius = 5
     textField.textColor = .black
     textField.tag = tag
     textField.placeholder = placeholder
     textField.keyboardType = keyboardType
     return textField
-}
-public func createUneditableTextField(tag: Int,
-                                      placeholder: String,
-                                      keyboardType: UIKeyboardType = .default) -> UneditableTextField {
-       let textField = UneditableTextField()
-       textField.layer.cornerRadius = 5
-       textField.textColor = .black
-       textField.tag = tag
-       textField.placeholder = placeholder
-       textField.keyboardType = keyboardType
-       return textField
 }
 func createDefaultContinueButton(text: String) -> UIButton {
     let button = UIButton()

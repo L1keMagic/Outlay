@@ -17,7 +17,9 @@ class NewExpenseViewController: UIViewController {
     }
     // MARK: - TextFields
     lazy var titleField: UITextField = createDefaultTextField(tag: 1, placeholder: "Title")
-    lazy var categoryField: UITextField = createUneditableTextField(tag: 2, placeholder: "Category")
+    lazy var categoryField: UITextField = createDefaultTextField(tag: 2,
+                                                                 placeholder: "Category",
+                                                                 textFieldType: UneditableTextField())
     lazy var categoryId = UILabel()
     lazy var priceField: UITextField = createDefaultTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
     // calendar view
@@ -58,9 +60,11 @@ class NewExpenseViewController: UIViewController {
         expenseDateLabel.text = dateManager.convertDateFormat(date: datePicker.date,
                                                               outputFormat: Constants.dateFormatDMY)
         presentedViewController?.dismiss(animated: true, completion: nil)
+        priceField.resignFirstResponder()
     }
     @objc func dismissCategoryPicker() {
-        self.view.endEditing(true)
+        categoryField.resignFirstResponder()
+        moveToNextTFResponder(categoryField)
     }
 }
 
