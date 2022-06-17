@@ -16,12 +16,14 @@ class NewExpenseViewController: UIViewController {
         configure()
     }
     // MARK: - TextFields
-    lazy var titleField: UITextField = createDefaultTextField(tag: 1, placeholder: "Title")
+    lazy var titleField: UITextField = createDefaultTextField(tag: 1, placeholder: "Enter title")
     lazy var categoryField: UITextField = createDefaultTextField(tag: 2,
-                                                                 placeholder: "Category",
+                                                                 placeholder: "Choose category",
                                                                  textFieldType: UneditableTextField())
     lazy var categoryId = UILabel()
-    lazy var priceField: UITextField = createDefaultTextField(tag: 3, placeholder: "Price", keyboardType: .decimalPad)
+    lazy var priceField: UITextField = createDefaultTextField(tag: 3,
+                                                                  placeholder: "Enter price",
+                                                                  keyboardType: .decimalPad)
     // calendar view
     lazy var expenseDateLabel: UILabel = createDateLabel()
     lazy var calendarImage: UIImageView = createCalendarImage()
@@ -78,6 +80,7 @@ extension NewExpenseViewController {
         createDatePicker()
         createCategoryPicker()
         createCategoryPickerToolbar()
+        configureFonts()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
