@@ -32,4 +32,14 @@ class Constants {
     static let tableViewCellRightInset = 10
     static let tableViewCellTopInset = 5
     static let tableViewCellBottomInset = 5
+    static let newExpenseTitleLabelField = "Title"
+    static let newExpenseTitleTextField = "Enter title"
+    static let newExpenseCategoryLabelField = "Category"
+    static let newExpenseCategoryTextField = "Choose category"
+    static let newExpensePriceLabelField = "Price"
+    static let newExpensePriceTextField = "Enter price"
+    static let successDataInsert = "Data was successfuly inserted"
+    static let saveNewExpenseBtnTouched = "Save new expence touched"
+    static let calendarImage = "calendar"
+    static let addNewExpenseTitle = "Insert expence"
 }

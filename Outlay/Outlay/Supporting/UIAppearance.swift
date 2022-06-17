@@ -22,6 +22,7 @@ public func createDefaultSmallLabel(text: String) -> UILabel {
 
 public func createDefaultTextField(tag: Int,
                                    placeholder: String,
+                                   textAlignment: NSTextAlignment = .left,
                                    keyboardType: UIKeyboardType = .default,
                                    textFieldType: UITextField = UITextField()) -> UITextField {
     let textField = textFieldType
@@ -30,6 +31,7 @@ public func createDefaultTextField(tag: Int,
     textField.tag = tag
     textField.placeholder = placeholder
     textField.keyboardType = keyboardType
+    textField.textAlignment = textAlignment
     return textField
 }
 func createDefaultContinueButton(text: String) -> UIButton {
