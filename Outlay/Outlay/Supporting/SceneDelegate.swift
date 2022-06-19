@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -10,8 +11,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = NavigationController()
         window?.makeKeyAndVisible()
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                self.window?.rootViewController = NavigationController(isLogged: false)
+            } else {
+                self.window?.rootViewController = NavigationController(isLogged: true)
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
