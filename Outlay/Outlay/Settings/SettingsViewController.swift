@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class SettingsViewController: UIViewController {
 
@@ -13,6 +14,12 @@ class SettingsViewController: UIViewController {
     // MARK: - Add action for log out button
     @objc func logOut() {
         Logger.information(message: "Log out button touched")
+        do {
+            try Auth.auth().signOut()
+            Logger.information(message: "Log out succesfully")
+        } catch {
+            Logger.error(message: "Error of logging out")
+        }
     }
 }
 
