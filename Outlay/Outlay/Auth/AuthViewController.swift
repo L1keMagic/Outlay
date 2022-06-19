@@ -44,33 +44,31 @@ class AuthViewController: UIViewController {
                   let password = passwordField.text, !password.isEmpty,
                   let passwordConfirm = confirmPasswordField.text, !passwordConfirm.isEmpty,
                   password == passwordConfirm  else {
-                      Alerts.shared.showInformAlert(on: self, title:
-                                                        Constants.error,
+                      Alerts.shared.showInformAlert(on: self, title: Constants.error,
                                                     message: Constants.invalidFieldsInserted)
                       return
                   }
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
-                guard error == nil else {
-                    Logger.error(message: "Error in Firebase side. Couldn't sign up")
-                    return
+            let signUpManager = FirebaseAuthManager()
+            signUpManager.createUser(email: email, password: password) {[weak self] (success) in
+                guard let `self` = self else { return }
+                var message: String = ""
+                if success {
+                    message = "User was sucessfully created."
+                } else {
+                    message = "There was an error."
                 }
-                Logger.information(message: "You signup in successfully")
+                Alerts.shared.showInformAlert(on: self, title: nil, message: message)
             }
         } else {
             // Sign In
             guard let email = emailField.text, !email.isEmpty,
                   let password = passwordField.text, !password.isEmpty else {
-                      Alerts.shared.showInformAlert(on: self,
-                                                    title: Constants.error,
+                      Alerts.shared.showInformAlert(on: self, title: Constants.error,
                                                     message: Constants.invalidFieldsInserted)
                       return
                   }
-            FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-                guard error == nil else {
-                    Logger.error(message: "Error in Firebase side. Couldn't sign in")
-                    return
-                }
-                Logger.information(message: "You signed in successfully")
+            let signInManager = FirebaseAuthManager()
+            signInManager.signIn(email: email, password: password) {[weak self] (success) in
             }
         }
     }
