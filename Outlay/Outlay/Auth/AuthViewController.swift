@@ -48,8 +48,8 @@ class AuthViewController: UIViewController {
                                                     message: Constants.invalidFieldsInserted)
                       return
                   }
-            let signUpManager = FirebaseAuthManager()
-            signUpManager.createUser(email: email, password: password) {[weak self] (success) in
+            let logInManager = FirebaseAuthManager()
+            logInManager.createUser(email: email, password: password) {[weak self] (success) in
                 guard let `self` = self else { return }
                 var message: String = ""
                 if success {
@@ -67,8 +67,8 @@ class AuthViewController: UIViewController {
                                                     message: Constants.invalidFieldsInserted)
                       return
                   }
-            let signInManager = FirebaseAuthManager()
-            signInManager.signIn(email: email, password: password) {[weak self] (success) in
+            let logInManager = FirebaseAuthManager()
+            logInManager.signIn(email: email, password: password) {[weak self] (success) in
             }
         }
     }
