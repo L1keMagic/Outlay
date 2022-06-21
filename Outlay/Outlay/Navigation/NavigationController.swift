@@ -1,9 +1,9 @@
 import UIKit
 
 class NavigationController: UINavigationController {
-    var isLogged: Bool
-    init(isLogged: Bool) {
-        self.isLogged = isLogged
+    var initialVC: UIViewController
+    init(initialVC: UIViewController) {
+        self.initialVC = initialVC
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder aDecoder: NSCoder) {
@@ -11,11 +11,7 @@ class NavigationController: UINavigationController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        if isLogged {
-            self.viewControllers = [HomeViewController()]
-        } else {
-            self.viewControllers = [AuthViewController()]
-        }
+        self.viewControllers = [initialVC]
         self.navigationBar.prefersLargeTitles = true
         self.navigationBar.barStyle = .default
         self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Constants.darkBlueColor]
