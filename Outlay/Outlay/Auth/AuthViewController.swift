@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Firebase
 import FirebaseAuth
 
 class AuthViewController: UIViewController {
@@ -38,37 +39,33 @@ class AuthViewController: UIViewController {
     // MARK: - Action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "Continue button touched")
+        // Create cleaned versions of data!
+        let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if signup {
             // Sign Up
-            guard let email = emailField.text, !email.isEmpty,
-                  let password = passwordField.text, !password.isEmpty,
-                  let passwordConfirm = confirmPasswordField.text, !passwordConfirm.isEmpty,
-                  password == passwordConfirm  else {
-                      Alerts.shared.showInformAlert(on: self, title: Constants.error,
-                                                    message: Constants.invalidFieldsInserted)
-                      return
-                  }
-            let logInManager = FirebaseAuthManager()
-            logInManager.createUser(email: email, password: password) {[weak self] (success) in
-                guard let `self` = self else { return }
-                var message: String = ""
-                if success {
-                    message = "User was sucessfully created."
-                } else {
-                    message = "There was an error."
+            // Validate the fields
+            let error = validateFields()
+            if error != nil {
+                // There is something wrong with the fields! : Show error message!
+                Alerts.shared.showInformAlert(on: self, title: Constants.error, message: error!)
+            } else {
+                // Create the user
+                Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                    // Check for Errors
+                    if err != nil {
+                        // There was an error creating the user
+                        Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "Error Creating User")
+                    }
                 }
-                Alerts.shared.showInformAlert(on: self, title: nil, message: message)
             }
         } else {
             // Sign In
-            guard let email = emailField.text, !email.isEmpty,
-                  let password = passwordField.text, !password.isEmpty else {
-                      Alerts.shared.showInformAlert(on: self, title: Constants.error,
-                                                    message: Constants.invalidFieldsInserted)
-                      return
-                  }
-            let logInManager = FirebaseAuthManager()
-            logInManager.signIn(email: email, password: password) {[weak self] (success) in
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                if error != nil {
+                    // Could not sign in
+                    Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "Could not sign in")
+                }
             }
         }
     }
@@ -168,5 +165,32 @@ extension AuthViewController: UITextFieldDelegate {
         } else {
             textField.resignFirstResponder()
         }
+    }
+    // Check the fields and validate that the data is correct.  If everything
+    // is correct, this method returns nil.  Otherwise it retuns the error message
+    func validateFields() -> String? {
+        // Check that all fields are filled in
+        if emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines)  == "" ||
+            passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            confirmPasswordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in all fields"
+        }
+        // Check if password == confirm password fields
+        if passwordField.text != confirmPasswordField.text {
+            return "Password and Confirm Password fields should be equal"
+        }
+        // Check if the email is okay!
+        let cleanedEmail = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if Validators.isEmailValid(cleanedEmail) == false {
+            // Email is not okay
+            return "Please make that your email is correct"
+        }
+        // Check if the password is secure!
+        let cleanedPassword = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if Validators.isPasswordValid(cleanedPassword) == false {
+            // Password is not secure enough
+            return "Please make sure your password is at least 8 character, contains a special character and number"
+        }
+        return nil
     }
 }
