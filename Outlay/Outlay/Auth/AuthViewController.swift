@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class AuthViewController: UIViewController {
     override func viewDidLoad() {
@@ -56,6 +57,16 @@ class AuthViewController: UIViewController {
                     if err != nil {
                         // There was an error creating the user
                         Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "Error Creating User")
+                    } else {
+                        // User was successfully created, now store the first name/last/email/pass
+                        let db = Firestore.firestore()
+                        db.collection("users")
+                            .addDocument(data: ["username": "test user", "uid": result!.user.uid]) { (error) in
+                            if error != nil {
+                                Alerts.shared.showInformAlert(on: self, title: Constants.error,
+                                                              message: "User data could not uploaded, please try again")
+                            }
+                        }
                     }
                 }
             }
