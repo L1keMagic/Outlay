@@ -35,7 +35,7 @@ public func createDefaultTextField(tag: Int,
     return textField
 }
 
-public func createAuthTextField(tag: Int, placeholder: String) -> UITextField {
+public func createAuthTextField(tag: Int, placeholder: String, isPasswordField: Bool = false) -> UITextField {
     let textField = UITextField()
     textField.layer.cornerRadius = 5
     textField.textColor = .black
@@ -46,6 +46,7 @@ public func createAuthTextField(tag: Int, placeholder: String) -> UITextField {
     textField.autocapitalizationType = .none
     textField.layer.borderColor = Constants.darkBlueColor.cgColor
     textField.layer.borderWidth = 2
+    textField.isSecureTextEntry = isPasswordField
     return textField
 }
 
