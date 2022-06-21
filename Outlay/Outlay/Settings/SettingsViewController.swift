@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController {
             Logger.information(message: "Log out succesfully")
         } catch {
             Logger.error(message: "Error of logging out")
+            Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "Error of logging out")
         }
     }
 }
