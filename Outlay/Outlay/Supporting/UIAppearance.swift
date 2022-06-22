@@ -70,7 +70,7 @@ func createExpenseCircle(radius: Int, lineWidth: Int, centerX: Int, centerY: Int
                                         endAngle: CGFloat.pi,
                                         clockwise: true)
         outlayProgressLayer.path = circularPath.cgPath
-        outlayProgressLayer.strokeColor = UIColor(red: 0/255, green: 90/255, blue: 190/255, alpha: 0.8).cgColor
+        outlayProgressLayer.strokeColor = Constants.darkStrokeBlueColor.cgColor
         outlayProgressLayer.lineWidth = CGFloat(lineWidth)
         outlayProgressLayer.fillColor = UIColor.clear.cgColor
         outlayProgressLayer.lineCap = CAShapeLayerLineCap.round
@@ -85,10 +85,49 @@ func createExpenseTrackCircle(radius: Int, lineWidth: Int, centerX: Int, centerY
                                         startAngle: -CGFloat.pi, endAngle: CGFloat.pi,
                                         clockwise: true)
         outlayProgressTrackLayer.path = circularPath.cgPath
-        outlayProgressTrackLayer.strokeColor = UIColor(red: 255/255, green: 214/255, blue: 183/255, alpha: 1.0).cgColor
+    outlayProgressTrackLayer.strokeColor = UIColor(red: 255/255, green: 214/255, blue: 183/255, alpha: 0.4).cgColor
         outlayProgressTrackLayer.lineWidth = CGFloat(lineWidth)
         outlayProgressTrackLayer.fillColor = UIColor.clear.cgColor
         outlayProgressTrackLayer.lineCap = CAShapeLayerLineCap.round
         outlayProgressTrackLayer.position = CGPoint(x: centerX, y: centerY)
     return outlayProgressTrackLayer
     }
+extension NSMutableAttributedString {
+    var normalFontSize: CGFloat { return 15 }
+    var semiBoldFontSize: CGFloat { return 15 }
+    var boldFontSize: CGFloat { return 20 }
+    var largeFontSize: CGFloat { return 24 }
+    var largeBoldFont: UIFont { return UIFont.boldSystemFont(ofSize: largeFontSize) }
+    var boldFont: UIFont { return UIFont.boldSystemFont(ofSize: boldFontSize) }
+    var semiBoldFont: UIFont { return UIFont.boldSystemFont(ofSize: semiBoldFontSize) }
+    var normalFont: UIFont { return UIFont.systemFont(ofSize: normalFontSize)}
+    func grayBold(_ value: String) -> NSMutableAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: boldFont,
+            .foregroundColor: UIColor.gray
+        ]
+        self.append(NSAttributedString(string: value, attributes: attributes))
+        return self
+    }
+    func largeBold(_ value: String) -> NSMutableAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: largeBoldFont
+        ]
+        self.append(NSAttributedString(string: value, attributes: attributes))
+        return self
+    }
+    func bold(_ value: String) -> NSMutableAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: semiBoldFont
+        ]
+        self.append(NSAttributedString(string: value, attributes: attributes))
+        return self
+    }
+    func normal(_ value: String) -> NSMutableAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+        .font: normalFont
+        ]
+        self.append(NSAttributedString(string: value, attributes: attributes))
+        return self
+    }
+}

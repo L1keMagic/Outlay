@@ -36,7 +36,7 @@ class NewExpenseViewController: UIViewController {
     lazy var calendarImage: UIImageView = createCalendarImage()
     lazy var newExpenseFieldsView: UIView = {
         $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
+        $0.layer.cornerRadius = 30
         $0.dropShadow()
         return $0
     }(UIView())
