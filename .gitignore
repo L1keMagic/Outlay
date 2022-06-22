@@ -4,6 +4,9 @@
 
 *.DS_Store
 
+# firebase Google services
+Outlay/Outlay/GoogleService-Info.plist
+
 ## User settings
 xcuserdata/
 
