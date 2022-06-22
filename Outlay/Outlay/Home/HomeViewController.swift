@@ -3,21 +3,24 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     // MARK: Lables and Shapes
-    let currentPercentage = 0.5
-    let dayPercentage = 0.3
-    let weekPercentage = 0.8
+    let monthBudget = 42000
+    let weekBudget = 9483
+    let dayBudget = 1354
+    let monthSpent = 24100
+    let weekSpent = 4200
+    let daySpent = 188
     let monthOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: "Month")
     let monthOutlaySpentLabel = UILabel()
     let monthOutlayBudgetLabel = UILabel()
-    let monthOutlayAvailableLabel: UILabel = createDefaultSmallLabel(text: "Available")
+    let monthOutlayAvailableLabel = UILabel()
     let dayOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: "Today")
     let dayOutlaySpentLabel = UILabel()
     let dayOutlayBudgetLabel = UILabel()
-    let dayOutlayAvailableLabel: UILabel = createDefaultSmallLabel(text: "Available")
+    let dayOutlayAvailableLabel = UILabel()
     let weekOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: "Week")
     let weekOutlaySpentLabel = UILabel()
     let weekOutlayBudgetLabel = UILabel()
-    let weekOutlayAvailableLabel: UILabel = createDefaultSmallLabel(text: "Available")
+    let weekOutlayAvailableLabel = UILabel()
     let monthOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 65,
                                                                  lineWidth: 12,
                                                                  centerX: 89,
@@ -147,6 +150,7 @@ extension HomeViewController {
     }
     // MARK: - Lables Settings
     fileprivate func configureLables() {
+        // today
         dayOutlayBudgetLabel.textColor = UIColor.gray
         dayOutlayBudgetLabel.attributedText =
             NSMutableAttributedString()
@@ -157,7 +161,12 @@ extension HomeViewController {
             NSMutableAttributedString()
             .normal("Spent: ")
             .bold("\(750)")
+        dayOutlayAvailableLabel.attributedText =
+            NSMutableAttributedString()
+            .normal("Available: ")
+            .bold("\(750)")
         dayOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        // week
         weekOutlayBudgetLabel.textColor = UIColor.gray
         weekOutlayBudgetLabel.attributedText =
             NSMutableAttributedString()
@@ -168,7 +177,12 @@ extension HomeViewController {
             NSMutableAttributedString()
             .normal("Spent: ")
             .bold("\(750)")
+        weekOutlayAvailableLabel.attributedText =
+            NSMutableAttributedString()
+            .normal("Available: ")
+            .bold("\(9750)")
         weekOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        // month
         monthOutlayBudgetLabel.textAlignment = .right
         monthOutlayBudgetLabel.numberOfLines = 2
         monthOutlayBudgetLabel.attributedText =
@@ -182,21 +196,6 @@ extension HomeViewController {
             .grayBold("Money spent")
             .largeBold("\n\(1500)")
         monthOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-//        dayOutlayProgressTrackCircle.strokeColor = UIColor.clear.cgColor
-//        dayOutlayProgressTrackCircle.fillColor = UIColor(red: 255/255,
-//                                                         green: 214/255,
-//                                                         blue: 183/255,
-//                                                         alpha: 0.4).cgColor
-//        weekOutlayProgressTrackCircle.strokeColor = UIColor.clear.cgColor
-//        weekOutlayProgressTrackCircle.fillColor = UIColor(red: 255/255,
-//                                                         green: 214/255,
-//                                                         blue: 183/255,
-//                                                         alpha: 0.4).cgColor
-//        monthOutlayProgressTrackCircle.strokeColor = UIColor.clear.cgColor
-//        monthOutlayProgressTrackCircle.fillColor = UIColor(red: 255/255,
-//                                                         green: 214/255,
-//                                                         blue: 183/255,
-//                                                         alpha: 0.4).cgColor
     }
     // MARK: - Constraints
     fileprivate func configureConstraints() {
@@ -240,6 +239,10 @@ extension HomeViewController {
             $0.left.equalTo(dayOutlayProgressCircle.position.x).inset(94)
             $0.bottom.equalToSuperview().inset(18)
         }
+        dayOutlayAvailableLabel.snp.makeConstraints {
+            $0.left.equalTo(dayOutlayBudgetLabel.snp.right).inset(-18)
+            $0.bottom.equalTo(dayOutlaySpentLabel.snp.top)
+        }
         weekOutlayCircleLabel.snp.makeConstraints {
             $0.left.equalTo(weekOutlayProgressCircle.position.x).inset(94)
             $0.bottom.equalTo(weekOutlayBudgetLabel.snp.top)
@@ -251,6 +254,10 @@ extension HomeViewController {
         weekOutlaySpentLabel.snp.makeConstraints {
             $0.left.equalTo(weekOutlayProgressCircle.position.x).inset(94)
             $0.bottom.equalToSuperview().inset(18)
+        }
+        weekOutlayAvailableLabel.snp.makeConstraints {
+            $0.left.equalTo(weekOutlayBudgetLabel.snp.right).inset(-18)
+            $0.bottom.equalTo(weekOutlaySpentLabel.snp.top)
         }
         monthOutlayBudgetLabel.snp.makeConstraints {
             $0.right.equalToSuperview().inset(18)
@@ -266,24 +273,25 @@ extension HomeViewController {
             $0.bottom.equalToSuperview().inset(18)
         }
     }
-
+    // MARK: Circles animations
+    // FIX: exctract to separate method
     fileprivate func animateCircle() {
-        let currentAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let monthAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        monthAnimation.toValue = Double(monthSpent)/Double(monthBudget)
+        monthAnimation.duration = 0.6
+        monthAnimation.fillMode = CAMediaTimingFillMode.forwards
+        monthAnimation.isRemovedOnCompletion = false
         let dayAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        let weekAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        currentAnimation.toValue = currentPercentage
-        currentAnimation.duration = 0.6
-        currentAnimation.fillMode = CAMediaTimingFillMode.forwards
-        currentAnimation.isRemovedOnCompletion = false
-        dayAnimation.toValue = dayPercentage
+        dayAnimation.toValue = Double(daySpent)/Double(dayBudget)
         dayAnimation.duration = 0.6
         dayAnimation.fillMode = CAMediaTimingFillMode.forwards
         dayAnimation.isRemovedOnCompletion = false
-        weekAnimation.toValue = weekPercentage
+        let weekAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        weekAnimation.toValue = Double(weekSpent)/Double(weekBudget)
         weekAnimation.duration = 0.6
         weekAnimation.fillMode = CAMediaTimingFillMode.forwards
         weekAnimation.isRemovedOnCompletion = false
-        monthOutlayProgressCircle.add(currentAnimation, forKey: "urSoBasic")
+        monthOutlayProgressCircle.add(monthAnimation, forKey: "urSoBasic")
         dayOutlayProgressCircle.add(dayAnimation, forKey: "urSoBasic")
         weekOutlayProgressCircle.add(weekAnimation, forKey: "urSoBasic")
     }
