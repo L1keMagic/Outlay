@@ -57,11 +57,7 @@ class NewExpenseViewController: UIViewController {
             self.dismiss(animated: true)
             Logger.information(message: Constants.successDataInsert)
         } catch ExpenseError.validationError {
-            let alert = UIAlertController(title: Constants.error, message:
-                                            Constants.invalidFieldsInserted,
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Constants.cancel, style: .cancel))
-            self.present(alert, animated: true)
+            Alerts.shared.showInformAlert(on: self, title: Constants.error, message: Constants.invalidFieldsInserted)
         } catch {
             Logger.error(message: Constants.unknownError)
         }

@@ -1,5 +1,8 @@
 import UIKit
 import SnapKit
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 class AuthViewController: UIViewController {
     override func viewDidLoad() {
@@ -7,7 +10,7 @@ class AuthViewController: UIViewController {
         view.backgroundColor = Constants.backgroundAppColor
         configure()
     }
-    var logInMode: Bool = true {
+    var signup: Bool = true {
         willSet {
             if newValue {
                 titleLabel.text = Constants.signUp
@@ -15,7 +18,6 @@ class AuthViewController: UIViewController {
                 emailField.text = ""
                 passwordField.text = ""
                 confirmPasswordField.text = ""
-                confirmPasswordLabel.isHidden = false
                 confirmPasswordField.isHidden = false
             } else {
                 titleLabel.text = Constants.signIn
@@ -23,35 +25,64 @@ class AuthViewController: UIViewController {
                 emailField.text = ""
                 passwordField.text = ""
                 confirmPasswordField.text = ""
-                confirmPasswordLabel.isHidden = true
                 confirmPasswordField.isHidden = true
             }
         }
     }
     // MARK: - Initializing components
     lazy var titleLabel: UILabel = createDefaultTitleLabel(text: Constants.signUp)
-    lazy var emailLabel: UILabel = createDefaultSmallLabel(text: Constants.email)
-    lazy var passwordLabel: UILabel = createDefaultSmallLabel(text: Constants.password)
-    lazy var confirmPasswordLabel: UILabel = createDefaultSmallLabel(text: Constants.confirmPassword)
-    lazy var emailField: UITextField = createDefaultTextField(tag: 1, placeholder: Constants.email)
-    lazy var passwordField: UITextField = createDefaultTextField(tag: 2, placeholder: Constants.password)
-    lazy var confirmPasswordField: UITextField = createDefaultTextField(tag: 3, placeholder: Constants.confirmPassword)
+    lazy var emailField: UITextField = createAuthTextField(tag: 1, placeholder: Constants.email)
+    lazy var passwordField: UITextField = createAuthTextField(tag: 2, placeholder: Constants.password, isPasswordField: true)
+    lazy var confirmPasswordField: UITextField = createAuthTextField(tag: 3, placeholder: Constants.confirmPassword, isPasswordField: true)
     lazy var switchLogInTypeButton: UIButton = createDefaultSmallButton(text: Constants.signIn)
     lazy var forgotPasswordButton: UIButton = createDefaultSmallButton(text: Constants.forgotPassword)
     lazy var continueButton: UIButton = createDefaultContinueButton(text: Constants.continueButton)
-    lazy var stackView: UIStackView = {
-        $0.axis = .vertical
-        $0.distribution = .fillProportionally
-        $0.contentMode = .top
-        return $0
-    }(UIStackView())
     // MARK: - Action for continue button
     @objc func openHomeVC() {
         Logger.information(message: "Continue button touched")
+        // Create cleaned versions of data!
+        let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if signup {
+            // Sign Up
+            // Validate the fields
+            let error = validateFields()
+            if error != nil {
+                // There is something wrong with the fields! : Show error message!
+                Alerts.shared.showInformAlert(on: self, title: Constants.error, message: error!)
+            } else {
+                // Create the user
+                Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                    // Check for Errors
+                    if err != nil {
+                        // There was an error creating the user
+                        Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "Error Creating User")
+                    } else {
+                        // User was successfully created, now store the first name/last/email/pass
+                        let db = Firestore.firestore()
+                        db.collection("users")
+                            .addDocument(data: ["username": "test user", "uid": result!.user.uid]) { (error) in
+                            if error != nil {
+                                Alerts.shared.showInformAlert(on: self, title: Constants.error,
+                                                              message: "User data could not uploaded, please try again")
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            // Sign In
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                if error != nil {
+                    // Could not sign in
+                    Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "Could not sign in")
+                }
+            }
+        }
     }
     @objc func switchLogInType() {
         Logger.information(message: "Sign button touched")
-        logInMode = !logInMode
+        signup = !signup
     }
     @objc func openForgotPasswordVC() {
         Logger.information(message: "Forgot password button touched")
@@ -74,14 +105,10 @@ extension AuthViewController {
         view.addSubview(continueButton)
         view.addSubview(switchLogInTypeButton)
         view.addSubview(forgotPasswordButton)
-        view.addSubview(stackView)
-        [emailLabel,
-         emailField,
-         passwordLabel,
+        [emailField,
          passwordField,
-         confirmPasswordLabel,
          confirmPasswordField].forEach {
-            stackView.addArrangedSubview($0)
+            view.addSubview($0)
         }
     }
     // MARK: - Delegates
@@ -108,15 +135,27 @@ extension AuthViewController {
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(18)
         }
-        stackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).inset(-10)
+        emailField.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).inset(-40)
             $0.width.equalToSuperview().inset(10)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.height.equalTo(40)
+        }
+        passwordField.snp.makeConstraints {
+            $0.top.equalTo(emailField.snp.bottom).inset(-20)
+            $0.width.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(40)
+        }
+        confirmPasswordField.snp.makeConstraints {
+            $0.top.equalTo(passwordField.snp.bottom).inset(-20)
+            $0.width.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(40)
         }
         switchLogInTypeButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(stackView.snp.bottom).inset(-15)
+            $0.centerY.equalTo(confirmPasswordField.snp.bottom).inset(-35)
         }
         forgotPasswordButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -137,5 +176,32 @@ extension AuthViewController: UITextFieldDelegate {
         } else {
             textField.resignFirstResponder()
         }
+    }
+    // Check the fields and validate that the data is correct.  If everything
+    // is correct, this method returns nil.  Otherwise it retuns the error message
+    func validateFields() -> String? {
+        // Check that all fields are filled in
+        if emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines)  == "" ||
+            passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            confirmPasswordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in all fields"
+        }
+        // Check if password == confirm password fields
+        if passwordField.text != confirmPasswordField.text {
+            return "Password and Confirm Password fields should be equal"
+        }
+        // Check if the email is okay!
+        let cleanedEmail = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if Validators.isEmailValid(cleanedEmail) == false {
+            // Email is not okay
+            return "Please make that your email is correct"
+        }
+        // Check if the password is secure!
+        let cleanedPassword = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if Validators.isPasswordValid(cleanedPassword) == false {
+            // Password is not secure enough
+            return "Please make sure your password is at least 8 character, contains a special character and number"
+        }
+        return nil
     }
 }

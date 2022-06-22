@@ -27,7 +27,9 @@
 		23418C5E28193BC300A197BB /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C5D28193BC300A197BB /* ModelData.swift */; };
 		23418C602819BAB000A197BB /* NewExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C5F2819BAB000A197BB /* NewExpenseModel.swift */; };
 		23418C622819C0F500A197BB /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23418C612819C0F500A197BB /* ErrorHandling.swift */; };
+		2362BB5B2861D9CE00F9190B /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2362BB5A2861D9CE00F9190B /* Validators.swift */; };
 		236A29DF2837A9ED003967DA /* LoaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236A29DE2837A9ED003967DA /* LoaderHelper.swift */; };
+		23868CD5284C0AF000703FB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23868CD4284C0AF000703FB1 /* GoogleService-Info.plist */; };
 		239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6146280F39D60049298F /* ExpenseRepository.swift */; };
 		239D614A280F54650049298F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D6149280F54650049298F /* DateManager.swift */; };
 		23A2123328359B2F00EB5AA8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A2123228359B2F00EB5AA8 /* Expense.swift */; };
@@ -36,6 +38,7 @@
 		23B131C9280D90B300E0AED0 /* ExpenseRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131C8280D90B300E0AED0 /* ExpenseRaw.swift */; };
 		23B131CB280D98A700E0AED0 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CA280D98A700E0AED0 /* ExpenseCell.swift */; };
 		23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B131CE280DA04B00E0AED0 /* ExpensesListViewController.swift */; };
+		23FC7936285921F700B49828 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FC7935285921F700B49828 /* Alerts.swift */; };
 		5E49EB722811621F00CE8AF4 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +64,9 @@
 		23418C5D28193BC300A197BB /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		23418C5F2819BAB000A197BB /* NewExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseModel.swift; sourceTree = "<group>"; };
 		23418C612819C0F500A197BB /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		2362BB5A2861D9CE00F9190B /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		236A29DE2837A9ED003967DA /* LoaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderHelper.swift; sourceTree = "<group>"; };
+		23868CD4284C0AF000703FB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		239D6146280F39D60049298F /* ExpenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepository.swift; sourceTree = "<group>"; };
 		239D6149280F54650049298F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		23A2123228359B2F00EB5AA8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 		23B131C8280D90B300E0AED0 /* ExpenseRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRaw.swift; sourceTree = "<group>"; };
 		23B131CA280D98A700E0AED0 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		23B131CE280DA04B00E0AED0 /* ExpensesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListViewController.swift; sourceTree = "<group>"; };
+		23FC7935285921F700B49828 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		459263C2F59AAEB4199FFEF7 /* Pods-Outlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Outlay.release.xcconfig"; path = "Target Support Files/Pods-Outlay/Pods-Outlay.release.xcconfig"; sourceTree = "<group>"; };
 		4907EC030AE0BA5FD8596BC1 /* Pods_Outlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Outlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 				23367DD3280C3014009FA89A /* Home */,
 				23367DD2280C2FF3009FA89A /* Navigation */,
 				2327AF6D280C262B004CB7A0 /* Info.plist */,
+				23868CD4284C0AF000703FB1 /* GoogleService-Info.plist */,
 			);
 			path = Outlay;
 			sourceTree = "<group>";
@@ -170,6 +177,7 @@
 				23418C5D28193BC300A197BB /* ModelData.swift */,
 				23418C612819C0F500A197BB /* ErrorHandling.swift */,
 				236A29DE2837A9ED003967DA /* LoaderHelper.swift */,
+				23FC7935285921F700B49828 /* Alerts.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -204,6 +212,7 @@
 			children = (
 				239D6149280F54650049298F /* DateManager.swift */,
 				5E49EB712811621F00CE8AF4 /* UIViewExtensions.swift */,
+				2362BB5A2861D9CE00F9190B /* Validators.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -327,6 +336,7 @@
 			files = (
 				23418C592819333B00A197BB /* ExpensesData.json in Resources */,
 				2327AF6C280C262B004CB7A0 /* LaunchScreen.storyboard in Resources */,
+				23868CD5284C0AF000703FB1 /* GoogleService-Info.plist in Resources */,
 				2327AF69280C262B004CB7A0 /* Assets.xcassets in Resources */,
 				23418C5B2819335C00A197BB /* CategoriesData.json in Resources */,
 			);
@@ -406,7 +416,9 @@
 				236A29DF2837A9ED003967DA /* LoaderHelper.swift in Sources */,
 				23B131BF280D6EF100E0AED0 /* NewExpenseViewController.swift in Sources */,
 				23B131CF280DA04B00E0AED0 /* ExpensesListViewController.swift in Sources */,
+				2362BB5B2861D9CE00F9190B /* Validators.swift in Sources */,
 				239D6147280F39D60049298F /* ExpenseRepository.swift in Sources */,
+				23FC7936285921F700B49828 /* Alerts.swift in Sources */,
 				23367DDF280C5FF6009FA89A /* SettingsViewController.swift in Sources */,
 				23ADE4E72813401700353582 /* NewExpenseViewModel.swift in Sources */,
 				230178692816B15100FFD863 /* ResetPasswordViewController.swift in Sources */,
