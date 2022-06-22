@@ -2,10 +2,43 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
+    let currentPercentage = 0.5
+    let dayPercentage = 0.3
+    let weekPercentage = 0.8
+    let currentOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 90,
+                                                                 lineWidth: 12,
+                                                                 centerX: 115,
+                                                                 centerY: 115)
+    let currentOutlayProgressTrackCircle: CAShapeLayer = createExpenseTrackCircle(radius: 90,
+                                                                           lineWidth: 12,
+                                                                           centerX: 115,
+                                                                           centerY: 115)
+    let dayOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 40,
+                                                                    lineWidth: 8,
+                                                                    centerX: 290,
+                                                                    centerY: 62)
+    let dayOutlayProgressTrackCircle: CAShapeLayer = createExpenseTrackCircle(radius: 40,
+                                                                           lineWidth: 8,
+                                                                           centerX: 290,
+                                                                           centerY: 62)
+    let weekOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 40,
+                                                                    lineWidth: 8,
+                                                                    centerX: 290,
+                                                                    centerY: 168)
+    let weekOutlayProgressTrackCircle: CAShapeLayer = createExpenseTrackCircle(radius: 40,
+                                                                           lineWidth: 8,
+                                                                           centerX: 290,
+                                                                           centerY: 168)
+    let currentOutlayProgressLabel: UILabel = createDefaultSmallLabel(text: "Month")
+    let dayOutlayProgressLabel: UILabel = createDefaultSmallLabel(text: "Today")
+    let weekOutlayProgressLabel: UILabel = createDefaultSmallLabel(text: "Week")
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundAppColor
         title = Constants.outlayTitle
+        currentOutlayProgressLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        dayOutlayProgressLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        weekOutlayProgressLabel.font = UIFont.boldSystemFont(ofSize: 14)
         configure()
     }
     // MARK: - ExpenseIndicator
@@ -45,11 +78,22 @@ extension HomeViewController {
         configureSubviews()
         configureActions()
         configureConstraints()
+        animateCircle()
+
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
         view.addSubview(addExpenseButton)
         view.addSubview(expenseIndicator)
+        expenseIndicator.layer.addSublayer(currentOutlayProgressTrackCircle)
+        expenseIndicator.layer.addSublayer(currentOutlayProgressCircle)
+        expenseIndicator.layer.addSublayer(dayOutlayProgressTrackCircle)
+        expenseIndicator.layer.addSublayer(dayOutlayProgressCircle)
+        expenseIndicator.layer.addSublayer(weekOutlayProgressTrackCircle)
+        expenseIndicator.layer.addSublayer(weekOutlayProgressCircle)
+        expenseIndicator.addSubview(currentOutlayProgressLabel)
+        expenseIndicator.addSubview(dayOutlayProgressLabel)
+        expenseIndicator.addSubview(weekOutlayProgressLabel)
     }
     // MARK: - Actions
     fileprivate func configureActions() {
@@ -72,7 +116,40 @@ extension HomeViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(5)
             $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
-            $0.height.equalTo(250)
+            $0.height.equalTo(expenseIndicator.snp.width)
         }
+        currentOutlayProgressLabel.snp.makeConstraints {
+            $0.centerX.equalTo(currentOutlayProgressCircle.position.x)
+            $0.centerY.equalTo(currentOutlayProgressCircle.position.y)
+        }
+        dayOutlayProgressLabel.snp.makeConstraints {
+            $0.centerX.equalTo(dayOutlayProgressCircle.position.x)
+            $0.centerY.equalTo(dayOutlayProgressCircle.position.y)
+        }
+        weekOutlayProgressLabel.snp.makeConstraints {
+            $0.centerX.equalTo(weekOutlayProgressCircle.position.x)
+            $0.centerY.equalTo(weekOutlayProgressCircle.position.y)
+        }
+    }
+
+    fileprivate func animateCircle() {
+        let currentAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let dayAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let weekAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        currentAnimation.toValue = currentPercentage
+        currentAnimation.duration = 0.6
+        currentAnimation.fillMode = CAMediaTimingFillMode.forwards
+        currentAnimation.isRemovedOnCompletion = false
+        dayAnimation.toValue = dayPercentage
+        dayAnimation.duration = 0.6
+        dayAnimation.fillMode = CAMediaTimingFillMode.forwards
+        dayAnimation.isRemovedOnCompletion = false
+        weekAnimation.toValue = weekPercentage
+        weekAnimation.duration = 0.6
+        weekAnimation.fillMode = CAMediaTimingFillMode.forwards
+        weekAnimation.isRemovedOnCompletion = false
+        currentOutlayProgressCircle.add(currentAnimation, forKey: "urSoBasic")
+        dayOutlayProgressCircle.add(dayAnimation, forKey: "urSoBasic")
+        weekOutlayProgressCircle.add(weekAnimation, forKey: "urSoBasic")
     }
 }

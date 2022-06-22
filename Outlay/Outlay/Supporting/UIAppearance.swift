@@ -62,3 +62,33 @@ func createDefaultHeaderInSectionView(header: UILabel) -> UIView {
     }
     return defaultDateLabelView
 }
+func createExpenseCircle(radius: Int, lineWidth: Int, centerX: Int, centerY: Int) -> CAShapeLayer {
+    let outlayProgressLayer = CAShapeLayer()
+        let circularPath = UIBezierPath(arcCenter: .zero,
+                                        radius: CGFloat(radius),
+                                        startAngle: -CGFloat.pi,
+                                        endAngle: CGFloat.pi,
+                                        clockwise: true)
+        outlayProgressLayer.path = circularPath.cgPath
+        outlayProgressLayer.strokeColor = UIColor(red: 0/255, green: 90/255, blue: 190/255, alpha: 0.8).cgColor
+        outlayProgressLayer.lineWidth = CGFloat(lineWidth)
+        outlayProgressLayer.fillColor = UIColor.clear.cgColor
+        outlayProgressLayer.lineCap = CAShapeLayerLineCap.round
+        outlayProgressLayer.strokeEnd = 0
+        outlayProgressLayer.position = CGPoint(x: centerX, y: centerY)
+    return outlayProgressLayer
+    }
+func createExpenseTrackCircle(radius: Int, lineWidth: Int, centerX: Int, centerY: Int) -> CAShapeLayer {
+    let outlayProgressTrackLayer = CAShapeLayer()
+        let circularPath = UIBezierPath(arcCenter: .zero,
+                                        radius: CGFloat(radius),
+                                        startAngle: -CGFloat.pi, endAngle: CGFloat.pi,
+                                        clockwise: true)
+        outlayProgressTrackLayer.path = circularPath.cgPath
+        outlayProgressTrackLayer.strokeColor = UIColor(red: 255/255, green: 214/255, blue: 183/255, alpha: 1.0).cgColor
+        outlayProgressTrackLayer.lineWidth = CGFloat(lineWidth)
+        outlayProgressTrackLayer.fillColor = UIColor.clear.cgColor
+        outlayProgressTrackLayer.lineCap = CAShapeLayerLineCap.round
+        outlayProgressTrackLayer.position = CGPoint(x: centerX, y: centerY)
+    return outlayProgressTrackLayer
+    }
