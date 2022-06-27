@@ -64,34 +64,34 @@ func createDefaultHeaderInSectionView(header: UILabel) -> UIView {
 }
 func createExpenseCircle(radius: Int, lineWidth: Int, centerX: Int, centerY: Int) -> CAShapeLayer {
     let outlayProgressLayer = CAShapeLayer()
-        let circularPath = UIBezierPath(arcCenter: .zero,
-                                        radius: CGFloat(radius),
-                                        startAngle: -CGFloat.pi,
-                                        endAngle: CGFloat.pi,
-                                        clockwise: true)
-        outlayProgressLayer.path = circularPath.cgPath
-        outlayProgressLayer.strokeColor = Constants.darkStrokeBlueColor.cgColor
-        outlayProgressLayer.lineWidth = CGFloat(lineWidth)
-        outlayProgressLayer.fillColor = UIColor.clear.cgColor
-        outlayProgressLayer.lineCap = CAShapeLayerLineCap.round
-        outlayProgressLayer.strokeEnd = 0
-        outlayProgressLayer.position = CGPoint(x: centerX, y: centerY)
+    let circularPath = UIBezierPath(arcCenter: .zero,
+                                    radius: CGFloat(radius),
+                                    startAngle: -CGFloat.pi,
+                                    endAngle: CGFloat.pi,
+                                    clockwise: true)
+    outlayProgressLayer.path = circularPath.cgPath
+    outlayProgressLayer.strokeColor = Constants.darkStrokeBlueColor.cgColor
+    outlayProgressLayer.lineWidth = CGFloat(lineWidth)
+    outlayProgressLayer.fillColor = UIColor.clear.cgColor
+    outlayProgressLayer.lineCap = CAShapeLayerLineCap.round
+    outlayProgressLayer.strokeEnd = 0
+    outlayProgressLayer.position = CGPoint(x: centerX, y: centerY)
     return outlayProgressLayer
-    }
+}
 func createExpenseTrackCircle(radius: Int, lineWidth: Int, centerX: Int, centerY: Int) -> CAShapeLayer {
     let outlayProgressTrackLayer = CAShapeLayer()
-        let circularPath = UIBezierPath(arcCenter: .zero,
-                                        radius: CGFloat(radius),
-                                        startAngle: -CGFloat.pi, endAngle: CGFloat.pi,
-                                        clockwise: true)
-        outlayProgressTrackLayer.path = circularPath.cgPath
+    let circularPath = UIBezierPath(arcCenter: .zero,
+                                    radius: CGFloat(radius),
+                                    startAngle: -CGFloat.pi, endAngle: CGFloat.pi,
+                                    clockwise: true)
+    outlayProgressTrackLayer.path = circularPath.cgPath
     outlayProgressTrackLayer.strokeColor = UIColor(red: 255/255, green: 214/255, blue: 183/255, alpha: 0.4).cgColor
-        outlayProgressTrackLayer.lineWidth = CGFloat(lineWidth)
-        outlayProgressTrackLayer.fillColor = UIColor.clear.cgColor
-        outlayProgressTrackLayer.lineCap = CAShapeLayerLineCap.round
-        outlayProgressTrackLayer.position = CGPoint(x: centerX, y: centerY)
+    outlayProgressTrackLayer.lineWidth = CGFloat(lineWidth)
+    outlayProgressTrackLayer.fillColor = UIColor.clear.cgColor
+    outlayProgressTrackLayer.lineCap = CAShapeLayerLineCap.round
+    outlayProgressTrackLayer.position = CGPoint(x: centerX, y: centerY)
     return outlayProgressTrackLayer
-    }
+}
 extension NSMutableAttributedString {
     var normalFontSize: CGFloat { return 15 }
     var semiBoldFontSize: CGFloat { return 15 }
@@ -125,9 +125,18 @@ extension NSMutableAttributedString {
     }
     func normal(_ value: String) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-        .font: normalFont
+            .font: normalFont
         ]
         self.append(NSAttributedString(string: value, attributes: attributes))
         return self
     }
+}
+
+func animateCircle(numerator: Int, denominator: Int, duration: Double ) -> CABasicAnimation {
+    let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+    basicAnimation.toValue = Double(numerator)/Double(denominator)
+    basicAnimation.duration = 0.6
+    basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+    basicAnimation.isRemovedOnCompletion = false
+    return basicAnimation
 }

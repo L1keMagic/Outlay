@@ -5,46 +5,52 @@ class HomeViewController: UIViewController {
     // MARK: Lables and Shapes
     let monthBudget = 42000
     let weekBudget = 9483
-    let dayBudget = 1354
+    let todayBudget = 1354
     let monthSpent = 24100
     let weekSpent = 4200
-    let daySpent = 188
-    let monthOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: "Month")
+    let toDaySpent = 188
+    // Month labels
+    let monthOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: Constants.monthCircleLabelText)
     let monthOutlaySpentLabel = UILabel()
     let monthOutlayBudgetLabel = UILabel()
     let monthOutlayAvailableLabel = UILabel()
-    let dayOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: "Today")
-    let dayOutlaySpentLabel = UILabel()
-    let dayOutlayBudgetLabel = UILabel()
-    let dayOutlayAvailableLabel = UILabel()
-    let weekOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: "Week")
+    // Today labels
+    let todayOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: Constants.todayCircleLabelText)
+    let todayOutlaySpentLabel = UILabel()
+    let todayOutlayBudgetLabel = UILabel()
+    let todayOutlayAvailableLabel = UILabel()
+    // Week labels
+    let weekOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: Constants.weekCircleLabelText)
     let weekOutlaySpentLabel = UILabel()
     let weekOutlayBudgetLabel = UILabel()
     let weekOutlayAvailableLabel = UILabel()
+    // Month circle shapes
     let monthOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 65,
-                                                                 lineWidth: 12,
-                                                                 centerX: 89,
-                                                                 centerY: 89)
+                                                                      lineWidth: 12,
+                                                                      centerX: 89,
+                                                                      centerY: 89)
     let monthOutlayProgressTrackCircle: CAShapeLayer = createExpenseTrackCircle(radius: 65,
-                                                                           lineWidth: 12,
-                                                                           centerX: 89,
-                                                                           centerY: 89)
-    let dayOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 25,
-                                                                    lineWidth: 8,
-                                                                    centerX: 47,
-                                                                    centerY: 47)
-    let dayOutlayProgressTrackCircle: CAShapeLayer = createExpenseTrackCircle(radius: 25,
-                                                                           lineWidth: 8,
-                                                                           centerX: 47,
-                                                                           centerY: 47)
+                                                                                lineWidth: 12,
+                                                                                centerX: 89,
+                                                                                centerY: 89)
+    // Today circle shapes
+    let todayOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 25,
+                                                                      lineWidth: 8,
+                                                                      centerX: 47,
+                                                                      centerY: 47)
+    let todayOutlayProgressTrackCircle: CAShapeLayer = createExpenseTrackCircle(radius: 25,
+                                                                                lineWidth: 8,
+                                                                                centerX: 47,
+                                                                                centerY: 47)
+    // Week circle shapes
     let weekOutlayProgressCircle: CAShapeLayer = createExpenseCircle(radius: 25,
-                                                                    lineWidth: 8,
-                                                                    centerX: 47,
-                                                                    centerY: 47)
+                                                                     lineWidth: 8,
+                                                                     centerX: 47,
+                                                                     centerY: 47)
     let weekOutlayProgressTrackCircle: CAShapeLayer = createExpenseTrackCircle(radius: 25,
-                                                                           lineWidth: 8,
-                                                                           centerX: 47,
-                                                                           centerY: 47)
+                                                                               lineWidth: 8,
+                                                                               centerX: 47,
+                                                                               centerY: 47)
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundAppColor
@@ -52,19 +58,19 @@ class HomeViewController: UIViewController {
         configure()
     }
     // MARK: - ExpenseIndicator
-    private let monthExpenseIndicator: UIView = {
+    private let monthOutlayProgress: UIView = {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 30
         $0.dropShadow()
         return $0
     }(UIView())
-    private let dayExpenseIndicator: UIView = {
+    private let todayOutlayProgress: UIView = {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 30
         $0.dropShadow()
         return $0
     }(UIView())
-    private let weekExpenseIndicator: UIView = {
+    private let weekOutlayProgress: UIView = {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 30
         $0.dropShadow()
@@ -78,7 +84,7 @@ class HomeViewController: UIViewController {
                                                  animated: true)
     }
     // MARK: - Add Expense Button
-    fileprivate let addMonthBudgetButton: UIButton = createDefaultSmallButton(text: "Set budget")
+    fileprivate let addMonthBudgetButton: UIButton = createDefaultSmallButton(text: Constants.addMonthBudgetButtonTitle)
     fileprivate let addExpenseButton: UIButton = createDefaultContinueButton(text: Constants.newExpenceTitle)
     // MARK: - Add action for expense button
     @objc func addExpense() {
@@ -93,48 +99,48 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 }
-    // MARK: - Controller Extention
+// MARK: - Controller Extention
 extension HomeViewController {
     // MARK: - Configure View
     fileprivate func configure() {
         configureSubviews()
         configureActions()
         configureConstraints()
-        animateCircle()
+        animateAllCircles()
         configureLables()
         configureButtonSettings()
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
         view.addSubview(addExpenseButton)
-        view.addSubview(monthExpenseIndicator)
-        view.addSubview(dayExpenseIndicator)
-        view.addSubview(weekExpenseIndicator)
-        monthExpenseIndicator.layer.addSublayer(monthOutlayProgressTrackCircle)
-        monthExpenseIndicator.layer.addSublayer(monthOutlayProgressCircle)
-        dayExpenseIndicator.layer.addSublayer(dayOutlayProgressTrackCircle)
-        dayExpenseIndicator.layer.addSublayer(dayOutlayProgressCircle)
-        weekExpenseIndicator.layer.addSublayer(weekOutlayProgressTrackCircle)
-        weekExpenseIndicator.layer.addSublayer(weekOutlayProgressCircle)
-        monthExpenseIndicator.addSubview(monthOutlayCircleLabel)
-        monthExpenseIndicator.addSubview(monthOutlaySpentLabel)
-        monthExpenseIndicator.addSubview(monthOutlayBudgetLabel)
-        monthExpenseIndicator.addSubview(monthOutlayAvailableLabel)
-        dayExpenseIndicator.addSubview(dayOutlayCircleLabel)
-        dayExpenseIndicator.addSubview(dayOutlaySpentLabel)
-        dayExpenseIndicator.addSubview(dayOutlayBudgetLabel)
-        dayExpenseIndicator.addSubview(dayOutlayAvailableLabel)
-        weekExpenseIndicator.addSubview(weekOutlayCircleLabel)
-        weekExpenseIndicator.addSubview(weekOutlaySpentLabel)
-        weekExpenseIndicator.addSubview(weekOutlayBudgetLabel)
-        weekExpenseIndicator.addSubview(weekOutlayAvailableLabel)
-        monthExpenseIndicator.addSubview(addMonthBudgetButton)
+        view.addSubview(monthOutlayProgress)
+        view.addSubview(todayOutlayProgress)
+        view.addSubview(weekOutlayProgress)
+        monthOutlayProgress.layer.addSublayer(monthOutlayProgressTrackCircle)
+        monthOutlayProgress.layer.addSublayer(monthOutlayProgressCircle)
+        todayOutlayProgress.layer.addSublayer(todayOutlayProgressTrackCircle)
+        todayOutlayProgress.layer.addSublayer(todayOutlayProgressCircle)
+        weekOutlayProgress.layer.addSublayer(weekOutlayProgressTrackCircle)
+        weekOutlayProgress.layer.addSublayer(weekOutlayProgressCircle)
+        monthOutlayProgress.addSubview(monthOutlayCircleLabel)
+        monthOutlayProgress.addSubview(monthOutlaySpentLabel)
+        monthOutlayProgress.addSubview(monthOutlayBudgetLabel)
+        monthOutlayProgress.addSubview(monthOutlayAvailableLabel)
+        todayOutlayProgress.addSubview(todayOutlayCircleLabel)
+        todayOutlayProgress.addSubview(todayOutlaySpentLabel)
+        todayOutlayProgress.addSubview(todayOutlayBudgetLabel)
+        todayOutlayProgress.addSubview(todayOutlayAvailableLabel)
+        weekOutlayProgress.addSubview(weekOutlayCircleLabel)
+        weekOutlayProgress.addSubview(weekOutlaySpentLabel)
+        weekOutlayProgress.addSubview(weekOutlayBudgetLabel)
+        weekOutlayProgress.addSubview(weekOutlayAvailableLabel)
+        monthOutlayProgress.addSubview(addMonthBudgetButton)
     }
     // MARK: - Actions
     fileprivate func configureActions() {
         addExpenseButton.addTarget(self, action: #selector(addExpense), for: .touchUpInside)
-        monthExpenseIndicator.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                          action: #selector(openExpenseList)))
+        monthOutlayProgress.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                        action: #selector(openExpenseList)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"),
                                                                  style: .plain,
                                                                  target: self,
@@ -151,50 +157,50 @@ extension HomeViewController {
     // MARK: - Lables Settings
     fileprivate func configureLables() {
         // today
-        dayOutlayBudgetLabel.textColor = UIColor.gray
-        dayOutlayBudgetLabel.attributedText =
-            NSMutableAttributedString()
-            .normal("Budget: ")
-            .bold("\(1500)")
-        dayOutlaySpentLabel.textColor = UIColor.gray
-        dayOutlaySpentLabel.attributedText =
-            NSMutableAttributedString()
-            .normal("Spent: ")
-            .bold("\(750)")
-        dayOutlayAvailableLabel.attributedText =
-            NSMutableAttributedString()
-            .normal("Available: ")
-            .bold("\(750)")
-        dayOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        todayOutlayBudgetLabel.textColor = UIColor.gray
+        todayOutlayBudgetLabel.attributedText =
+        NSMutableAttributedString()
+            .normal(Constants.todayOutlayBudgetLabelText)
+            .bold("\(todayBudget)")
+        todayOutlaySpentLabel.textColor = UIColor.gray
+        todayOutlaySpentLabel.attributedText =
+        NSMutableAttributedString()
+            .normal(Constants.todayOutlaySpentLabelText)
+            .bold("\(toDaySpent)")
+        todayOutlayAvailableLabel.attributedText =
+        NSMutableAttributedString()
+            .normal(Constants.todayOutlayAvailableLabelText)
+            .bold("\(todayBudget - toDaySpent)")
+        todayOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // week
         weekOutlayBudgetLabel.textColor = UIColor.gray
         weekOutlayBudgetLabel.attributedText =
-            NSMutableAttributedString()
-            .normal("Budget: ")
-            .bold("\(10500)")
+        NSMutableAttributedString()
+            .normal(Constants.todayOutlayBudgetLabelText)
+            .bold("\(weekBudget)")
         weekOutlaySpentLabel.textColor = UIColor.gray
         weekOutlaySpentLabel.attributedText =
-            NSMutableAttributedString()
-            .normal("Spent: ")
-            .bold("\(750)")
+        NSMutableAttributedString()
+            .normal(Constants.todayOutlaySpentLabelText)
+            .bold("\(weekSpent)")
         weekOutlayAvailableLabel.attributedText =
-            NSMutableAttributedString()
-            .normal("Available: ")
-            .bold("\(9750)")
+        NSMutableAttributedString()
+            .normal(Constants.todayOutlayAvailableLabelText)
+            .bold("\(weekBudget - weekSpent)")
         weekOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // month
         monthOutlayBudgetLabel.textAlignment = .right
         monthOutlayBudgetLabel.numberOfLines = 2
         monthOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
-            .grayBold("Expenses budget")
-            .largeBold("\n\(42000)")
+            .grayBold(Constants.monthOutlayBudgetLabelText)
+            .largeBold("\n\(monthBudget)")
         monthOutlaySpentLabel.textAlignment = .right
         monthOutlaySpentLabel.numberOfLines = 2
         monthOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
-            .grayBold("Money spent")
-            .largeBold("\n\(1500)")
+            .grayBold(Constants.monthOutlaySpentLabelText)
+            .largeBold("\n\(monthSpent)")
         monthOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 20)
     }
     // MARK: - Constraints
@@ -205,21 +211,21 @@ extension HomeViewController {
             $0.height.equalTo(60)
             $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
         }
-        monthExpenseIndicator.snp.makeConstraints {
+        monthOutlayProgress.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(5)
             $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
             $0.height.equalTo(178)
         }
-        dayExpenseIndicator.snp.makeConstraints {
+        todayOutlayProgress.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(monthExpenseIndicator.snp.bottom).inset(-18)
+            $0.top.equalTo(monthOutlayProgress.snp.bottom).inset(-18)
             $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
             $0.height.equalTo(94)
         }
-        weekExpenseIndicator.snp.makeConstraints {
+        weekOutlayProgress.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(dayExpenseIndicator.snp.bottom).inset(-18)
+            $0.top.equalTo(todayOutlayProgress.snp.bottom).inset(-18)
             $0.width.equalToSuperview().inset(Constants.defaultLeftInset)
             $0.height.equalTo(94)
         }
@@ -227,21 +233,21 @@ extension HomeViewController {
             $0.centerX.equalTo(monthOutlayProgressCircle.position.x)
             $0.centerY.equalTo(monthOutlayProgressCircle.position.y)
         }
-        dayOutlayCircleLabel.snp.makeConstraints {
-            $0.left.equalTo(dayOutlayProgressCircle.position.x).inset(94)
-            $0.bottom.equalTo(dayOutlayBudgetLabel.snp.top)
+        todayOutlayCircleLabel.snp.makeConstraints {
+            $0.left.equalTo(todayOutlayProgressCircle.position.x).inset(94)
+            $0.bottom.equalTo(todayOutlayBudgetLabel.snp.top)
         }
-        dayOutlayBudgetLabel.snp.makeConstraints {
-            $0.left.equalTo(dayOutlayProgressCircle.position.x).inset(94)
-            $0.bottom.equalTo(dayOutlaySpentLabel.snp.top)
+        todayOutlayBudgetLabel.snp.makeConstraints {
+            $0.left.equalTo(todayOutlayProgressCircle.position.x).inset(94)
+            $0.bottom.equalTo(todayOutlaySpentLabel.snp.top)
         }
-        dayOutlaySpentLabel.snp.makeConstraints {
-            $0.left.equalTo(dayOutlayProgressCircle.position.x).inset(94)
+        todayOutlaySpentLabel.snp.makeConstraints {
+            $0.left.equalTo(todayOutlayProgressCircle.position.x).inset(94)
             $0.bottom.equalToSuperview().inset(18)
         }
-        dayOutlayAvailableLabel.snp.makeConstraints {
-            $0.left.equalTo(dayOutlayBudgetLabel.snp.right).inset(-18)
-            $0.bottom.equalTo(dayOutlaySpentLabel.snp.top)
+        todayOutlayAvailableLabel.snp.makeConstraints {
+            $0.left.equalTo(todayOutlayBudgetLabel.snp.right).inset(-18)
+            $0.bottom.equalTo(todayOutlaySpentLabel.snp.top)
         }
         weekOutlayCircleLabel.snp.makeConstraints {
             $0.left.equalTo(weekOutlayProgressCircle.position.x).inset(94)
@@ -275,24 +281,18 @@ extension HomeViewController {
     }
     // MARK: Circles animations
     // FIX: exctract to separate method
-    fileprivate func animateCircle() {
-        let monthAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        monthAnimation.toValue = Double(monthSpent)/Double(monthBudget)
-        monthAnimation.duration = 0.6
-        monthAnimation.fillMode = CAMediaTimingFillMode.forwards
-        monthAnimation.isRemovedOnCompletion = false
-        let dayAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        dayAnimation.toValue = Double(daySpent)/Double(dayBudget)
-        dayAnimation.duration = 0.6
-        dayAnimation.fillMode = CAMediaTimingFillMode.forwards
-        dayAnimation.isRemovedOnCompletion = false
-        let weekAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        weekAnimation.toValue = Double(weekSpent)/Double(weekBudget)
-        weekAnimation.duration = 0.6
-        weekAnimation.fillMode = CAMediaTimingFillMode.forwards
-        weekAnimation.isRemovedOnCompletion = false
-        monthOutlayProgressCircle.add(monthAnimation, forKey: "urSoBasic")
-        dayOutlayProgressCircle.add(dayAnimation, forKey: "urSoBasic")
-        weekOutlayProgressCircle.add(weekAnimation, forKey: "urSoBasic")
+    fileprivate func animateAllCircles() {
+        monthOutlayProgressCircle.add(animateCircle(numerator: monthSpent,
+                                                    denominator: monthBudget,
+                                                    duration: 0.6),
+                                      forKey: "monthOutlayProgressCircle")
+        todayOutlayProgressCircle.add(animateCircle(numerator: toDaySpent,
+                                                    denominator: todayBudget,
+                                                    duration: 0.6),
+                                      forKey: "todayOutlayProgressCircle")
+        weekOutlayProgressCircle.add(animateCircle(numerator: weekSpent,
+                                                   denominator: weekBudget,
+                                                   duration: 0.6),
+                                     forKey: "weekOutlayProgressCircle")
     }
 }
