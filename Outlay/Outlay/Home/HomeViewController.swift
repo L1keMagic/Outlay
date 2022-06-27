@@ -280,7 +280,6 @@ extension HomeViewController {
         }
     }
     // MARK: Circles animations
-    // FIX: exctract to separate method
     fileprivate func animateAllCircles() {
         monthOutlayProgressCircle.add(animateCircle(numerator: monthSpent,
                                                     denominator: monthBudget,
