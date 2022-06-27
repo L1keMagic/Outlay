@@ -112,28 +112,42 @@ extension HomeViewController {
     }
     // MARK: - SubViews
     fileprivate func configureSubviews() {
-        view.addSubview(addExpenseButton)
-        view.addSubview(monthOutlayProgress)
-        view.addSubview(todayOutlayProgress)
-        view.addSubview(weekOutlayProgress)
-        monthOutlayProgress.layer.addSublayer(monthOutlayProgressTrackCircle)
-        monthOutlayProgress.layer.addSublayer(monthOutlayProgressCircle)
-        todayOutlayProgress.layer.addSublayer(todayOutlayProgressTrackCircle)
-        todayOutlayProgress.layer.addSublayer(todayOutlayProgressCircle)
-        weekOutlayProgress.layer.addSublayer(weekOutlayProgressTrackCircle)
-        weekOutlayProgress.layer.addSublayer(weekOutlayProgressCircle)
-        monthOutlayProgress.addSubview(monthOutlayCircleLabel)
-        monthOutlayProgress.addSubview(monthOutlaySpentLabel)
-        monthOutlayProgress.addSubview(monthOutlayBudgetLabel)
-        monthOutlayProgress.addSubview(monthOutlayAvailableLabel)
-        todayOutlayProgress.addSubview(todayOutlayCircleLabel)
-        todayOutlayProgress.addSubview(todayOutlaySpentLabel)
-        todayOutlayProgress.addSubview(todayOutlayBudgetLabel)
-        todayOutlayProgress.addSubview(todayOutlayAvailableLabel)
-        weekOutlayProgress.addSubview(weekOutlayCircleLabel)
-        weekOutlayProgress.addSubview(weekOutlaySpentLabel)
-        weekOutlayProgress.addSubview(weekOutlayBudgetLabel)
-        weekOutlayProgress.addSubview(weekOutlayAvailableLabel)
+        [addExpenseButton,
+         monthOutlayProgress,
+         todayOutlayProgress,
+         weekOutlayProgress].forEach {
+            view.addSubview($0)
+        }
+        [monthOutlayProgressTrackCircle,
+         monthOutlayProgressCircle].forEach {
+            monthOutlayProgress.layer.addSublayer($0)
+        }
+        [todayOutlayProgressTrackCircle,
+         todayOutlayProgressCircle].forEach {
+            todayOutlayProgress.layer.addSublayer($0)
+        }
+        [weekOutlayProgressTrackCircle,
+         weekOutlayProgressCircle].forEach {
+            weekOutlayProgress.layer.addSublayer($0)
+        }
+        [monthOutlayCircleLabel,
+         monthOutlaySpentLabel,
+         monthOutlayBudgetLabel,
+         monthOutlayAvailableLabel].forEach {
+            monthOutlayProgress.addSubview($0)
+        }
+        [todayOutlayCircleLabel,
+         todayOutlaySpentLabel,
+         todayOutlayBudgetLabel,
+         todayOutlayAvailableLabel].forEach {
+            todayOutlayProgress.addSubview($0)
+        }
+        [weekOutlayCircleLabel,
+         weekOutlaySpentLabel,
+         weekOutlayBudgetLabel,
+         weekOutlayAvailableLabel].forEach {
+            weekOutlayProgress.addSubview($0)
+        }
         monthOutlayProgress.addSubview(addMonthBudgetButton)
     }
     // MARK: - Actions
