@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if user == nil {
                 self.window?.rootViewController = NavigationController(initialVC: AuthViewController())
             } else {
-                self.window?.rootViewController = NavigationController(initialVC: HomeViewController())
+                self.window?.rootViewController = NavigationController(initialVC: HomeViewController(expenses: ExpenseRepository.shared.getExpenses()))
             }
         }
     }

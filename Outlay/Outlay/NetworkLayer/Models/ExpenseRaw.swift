@@ -1,5 +1,4 @@
 import Foundation
-
 struct ExpenseRaw: Codable {
     let expenseId: String
     let title: String
@@ -9,5 +8,4 @@ struct ExpenseRaw: Codable {
     let expenseSavingDate: String // date when user clicks "save" button
     let isDeleted: Bool
 }
-
 typealias ExpensesRaw = [ExpenseRaw]
