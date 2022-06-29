@@ -1,7 +1,7 @@
 import Foundation
 
-func getBudget(period: Period) -> Int {
-    let budget: Int
+func getBudget(period: Period) -> Double {
+    let budget: Double
     switch period {
     case .today:
         budget = 42000/31
