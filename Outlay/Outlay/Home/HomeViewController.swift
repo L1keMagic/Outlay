@@ -175,6 +175,9 @@ extension HomeViewController {
     }
     // MARK: - Lables Settings
     fileprivate func configureLables() {
+        let monthSpent = { getMoneySpentAmountForPeriod(period: .month, expenses: self.expenses) }
+        let weekSpent = { getMoneySpentAmountForPeriod(period: .weekOfMonth, expenses: self.expenses) }
+        let todaySpent = { getMoneySpentAmountForPeriod(period: .day, expenses: self.expenses) }
         // today
         todayOutlayBudgetLabel.textColor = UIColor.gray
         todayOutlayBudgetLabel.attributedText =
@@ -185,11 +188,11 @@ extension HomeViewController {
         todayOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlaySpentLabelText)
-            .bold("\(getMoneySpentAmountForPeriod(period: .day, expenses: expenses))")
+            .bold("\(String(describing: todaySpent()))")
         todayOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(Double(todayBudget()) - (getMoneySpentAmountForPeriod(period: .day, expenses: expenses)))")
+            .bold("\(Double(todayBudget()) - todaySpent())")
         todayOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // week
         weekOutlayBudgetLabel.textColor = UIColor.gray
@@ -201,11 +204,11 @@ extension HomeViewController {
         weekOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlaySpentLabelText)
-            .bold("\(getMoneySpentAmountForPeriod(period: .weekOfMonth, expenses: expenses))")
+            .bold("\(String(describing: weekSpent()))")
         weekOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(Double(weekBudget()) - getMoneySpentAmountForPeriod(period: .weekOfMonth, expenses: expenses))")
+            .bold("\(Double(weekBudget()) - weekSpent())")
         weekOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // month
         monthOutlayBudgetLabel.textAlignment = .right
@@ -219,7 +222,7 @@ extension HomeViewController {
         monthOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .grayBold(Constants.monthOutlaySpentLabelText)
-            .largeBold("\n\(getMoneySpentAmountForPeriod(period: .month, expenses: expenses))")
+            .largeBold("\n\(String(describing: monthSpent()))")
         monthOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 20)
     }
     // MARK: - Constraints
