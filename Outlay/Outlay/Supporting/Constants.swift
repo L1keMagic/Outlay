@@ -8,6 +8,7 @@ class Constants {
     static let monthCircleLabelText = "Month"
     static let todayCircleLabelText = "Today"
     static let weekCircleLabelText = "Week"
+    static let strideDayIncrement: Date.Stride = 60*60*24
     static let addMonthBudgetButtonTitle = "Set budget"
     static let todayOutlayBudgetLabelText = "Budget: "
     static let todayOutlaySpentLabelText = "Spent: "

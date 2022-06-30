@@ -11,9 +11,6 @@ class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: Lables and Shapes
-    let monthBudget = { getBudget(period: .month) }
-    let weekBudget = { getBudget(period: .week) }
-    let todayBudget = { getBudget(period: .today) }
     // Month labels
     let monthOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: Constants.monthCircleLabelText)
     let monthOutlaySpentLabel = UILabel()
@@ -175,15 +172,19 @@ extension HomeViewController {
     }
     // MARK: - Lables Settings
     fileprivate func configureLables() {
-        let monthSpent = { getMoneySpentAmountForPeriod(period: .month, expenses: self.expenses) }
-        let weekSpent = { getMoneySpentAmountForPeriod(period: .weekOfMonth, expenses: self.expenses) }
-        let todaySpent = { getMoneySpentAmountForPeriod(period: .day, expenses: self.expenses) }
+        let budgetCalculator = BudgetCalculationHelper()
+        var monthBudget: Double { budgetCalculator.getBudget(period: .month)}
+        var weekBudget: Double { budgetCalculator.getBudget(period: .week) }
+        var todayBudget: Double { budgetCalculator.getBudget(period: .today) }
+        let monthSpent = { budgetCalculator.getMoneySpentAmountForPeriod(period: .month, expenses: self.expenses) }
+        let weekSpent = { budgetCalculator.getMoneySpentAmountForPeriod(period: .weekOfMonth, expenses: self.expenses) }
+        let todaySpent = { budgetCalculator.getMoneySpentAmountForPeriod(period: .day, expenses: self.expenses) }
         // today
         todayOutlayBudgetLabel.textColor = UIColor.gray
         todayOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayBudgetLabelText)
-            .bold("\(String(describing: todayBudget()))")
+            .bold("\(String(describing: todayBudget))")
         todayOutlaySpentLabel.textColor = UIColor.gray
         todayOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
@@ -192,14 +193,14 @@ extension HomeViewController {
         todayOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(todayBudget() - todaySpent())")
+            .bold("\(todayBudget - todaySpent())")
         todayOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // week
         weekOutlayBudgetLabel.textColor = UIColor.gray
         weekOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayBudgetLabelText)
-            .bold("\(String(describing: weekBudget()))")
+            .bold("\(String(describing: weekBudget))")
         weekOutlaySpentLabel.textColor = UIColor.gray
         weekOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
@@ -208,7 +209,7 @@ extension HomeViewController {
         weekOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(weekBudget() - weekSpent())")
+            .bold("\(weekBudget - weekSpent())")
         weekOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // month
         monthOutlayBudgetLabel.textAlignment = .right
@@ -216,7 +217,7 @@ extension HomeViewController {
         monthOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .grayBold(Constants.monthOutlayBudgetLabelText)
-            .largeBold("\n\(String(describing: monthBudget()))")
+            .largeBold("\n\(String(describing: monthBudget))")
         monthOutlaySpentLabel.textAlignment = .right
         monthOutlaySpentLabel.numberOfLines = 2
         monthOutlaySpentLabel.attributedText =
@@ -303,19 +304,20 @@ extension HomeViewController {
     }
     // MARK: Circles animations
     fileprivate func animateAllCircles() {
-        monthOutlayProgressCircle.add(animateCircle(numerator: Int(getMoneySpentAmountForPeriod(period: .month,
+        let budgetCalculator = BudgetCalculationHelper()
+        monthOutlayProgressCircle.add(animateCircle(numerator: Int(budgetCalculator.getMoneySpentAmountForPeriod(period: .month,
                                                                                                 expenses: expenses)),
-                                                    denominator: Int(monthBudget()),
+                                                    denominator: Int(budgetCalculator.getBudget(period: .month)),
                                                     duration: 0.6),
                                       forKey: "monthOutlayProgressCircle")
-        todayOutlayProgressCircle.add(animateCircle(numerator: Int((getMoneySpentAmountForPeriod(period: .day,
+        todayOutlayProgressCircle.add(animateCircle(numerator: Int((budgetCalculator.getMoneySpentAmountForPeriod(period: .day,
                                                                                                  expenses: expenses))),
-                                                    denominator: Int(todayBudget()),
+                                                    denominator: Int(budgetCalculator.getBudget(period: .today)),
                                                     duration: 0.6),
                                       forKey: "todayOutlayProgressCircle")
-        weekOutlayProgressCircle.add(animateCircle(numerator: Int(getMoneySpentAmountForPeriod(period: .weekOfMonth,
-                                                                                               expenses: expenses)),
-                                                   denominator: Int(weekBudget()),
+        weekOutlayProgressCircle.add(animateCircle(numerator: Int(budgetCalculator.getMoneySpentAmountForPeriod(period: .weekOfMonth,
+                                                                                    expenses: expenses)),
+                                                   denominator: Int(budgetCalculator.getBudget(period: .week)),
                                                    duration: 0.6),
                                      forKey: "weekOutlayProgressCircle")
     }

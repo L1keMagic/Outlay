@@ -32,12 +32,8 @@ class AuthViewController: UIViewController {
     // MARK: - Initializing components
     lazy var titleLabel: UILabel = createDefaultTitleLabel(text: Constants.signUp)
     lazy var emailField: UITextField = createAuthTextField(tag: 1, placeholder: Constants.email)
-    lazy var passwordField: UITextField = createAuthTextField(tag: 2,
-                                                              placeholder: Constants.password,
-                                                              isPasswordField: true)
-    lazy var confirmPasswordField: UITextField = createAuthTextField(tag: 3,
-                                                                     placeholder: Constants.confirmPassword,
-                                                                     isPasswordField: true)
+    lazy var passwordField: UITextField = createAuthTextField(tag: 2, placeholder: Constants.password, isPasswordField: true)
+    lazy var confirmPasswordField: UITextField = createAuthTextField(tag: 3, placeholder: Constants.confirmPassword, isPasswordField: true)
     lazy var switchLogInTypeButton: UIButton = createDefaultSmallButton(text: Constants.signIn)
     lazy var forgotPasswordButton: UIButton = createDefaultSmallButton(text: Constants.forgotPassword)
     lazy var continueButton: UIButton = createDefaultContinueButton(text: Constants.continueButton)
@@ -67,9 +63,7 @@ class AuthViewController: UIViewController {
                         db.collection("users")
                             .addDocument(data: ["username": "test user", "uid": result!.user.uid]) { (error) in
                                 if error != nil {
-                                    Alerts.shared.showInformAlert(on: self,
-                                                                  title: Constants.error,
-                                                                  message: "User data could not uploaded, please try again")
+                                    Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "User data could not uploaded, please try again")
                                 }
                             }
                     }
