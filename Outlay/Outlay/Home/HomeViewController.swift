@@ -184,32 +184,32 @@ extension HomeViewController {
         todayOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayBudgetLabelText)
-            .bold("\(String(describing: todayBudget))")
+            .bold("\(String(describing: todayBudget.rounded()))")
         todayOutlaySpentLabel.textColor = UIColor.gray
         todayOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlaySpentLabelText)
-            .bold("\(String(describing: todaySpent()))")
+            .bold("\(String(describing: todaySpent().rounded()))")
         todayOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(todayBudget - todaySpent())")
+            .bold("\(todayBudget.rounded() - todaySpent().rounded())")
         todayOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // week
         weekOutlayBudgetLabel.textColor = UIColor.gray
         weekOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayBudgetLabelText)
-            .bold("\(String(describing: weekBudget))")
+            .bold("\(String(describing: weekBudget.rounded()))")
         weekOutlaySpentLabel.textColor = UIColor.gray
         weekOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlaySpentLabelText)
-            .bold("\(String(describing: weekSpent()))")
+            .bold("\(String(describing: weekSpent().rounded()))")
         weekOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(weekBudget - weekSpent())")
+            .bold("\(weekBudget.rounded() - weekSpent().rounded())")
         weekOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // month
         monthOutlayBudgetLabel.textAlignment = .right
@@ -217,13 +217,13 @@ extension HomeViewController {
         monthOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .grayBold(Constants.monthOutlayBudgetLabelText)
-            .largeBold("\n\(String(describing: monthBudget))")
+            .largeBold("\n\(String(describing: monthBudget.rounded()))")
         monthOutlaySpentLabel.textAlignment = .right
         monthOutlaySpentLabel.numberOfLines = 2
         monthOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .grayBold(Constants.monthOutlaySpentLabelText)
-            .largeBold("\n\(String(describing: monthSpent()))")
+            .largeBold("\n\(String(describing: monthSpent().rounded()))")
         monthOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 20)
     }
     // MARK: - Constraints
