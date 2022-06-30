@@ -17,3 +17,8 @@ class DateManager {
         return dateFormatter.date(from: date)!
     }
 }
+enum Period {
+    case today, week, month
+}
+extension Date: Strideable {
+}

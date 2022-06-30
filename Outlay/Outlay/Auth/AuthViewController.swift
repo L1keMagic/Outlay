@@ -62,11 +62,10 @@ class AuthViewController: UIViewController {
                         let db = Firestore.firestore()
                         db.collection("users")
                             .addDocument(data: ["username": "test user", "uid": result!.user.uid]) { (error) in
-                            if error != nil {
-                                Alerts.shared.showInformAlert(on: self, title: Constants.error,
-                                                              message: "User data could not uploaded, please try again")
+                                if error != nil {
+                                    Alerts.shared.showInformAlert(on: self, title: Constants.error, message: "User data could not uploaded, please try again")
+                                }
                             }
-                        }
                     }
                 }
             }

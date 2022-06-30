@@ -2,13 +2,15 @@ import UIKit
 import SnapKit
 
 class HomeViewController: UIViewController {
+    private var expenses: Expenses
+    init(expenses: Expenses) {
+        self.expenses = expenses
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     // MARK: Lables and Shapes
-    let monthBudget = 42000
-    let weekBudget = 9483
-    let todayBudget = 1354
-    let monthSpent = 24100
-    let weekSpent = 4200
-    let toDaySpent = 188
     // Month labels
     let monthOutlayCircleLabel: UILabel = createDefaultSmallLabel(text: Constants.monthCircleLabelText)
     let monthOutlaySpentLabel = UILabel()
@@ -170,37 +172,44 @@ extension HomeViewController {
     }
     // MARK: - Lables Settings
     fileprivate func configureLables() {
+        let budgetCalculator = BudgetCalculationHelper()
+        var monthBudget: Double { budgetCalculator.getBudget(period: .month)}
+        var weekBudget: Double { budgetCalculator.getBudget(period: .week) }
+        var todayBudget: Double { budgetCalculator.getBudget(period: .today) }
+        let monthSpent = { budgetCalculator.getMoneySpentAmountForPeriod(period: .month, expenses: self.expenses) }
+        let weekSpent = { budgetCalculator.getMoneySpentAmountForPeriod(period: .weekOfMonth, expenses: self.expenses) }
+        let todaySpent = { budgetCalculator.getMoneySpentAmountForPeriod(period: .day, expenses: self.expenses) }
         // today
         todayOutlayBudgetLabel.textColor = UIColor.gray
         todayOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayBudgetLabelText)
-            .bold("\(todayBudget)")
+            .bold("\(String(describing: todayBudget.rounded()))")
         todayOutlaySpentLabel.textColor = UIColor.gray
         todayOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlaySpentLabelText)
-            .bold("\(toDaySpent)")
+            .bold("\(String(describing: todaySpent().rounded()))")
         todayOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(todayBudget - toDaySpent)")
+            .bold("\(todayBudget.rounded() - todaySpent().rounded())")
         todayOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // week
         weekOutlayBudgetLabel.textColor = UIColor.gray
         weekOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayBudgetLabelText)
-            .bold("\(weekBudget)")
+            .bold("\(String(describing: weekBudget.rounded()))")
         weekOutlaySpentLabel.textColor = UIColor.gray
         weekOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlaySpentLabelText)
-            .bold("\(weekSpent)")
+            .bold("\(String(describing: weekSpent().rounded()))")
         weekOutlayAvailableLabel.attributedText =
         NSMutableAttributedString()
             .normal(Constants.todayOutlayAvailableLabelText)
-            .bold("\(weekBudget - weekSpent)")
+            .bold("\(weekBudget.rounded() - weekSpent().rounded())")
         weekOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         // month
         monthOutlayBudgetLabel.textAlignment = .right
@@ -208,13 +217,13 @@ extension HomeViewController {
         monthOutlayBudgetLabel.attributedText =
         NSMutableAttributedString()
             .grayBold(Constants.monthOutlayBudgetLabelText)
-            .largeBold("\n\(monthBudget)")
+            .largeBold("\n\(String(describing: monthBudget.rounded()))")
         monthOutlaySpentLabel.textAlignment = .right
         monthOutlaySpentLabel.numberOfLines = 2
         monthOutlaySpentLabel.attributedText =
         NSMutableAttributedString()
             .grayBold(Constants.monthOutlaySpentLabelText)
-            .largeBold("\n\(monthSpent)")
+            .largeBold("\n\(String(describing: monthSpent().rounded()))")
         monthOutlayCircleLabel.font = UIFont.boldSystemFont(ofSize: 20)
     }
     // MARK: - Constraints
@@ -295,16 +304,20 @@ extension HomeViewController {
     }
     // MARK: Circles animations
     fileprivate func animateAllCircles() {
-        monthOutlayProgressCircle.add(animateCircle(numerator: monthSpent,
-                                                    denominator: monthBudget,
+        let budgetCalculator = BudgetCalculationHelper()
+        monthOutlayProgressCircle.add(animateCircle(numerator: Int(budgetCalculator.getMoneySpentAmountForPeriod(period: .month,
+                                                                                                expenses: expenses)),
+                                                    denominator: Int(budgetCalculator.getBudget(period: .month)),
                                                     duration: 0.6),
                                       forKey: "monthOutlayProgressCircle")
-        todayOutlayProgressCircle.add(animateCircle(numerator: toDaySpent,
-                                                    denominator: todayBudget,
+        todayOutlayProgressCircle.add(animateCircle(numerator: Int((budgetCalculator.getMoneySpentAmountForPeriod(period: .day,
+                                                                                                 expenses: expenses))),
+                                                    denominator: Int(budgetCalculator.getBudget(period: .today)),
                                                     duration: 0.6),
                                       forKey: "todayOutlayProgressCircle")
-        weekOutlayProgressCircle.add(animateCircle(numerator: weekSpent,
-                                                   denominator: weekBudget,
+        weekOutlayProgressCircle.add(animateCircle(numerator: Int(budgetCalculator.getMoneySpentAmountForPeriod(period: .weekOfMonth,
+                                                                                    expenses: expenses)),
+                                                   denominator: Int(budgetCalculator.getBudget(period: .week)),
                                                    duration: 0.6),
                                      forKey: "weekOutlayProgressCircle")
     }

@@ -4,7 +4,7 @@
         "title": "Pizza",
         "price": 150.0,
         "categoryId": "A9314D58-13ED-44B2-9E26-508CFB44657A",
-        "expenseDate": "27.04.2022",
+        "expenseDate": "27.06.2022",
         "expenseSavingDate": "2022-04-27T10:26:09+0200",
         "isDeleted": false
     },
@@ -13,25 +13,25 @@
         "title": "Pasta",
         "price": 250.0,
         "categoryId": "A9314D58-13ED-44B2-9E26-508CFB44657A",
-        "expenseDate": "19.04.2022",
+        "expenseDate": "25.06.2022",
         "expenseSavingDate": "2022-04-27T10:26:25+0200",
         "isDeleted": false
     },
     {
         "expenseId": "H4414D58-13ED-44B2-9E26-508CFB44657B",
         "title": "Jeans",
-        "price": 7000.0,
+        "price": 700.0,
         "categoryId": "B9314D58-13ED-44B2-9E26-508CFB44657B",
-        "expenseDate": "27.04.2022",
+        "expenseDate": "30.06.2022",
         "expenseSavingDate": "2022-04-27T10:26:52+0200",
         "isDeleted": false
     },
     {
         "expenseId": "C077AD3B-8AC9-4949-909C-97BE59D73A34",
         "title": "TV Set",
-        "price": 40000.0,
+        "price": 12000,
         "categoryId": "C9314D58-13ED-44B2-9E26-508CFB44657C",
-        "expenseDate": "3.04.2022",
+        "expenseDate": "3.06.2022",
         "expenseSavingDate": "2022-04-27T10:27:19+0200",
         "isDeleted": false
     }
